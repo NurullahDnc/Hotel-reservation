@@ -1,0 +1,13 @@
+@import '../variables/index.scss';
+
+//kodları degisken gibi tanımlıyoruz , kod tekrarını onluyor
+
+//nasıl cagırıız = @extend %algin-center;
+
+
+%algin-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
