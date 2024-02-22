@@ -1,15 +1,18 @@
 import React from 'react'
 import Navbar from '../comporents/navbar/Navbar'
 import Footer from '../comporents/footer/Footer'
+import Demo from '../comporents/navbar/demo'
 
 
-const MainLayout = ({children}) => {
+
+const MainLayout = ({ children }) => {
   return (
     <>
-        <Navbar />
-        {children}
-        <Footer />
-        
+      <Demo />
+      <Navbar />
+      {children}
+      <Footer />
+
     </>
   )
 }
