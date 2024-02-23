@@ -2,33 +2,26 @@ import React from 'react';
 import { AppBar, Toolbar, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import '../../scss/components/_navbar2.scss';
+
+const navItems = [
+    { to: '/', label: 'Anasayfa' },
+    { to: '/hakkimizda', label: 'HAKKIMIZDA' },
+    { to: '/odalar', label: 'ODALAR' },
+    { to: '/aktiviteler', label: 'AKTİVİTELER' },
+    { to: '/restoran', label: 'RESTORAN' },
+    { to: '/galeri', label: 'GALERİ' },
+    { to: '/iletisim', label: 'İLETİŞİM' },
+];
 
 const Navbar2 = () => {
     return (
         <AppBar position="static" className="appBar">
             <Toolbar className="toolbar">
-                <Button component={Link} to="/" className="navButton">
-                    Anasayfa
-                </Button>
-                <Button component={Link} to="/hakkimizda" className="navButton">
-                    HAKKIMIZDA
-                </Button>
-                <Button component={Link} to="/odalar" className="navButton">
-                    ODALAR
-                </Button>
-                <Button component={Link} to="/aktiviteler" className="navButton">
-                    AKTİVİTELER
-                </Button>
-                <Button component={Link} to="/restoran" className="navButton">
-                    RESTORAN
-                </Button>
-                <Button component={Link} to="/galeri" className="navButton">
-                    GALERİ
-                </Button>
-                <Button component={Link} to="/iletisim" className="navButton">
-                    İLETİŞİM
-                </Button>
+                {navItems.map((item, index) => (
+                    <Button key={index} component={Link} to={item.to} className="navButton">
+                        {item.label}
+                    </Button>
+                ))}
             </Toolbar>
         </AppBar>
     );
