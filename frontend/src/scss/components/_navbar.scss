@@ -1,0 +1,190 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    z-index: 900;
+    
+    &-isMenu {
+        position: absolute;
+        height: 100vh;
+        width: 280px;
+        padding-right: 10px;
+        background-color: $bg-light;
+        display: flex;
+        flex-direction: column;
+        z-index: 1000;
+
+        &-item {
+            flex: 1;
+            margin-top: 85px;
+
+            &-items {
+                width: 100%;
+                padding: 7px 35px;
+                font-size: $FontFive;
+                color: $text-main;
+               
+             }
+        }
+
+        &-bottom {
+            background-color: gainsboro;
+        }
+    }
+
+    &-isOpen {
+        position: absolute;
+        left: -280px;
+        background-color: antiquewhite;
+    }
+
+
+    &-reservation {
+        position: absolute;
+        bottom: -100px;
+        width: 100%;
+
+        &-container {
+            background-color: $bg-light;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $text-black;
+            padding: 0 25px;
+            gap: 20px;
+
+            select {
+                width: 250px;
+                height: 45px;
+                border: black;
+                border: 1px solid #ccc; /* Varsayılan border rengi ve genişliği */
+                font-size: 17px;
+
+            }
+
+            button {
+                background-color: $text-main;
+                padding: 15px 40px;
+                border-radius: 7px;
+            }
+
+
+
+        }
+
+        &-reservationNone {
+            display: none;
+        }
+    }
+
+    //navbar ustekinler ac kapa
+    &-container {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // background-color: #FFC219;
+        background-color: $text-main;
+        color: #fffc;
+        padding: 0 40px;
+        font-size: 20px;
+        height: 70px;
+
+        @include mobil{
+            padding: 10px 15px;
+            
+         }
+
+        &-left {
+            width: 40%;
+
+            &-hamburgerIcon {
+                cursor: pointer;
+                
+              
+            }
+            .hamburgerIcons{
+                color: $text-main;
+            }
+
+            z-index: 1000;
+
+        }
+
+        &-center {
+            margin: auto;
+            cursor: pointer;
+        }
+
+        &-right {
+            margin-left: auto;
+            width: 40%;
+
+     
+
+            ul {
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                margin: 0 25px;
+
+                @include mobil{
+                    margin: 0;
+                }
+
+            }
+
+            &-user{
+                cursor: pointer;
+                position: relative;
+
+                &-item{
+                    width: 100px;
+                    position: absolute;
+                    background-color: yellowgreen;
+                    left: -55px;
+                    top: 35px;
+                    padding: 5px;
+                    border-radius: 7px;
+                    line-height: 25px;
+                    display: flex;
+                    flex-direction: column;
+
+
+                    @include mobil{
+                        margin: 0 70px;
+                        left: -40px;
+                    }
+                }
+
+                .isUser{
+                    display: none;
+              
+                }
+
+                @include mobil{
+                    margin: 0 5px;
+                }
+            }
+
+            button {
+                background-color: orange;
+                padding: 14px 20px;
+                margin: 0 25px;
+
+                @include mobil{
+                    display: none;
+                 }
+            }
+
+            select {
+                background-color: transparent;
+                font-size: $FontThree;
+                margin: auto;
+ 
+
+            }
+
+        }
+    }
+}
