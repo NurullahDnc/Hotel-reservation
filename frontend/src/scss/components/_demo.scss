@@ -4,23 +4,23 @@
     align-items: center;
     color: white;
 
-    & .instruction-text {
+    .instruction-text {
         flex-grow: 1;
         text-align: center;
         font-style: italic;
     }
 
-    & .company-logo {
-        content: url('../../logo/STAYEASE.png');
+    .company-logo {
+        background-image: url('../../logo/STAYEASE.png');
         height: 65px;
         width: 120px;
     }
 
-    & .monitor-logo {
+    .monitor-logo {
         margin-left: 10px;
     }
 
-    & .phone-logo {
+    .phone-logo {
         margin-left: 10px;
     }
 }

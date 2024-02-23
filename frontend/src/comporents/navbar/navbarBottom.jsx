@@ -13,7 +13,7 @@ const navItems = [
     { to: '/iletisim', label: 'İLETİŞİM' },
 ];
 
-const Navbar2 = () => {
+const navbarBottom = () => {
     return (
         <AppBar position="static" className="appBar">
             <Toolbar className="toolbar">
@@ -27,4 +27,4 @@ const Navbar2 = () => {
     );
 };
 
-export default Navbar2;
+export default navbarBottom;

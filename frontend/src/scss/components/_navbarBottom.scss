@@ -1,0 +1,33 @@
+.appBar {
+    background-color: #e68a00;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+
+    & .toolbar {
+        display: flex;
+        justify-content: center;
+        /* Butonları ortalamak için */
+
+        & .navButton {
+            color: #000;
+            /* Buton metin rengi */
+            font-weight: bold;
+            /* Kalın metin */
+            height: 100%;
+            /* Tam yükseklik */
+            display: flex;
+            /* İçeriğin dikey hizalaması için */
+            align-items: center;
+            /* İçeriği dikeyde ortala */
+            transition: background-color 0.3s, color 0.3s;
+            /* Hover efekti süresi */
+            text-decoration: none;
+            /* Alt çizgiyi kaldırma */
+
+            &:hover {
+                background-color: #cc7700;
+            }
+        }
+    }
+}
