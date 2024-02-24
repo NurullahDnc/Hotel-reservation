@@ -3,6 +3,7 @@
     width: 100%;
     z-index: 900;
     
+    //solda acılır kapanır menu
     &-isMenu {
         position: absolute;
         height: 100vh;
@@ -13,6 +14,7 @@
         flex-direction: column;
         z-index: 1000;
 
+        //acılır kapanır menu ust taraf
         &-item {
             flex: 1;
             margin-top: 85px;
@@ -26,6 +28,7 @@
              }
         }
 
+        //acılır kapanır menu alt taraf
         &-bottom {
             background-color: gainsboro;
         }
@@ -37,7 +40,7 @@
         background-color: antiquewhite;
     }
 
-
+    //rezervasyon ac kap 
     &-reservation {
         position: absolute;
         bottom: -100px;
@@ -72,12 +75,13 @@
 
         }
 
+        //butona tıklandıgında gizliyor
         &-reservationNone {
             display: none;
         }
     }
 
-    //navbar ustekinler ac kapa
+    //navbar 
     &-container {
 
         display: flex;
@@ -111,6 +115,7 @@
 
         }
 
+        //otel logosu
         &-center {
             margin: auto;
             cursor: pointer;
@@ -120,8 +125,7 @@
             margin-left: auto;
             width: 40%;
 
-     
-
+            //sağda olan ogeler
             ul {
                 display: flex;
                 justify-content: end;
@@ -133,11 +137,13 @@
                 }
 
             }
-
+            
+            //navbarda user icon
             &-user{
                 cursor: pointer;
                 position: relative;
 
+                //user ac kapa, giris yap-kayıt ol
                 &-item{
                     width: 100px;
                     position: absolute;
@@ -167,16 +173,19 @@
                 }
             }
 
+            //rezervasyon yap button
             button {
                 background-color: orange;
                 padding: 14px 20px;
                 margin: 0 25px;
+                border-radius: 7px;
 
                 @include mobil{
                     display: none;
                  }
             }
-
+            
+            //dil secme select
             select {
                 background-color: transparent;
                 font-size: $FontThree;

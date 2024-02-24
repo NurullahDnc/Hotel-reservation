@@ -5,7 +5,6 @@ import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import CloseIcon from '@mui/icons-material/Close';
 
 
-import '../../scss/components/_demo.scss';
 
 const Demo = () => {
     return (
