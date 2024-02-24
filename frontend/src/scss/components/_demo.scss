@@ -1,26 +1,30 @@
-.toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
+.demo {
+    &-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
 
-    .instruction-text {
-        flex-grow: 1;
-        text-align: center;
-        font-style: italic;
-    }
+        &-instructionText {
+            flex-grow: 1;
+            text-align: center;
+            font-style: italic;
+        }
 
-    .company-logo {
-        background-image: url('../../logo/STAYEASE.png');
-        height: 65px;
-        width: 120px;
-    }
+        &-companyLogo {
+            content: url('../../logo/STAYEASE.png');
+            margin-left: -25px;
+            height: 75px;
+            width: 170px;
+        }
 
-    .monitor-logo {
-        margin-left: 10px;
-    }
+        &-monitorLogo {
+            margin-left: 10px;
+        }
 
-    .phone-logo {
-        margin-left: 10px;
+        &-phoneLogo {
+            margin-left: 10px;
+        }
+
     }
 }

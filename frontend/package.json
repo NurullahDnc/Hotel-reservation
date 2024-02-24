@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.17",
     "sass": "^1.71.1",
     "sass-loader": "^14.1.1",
     "webpack": "^5.90.3"

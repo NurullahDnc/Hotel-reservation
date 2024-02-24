@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../comporents/navbar/Navbar'
 import Footer from '../comporents/footer/Footer'
 import Demo from '../comporents/navbar/demo'
-import NavbarBottom from '../comporents/navbar/navbarBottom'
 
 
 
 const MainLayout = ({ children }) => {
+
+  const [demoVisible, setDemoVisible] = useState(true);
+
+  const handleDemoClose = () => {
+    setDemoVisible(false);
+  };
+
   return (
     <>
-      <Demo />
+      {demoVisible && <Demo onClose={handleDemoClose} />}
       <Navbar />
-      <NavbarBottom />
       {children}
       <Footer />
 

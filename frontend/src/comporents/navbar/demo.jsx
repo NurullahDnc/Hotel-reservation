@@ -4,41 +4,25 @@ import DesktopWindowsIcon from '@mui/icons-material/DesktopWindows';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import CloseIcon from '@mui/icons-material/Close';
 
-const Demo = () => {
+
+
+const Demo = ({ onClose }) => {
     return (
         <AppBar position="static" className="demo">
-            <Toolbar>
-                {/* Şirket Logosu */}
-                <img alt="Company Logo" className="company-logo" />
-
-                {/* DesktopWindows Icon (Monitor Ekranı İkonu) */}
-                <IconLogo icon={<DesktopWindowsIcon />} className="monitor-logo" />
-
-                {/* PhoneAndroid Icon (Akıllı Telefon Ekranı İkonu) */}
-                <IconLogo icon={<PhoneAndroidIcon />} className="phone-logo" />
-
-                {/* Yazı: 'Bu şablonu istediğiniz gibi değiştirebilirsiniz.' */}
-                <Typography className="instruction-text">
-                    Bu şablonu istediğiniz gibi değiştirebilirsiniz.
-                </Typography>
-
-                {/* Demoyu Talep Et Butonu */}
-                <Button className="request-demo-button">
+            <Toolbar className="demo-toolbar">
+                <img alt="Company Logo" className="demo-toolbar-companyLogo" />
+                <DesktopWindowsIcon className="demo-toolbar-monitorLogo" />
+                <PhoneAndroidIcon className="demo-toolbar-phoneLogo" />
+                <Typography variant="body2" className="demo-toolbar-instructionText">Bu şablonu istediğiniz gibi değiştirebilirsiniz.</Typography>
+                <Button variant="contained" color="primary" className="demo-toolbar-requestDemoButton">
                     Demoyu Talep Et
                 </Button>
-
-                {/* Kapatma Çarpısı */}
-                <IconButton className="close-icon">
+                <IconButton color="inherit" className="demo-toolbar-closeIcon" onClick={onClose}>
                     <CloseIcon />
                 </IconButton>
             </Toolbar>
         </AppBar>
     );
-}
-
-// IconLogo bileşeni, icon prop'unu alır ve gerekirse ek bir sınıf ekler
-const IconLogo = ({ icon, className }) => {
-    return <div className={`logo ${className}`}>{icon}</div>;
 }
 
 export default Demo;
