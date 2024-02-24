@@ -1,0 +1,65 @@
+//anasayfada tatil comporenti
+.HolidayCart {
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin: 50px 0;
+
+    @include mobil {
+        display: block;
+    }
+
+    //sol taraf tatil'in baslıgı ve metini
+    &-left {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 40px;
+
+
+        @include mobil {
+            width: 100%;
+            padding: 0;
+        }
+
+        &-title {
+            font-size: $FontEight;
+            font-weight: 500;
+            color: black;
+
+            @include mobil {
+                font-size: $FontSix;
+            }
+        }
+
+        &-text {
+
+            padding: 20px 0;
+            text-indent: 20px;
+            line-height: 24px;
+
+        }
+    }
+    //sag taraf tatilin resmi
+    &-right {
+        width: 50%;
+        background-color: red;
+
+        @include mobil {
+            width: 100%;
+        }
+
+        &-image {
+            display: flex;
+            width: 100%;
+            height: 100%;
+
+            img {
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+  

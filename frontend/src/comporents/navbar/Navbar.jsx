@@ -49,7 +49,7 @@ const Navbar = () => {
         <div className='navbar-isMenu-item'>
           {
             navbardata.map(item => (
-              <ul className='navbar-isMenu-item-items' >
+              <ul key={item.id} className='navbar-isMenu-item-items' >
                 <li  >
                   <a href="#news">{item.name}</a>
 
@@ -63,7 +63,7 @@ const Navbar = () => {
         </div>
       </div>
 
-        {/*acılır kapanır rezervasyon yap bolumu */}
+        {/*aşağıya acılan kapanan rezervasyon yap bolumu */}
       <div className='navbar-reservation'>
         <div className={`navbar-reservation-container ${reservationIsOpen ? `""` : `navbar-reservation-reservationNone`}`}>
 
@@ -85,7 +85,7 @@ const Navbar = () => {
 
 
       <div className='navbar-container'>
-        {/* solda hamburger menu */}
+        {/* solda hamburgermenu icon */}
         <div className='navbar-container-left'>
           {/*menu acıldıgında icon rengini degistir. */}
           <RxHamburgerMenu  onClick={toggleMenu} className={`${isMenuOpen ?"navbar-container-left-hamburgerIcon " :"hamburgerIcons"}`} size={25} />
@@ -95,10 +95,11 @@ const Navbar = () => {
         <div className='navbar-container-center'>
           LOGO
         </div>
-        {/*sagda rezervasyon yap button dil secme */}
 
         <div className='navbar-container-right'>
           <ul >
+
+            {/*user icon ve aç kapa bolumu */}
             <li className='navbar-container-right-user'>
               <FaRegUser onClick={toggleUser}  size={23} /> 
               <ul className={`navbar-container-right-user-item ${isUserOpen? "isUser": ""} `}>
@@ -107,9 +108,13 @@ const Navbar = () => {
 
               </ul>
             </li>
+
+            {/*rezervasyon yap buttonu */}
             <li>
               <button onClick={toogleReservation} className='navbar-container-right-button'>Rezervasyon Yap</button>
             </li>
+
+            {/*sagda rezervasyon yap button dil secme */}
             <li className='navbar-container-right-select'>
               <select id="cars" >
               <option value="volvo">TR</option>
