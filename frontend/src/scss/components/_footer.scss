@@ -8,14 +8,15 @@
         &-grid {
 
             &-logo {
-                color: white;
+                color: $text-white;
             }
+
 
             &-menu {
                 display: grid;
                 grid-gap: 5px;
 
-                color: white;
+                color: $text-white;
 
             }
 
