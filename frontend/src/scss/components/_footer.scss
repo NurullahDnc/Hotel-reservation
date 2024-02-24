@@ -1,0 +1,49 @@
+.footer {
+    background-color: rgb(36, 33, 33);
+
+
+    &-container {
+        padding: 100px 0;
+
+        &-grid {
+
+            &-logo {
+                color: white;
+            }
+
+            &-menu {
+                display: grid;
+                grid-gap: 5px;
+
+                color: white;
+
+            }
+
+            &-follow {
+                display: grid;
+                color: white;
+            }
+
+
+            &-newsletter {
+                color: white;
+
+                .textfield {
+                    margin: 10px 0;
+                    width: 17rem;
+                }
+            }
+
+            .divider {
+                background-color: rgb(105, 105, 105);
+                height: 15rem;
+
+            }
+
+
+
+        }
+
+    }
+
+}
