@@ -6,30 +6,18 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 
-const Demo = () => {
+const Demo = ({ onClose }) => {
     return (
         <AppBar position="static" className="demo">
-            <Toolbar>
-                {/* Şirket Logosu */}
-                <img alt="Company Logo" className="company-logo" />
-
-                {/* DesktopWindows Icon (Monitor Ekranı İkonu) */}
-                <DesktopWindowsIcon className="monitor-logo" />
-
-                {/* PhoneAndroid Icon (Akıllı Telefon Ekranı İkonu) */}
-                <PhoneAndroidIcon className="phone-logo" />
-
-                {/* Yazı: 'Bu şablonu istediğiniz gibi değiştirebilirsiniz.' */}
-                <Typography variant="body2" className="instruction-text">Bu şablonu istediğiniz gibi değiştirebilirsiniz.</Typography>
-
-
-                {/* Demoyu Talep Et Butonu */}
-                <Button variant="contained" color="primary" className="request-demo-button">
+            <Toolbar className="demo-toolbar">
+                <img alt="Company Logo" className="demo-toolbar-companyLogo" />
+                <DesktopWindowsIcon className="demo-toolbar-monitorLogo" />
+                <PhoneAndroidIcon className="demo-toolbar-phoneLogo" />
+                <Typography variant="body2" className="demo-toolbar-instructionText">Bu şablonu istediğiniz gibi değiştirebilirsiniz.</Typography>
+                <Button variant="contained" color="primary" className="demo-toolbar-requestDemoButton">
                     Demoyu Talep Et
                 </Button>
-
-                {/* Kapatma Çarpısı */}
-                <IconButton color="inherit" className="close-icon">
+                <IconButton color="inherit" className="demo-toolbar-closeIcon" onClick={onClose}>
                     <CloseIcon />
                 </IconButton>
             </Toolbar>

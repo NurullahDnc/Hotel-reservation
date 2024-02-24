@@ -1,0 +1,22 @@
+// NavbarBottom.scss
+
+.navbarBottom {
+    &-toolbar {
+        background-color: rgb(255, 117, 25);
+        height: 64px;
+        display: flex;
+        justify-content: center;
+
+        .button {
+            color: black;
+            font-size: 17px;
+            font-weight: bold;
+            height: 100%;
+
+            &:hover {
+                background-color: rgb(221, 97, 15);
+
+            }
+        }
+    }
+}
