@@ -2,12 +2,12 @@
     width: 90%;
     height: auto;
     margin: auto;
-
+    
     @include mobil{
         width: 100%;
     }
 
-    //hizmetlerimizdeki baslık
+    //hizmetlerimizdeki ortadaki baslık
     &-title {
         padding: 20px 0;
         text-align: center;
@@ -21,21 +21,33 @@
         flex-wrap: wrap;
         gap: 20px;
         justify-content: center;
+        margin: 20px 0;
 
         @include mobil{
             gap: 10px;
         }
 
-        //hizmetlerin her elmanın kapsayıcısı / icon-text
+       
+
+        //hizmetlerin her elmanın kapsayıcısı / icon, text
         &-item {
             width: 15%;   
-            background-color: $bg-gray;
+            background-color: rgb(200, 200, 200);
             height: 150px;
             display: flex;
             justify-content: center;   
             align-items: center;
             flex-direction: column;
-            color: black; 
+            color: $text-black; 
+            
+            &:hover{
+                .Services-container-item-text{
+                    border-bottom: 3px solid $text-main;
+                    border-radius: 7px;
+                    box-sizing: border-box;
+                    box-shadow: none;
+                }
+            }
 
             @include mobil {
                 width: 31%;

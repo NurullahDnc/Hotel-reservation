@@ -9,6 +9,9 @@ const ActivityCart = ({title, text, imgOne, imgTwo }) => {
             <p className='ActivityCart-left-text'>
                 {text}
             </p>
+            <button className='ActivityCart-left-button'>
+                daha fazla
+            </button>
 
         </div>
 

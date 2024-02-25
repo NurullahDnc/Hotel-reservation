@@ -2,17 +2,20 @@
     position: fixed;
     width: 100%;
     z-index: 900;
-    
+
     //solda acılır kapanır menu
     &-isMenu {
         position: absolute;
         height: 100vh;
         width: 280px;
-        padding-right: 10px;
         background-color: $bg-light;
         display: flex;
         flex-direction: column;
         z-index: 1000;
+
+        @include mobil{
+            height: 109vh;
+        }
 
         //acılır kapanır menu ust taraf
         &-item {
@@ -25,22 +28,58 @@
                 font-size: $FontFive;
                 color: $text-main;
                
-             }
+            }
+
+            :hover{
+                background-color: $text-main;
+                color: $text-white;
+                border-radius: 5px;
+                
+            }
         }
 
         //acılır kapanır menu alt taraf
         &-bottom {
-            background-color: gainsboro;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 20%;
+            border-top: 2px solid $text-main;
+            padding-top: 7px;
+
+            @include mobil{
+                height: 15%;
+            }
+  
+
+            &-button{
+                width: 90%;
+                border-radius: 7px;
+                padding: 15px 0;
+                background-color: $text-main;
+                color: $text-white;
+            }
+
+            &-text{
+                padding: 5px 0;
+                font-weight: 500;
+                font-size: $FontTwo;
+            }
+
+            &-number{
+                font-size: $FontFour;
+            }
         }
     }
 
+    //tıklandıgında sol menu gizliyor
     &-isOpen {
         position: absolute;
         left: -280px;
         background-color: antiquewhite;
     }
 
-    //rezervasyon ac kap 
+    //rezervasyon yap usten ac kap 
     &-reservation {
         position: absolute;
         bottom: -100px;
@@ -53,22 +92,44 @@
             justify-content: center;
             align-items: center;
             color: $text-black;
-            padding: 0 25px;
             gap: 20px;
+            flex-wrap: wrap;
 
+            @include mobil{
+                gap: 0;
+            }
             select {
-                width: 250px;
+                width: 200px;
                 height: 45px;
                 border: black;
                 border: 1px solid #ccc; /* Varsayılan border rengi ve genişliği */
-                font-size: 17px;
+                font-size: $FontThree;
 
+                @include mobil{
+                    width: 100px;
+                    height: 30px;
+                    font-size: $FontTwo;
+                    margin-right: 10px;
+
+                }
+
+            }
+
+            input{
+                width: 120px;
+                padding: 0 4px;
             }
 
             button {
                 background-color: $text-main;
                 padding: 15px 40px;
                 border-radius: 7px;
+                color: $text-white;
+
+                @include mobil{
+                    padding: 10px 25px;
+                    
+                }
             }
 
 
@@ -81,7 +142,7 @@
         }
     }
 
-    //navbar 
+    //navbar genel
     &-container {
 
         display: flex;
@@ -89,7 +150,9 @@
         align-items: center;
         // background-color: #FFC219;
         background-color: $text-main;
-        color: #fffc;
+        // background-color: rgba($text-main);
+
+        color: $text-white;
         padding: 0 40px;
         font-size: 20px;
         height: 70px;
@@ -99,13 +162,12 @@
             
          }
 
+         //navbar sol taraf, hamburgerMenu
         &-left {
             width: 40%;
-
+            
             &-hamburgerIcon {
-                cursor: pointer;
-                
-              
+                cursor: pointer; 
             }
             .hamburgerIcons{
                 color: $text-main;
@@ -119,8 +181,17 @@
         &-center {
             margin: auto;
             cursor: pointer;
+            font-size: $FontFive;
+            font-weight: 500;
+            border-bottom: 2px solid $text-white;
+            transition: 1s all;
+            border-radius: 7px ;
+            &:hover{
+                padding-bottom: 7px;
+            }
         }
 
+        //navbar sag taraf, rezervasyon yap btn, user icon, dil
         &-right {
             margin-left: auto;
             width: 40%;
@@ -143,11 +214,10 @@
                 cursor: pointer;
                 position: relative;
 
-                //user ac kapa, giris yap-kayıt ol
+                //user ac kapa, giris yap, kayıt ol
                 &-item{
                     width: 100px;
                     position: absolute;
-                    background-color: yellowgreen;
                     left: -55px;
                     top: 35px;
                     padding: 5px;
@@ -155,6 +225,17 @@
                     line-height: 25px;
                     display: flex;
                     flex-direction: column;
+                    gap: 3px;
+
+                    li{
+                        width: 100%;
+                        border:2px solid $text-main;
+                        border-radius: 7px;
+                        font-size: $FontTwo;
+                        text-align: center;
+                        padding: 3px 1px;
+                        background-color: $text-main;
+                    }
 
 
                     @include mobil{
@@ -163,6 +244,7 @@
                     }
                 }
 
+                //tıklandıgında user gizliyor
                 .isUser{
                     display: none;
               
@@ -175,7 +257,7 @@
 
             //rezervasyon yap button
             button {
-                background-color: orange;
+                background-color: $text-btn;
                 padding: 14px 20px;
                 margin: 0 25px;
                 border-radius: 7px;

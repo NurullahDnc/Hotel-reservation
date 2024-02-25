@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 
 
 const Navbar = () => {
   const navbardata = [
-    { id: "1", name: "hakkımızda" },
-    { id: "2", name: "odalar" },
-    { id: "3", name: "Aktiviteler" },
-    { id: "4", name: "Restorant" },
-    { id: "5", name: "galeri" },
-    { id: "6", name: "iletisim" }
+    { id: "1", name: "hakkımızda", url:"" },
+    { id: "2", name: "odalar", url:"" },
+    { id: "3", name: "Aktiviteler", url:""},
+    { id: "4", name: "Restorant", url:""},
+    { id: "5", name: "galeri", url:""},
+    { id: "6", name: "iletisim", url:""}
 
 
   ]
@@ -36,6 +37,7 @@ const Navbar = () => {
 
   const toogleReservation = () => {
     setReservationIsOpen(!reservationIsOpen)
+    console.log("asd");
   }
 
   const toggleUser =()=>{
@@ -51,7 +53,7 @@ const Navbar = () => {
             navbardata.map(item => (
               <ul key={item.id} className='navbar-isMenu-item-items' >
                 <li  >
-                  <a href="#news">{item.name}</a>
+                  <Link to={item.url}>{item.name}</Link>
 
                 </li>
               </ul>
@@ -59,7 +61,9 @@ const Navbar = () => {
           }
         </div>
         <div className='navbar-isMenu-bottom'>
-          asdfasdasf
+          <button onClick={toogleReservation} className='navbar-isMenu-bottom-button'>Rezervasyon yap</button>
+           <p className='navbar-isMenu-bottom-text'>Yada iletisime geçin</p>
+           <p className='navbar-isMenu-bottom-number'>542 499 1111</p>
         </div>
       </div>
 
@@ -74,7 +78,7 @@ const Navbar = () => {
           </select>
           
         <input type="date" id="birthday" name="birthday" min={currentDate} />
-        <input type="date" id="birthday" name="birthday" />
+        <input type="date" id="birthday" name="birthday" min={currentDate} />
 
           <button>
             Oda Ara
@@ -93,7 +97,7 @@ const Navbar = () => {
         </div>
         {/* ortada logo */}
         <div className='navbar-container-center'>
-          LOGO
+          STAYEASE
         </div>
 
         <div className='navbar-container-right'>
@@ -133,3 +137,5 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+

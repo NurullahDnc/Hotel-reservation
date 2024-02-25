@@ -23,10 +23,15 @@
             padding: 0;
         }
 
+        &-logo{
+            padding-bottom: 10px;
+            font-size: $FontThree;
+        }
+
         &-title {
             font-size: $FontEight;
             font-weight: 500;
-            color: black;
+            color: $text-black;
 
             @include mobil {
                 font-size: $FontSix;
@@ -41,7 +46,7 @@
 
         }
     }
-    //sag taraf tatilin resmi
+    //sag taraf tatil'in gorseli
     &-right {
         width: 50%;
         background-color: red;
