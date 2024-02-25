@@ -50,7 +50,7 @@
         left: 15px;
         font-size: $FontFive;
         font-weight: 500;
-        color: white;
+        color: $text-white;
    
         @include mobil {
           font-size: $FontTwo;

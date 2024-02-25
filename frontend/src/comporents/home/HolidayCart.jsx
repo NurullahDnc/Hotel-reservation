@@ -7,6 +7,7 @@ const HolidayCart = () => {
 
             {/*tatil comporentinin solda metin kismi */}
             <div className='HolidayCart-left'>
+                <p className='HolidayCart-left-logo'>~STAYEASE</p>
                 <h1 className='HolidayCart-left-title'>Hayalleriniz bizim önceliklerimiz</h1>
                 <p className='HolidayCart-left-text'>
                 İyi bir tatilde beklentilerin ne kadar yüksek olduğunun bilincinde olan bir ekibin hizmet verdiği çok özel bir tesistesiniz. En büyük motivasyonumuz bizi tekrar ziyaret eden misafirlerimizin sürekli artması. Sizleri de misafir etmekten mutluluk duyarız.                </p>

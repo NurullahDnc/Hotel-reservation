@@ -4,7 +4,7 @@
 
     width: 100%;
     display: flex;
-    margin: 155px 0;
+    margin: 25px 0;
      @include mobil{
         display: block;
     }
@@ -14,7 +14,7 @@
         flex-direction: row-reverse;
     }
 
-    //ortadan bolundu ikiye baslık ve metin var
+    //sol taraf title, text ve button var
     &-left{
         width: 45%;
          overflow: hidden;
@@ -29,7 +29,7 @@
         }
 
         &-title{
-             font-size: $FontTen;
+             font-size: $FontEight;
             font-weight: 500;
             color: $text-main;
             @include mobil{
@@ -43,10 +43,23 @@
             text-indent: 20px;
             line-height: 23px;
             font-size: 17px;
+            color: $text-black;
+        }
+
+        &-button{
+            margin-bottom: 30px;
+            width: 120px;
+            padding: 6px 0;
+            border-radius: 10px 0;
+            border: 1px solid $text-main;
+            display: block;
+            font-weight: 500;
+            color: $text-white;
+            background-color: $text-main;
         }
     }
 
-    //sag taraf 2 tane resim var
+    //sag taraf 2 tane gorsel var
     &-right{
         width: 55%;
         display: flex;
