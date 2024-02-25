@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-
+import { MdDarkMode } from "react-icons/md";
+import { MdOutlineDarkMode } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux';
+import {toggleDarkMode} from '../../redux/DarkModeSlice'
 
 
 const Navbar = () => {
@@ -14,7 +17,6 @@ const Navbar = () => {
     { id: "5", name: "galeri", url:""},
     { id: "6", name: "iletisim", url:""}
 
-
   ]
 
   const [isMenuOpen, setMenuOpen] = useState(true);
@@ -22,26 +24,42 @@ const Navbar = () => {
   const [isUserOpen, setUserOpen] = useState(true);
   const [currentDate, setCurrentDate] = useState('');
 
+  const dispatch = useDispatch();
+  const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+
+  //tarih icin
   useEffect(() => {
     // Bugünkü tarihi al, usestate at
     const today = new Date().toISOString().split("T")[0];
     setCurrentDate(today);
   }, []);
 
+  //isdarkmode degisklik oldugunda, body den dark-mode kaldır
+  useEffect(() => {
+    // useEffect içinde body'ye sınıf ekleyip çıkarma işlemi
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }, [isDarkMode]);
 
-
+  //sol menu ac kapa
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen)
   }
-
-
+  
+  //rezervasyon ac kapa
   const toogleReservation = () => {
     setReservationIsOpen(!reservationIsOpen)
     console.log("asd");
   }
 
+  //user ac kapa
   const toggleUser =()=>{
     setUserOpen(!isUserOpen);
+   }
+
+   //darkmode icin redux'daki func. tetikliyor
+  const toggleDark =()=>{
+    dispatch(toggleDarkMode());
+
    }
 
   return (
@@ -126,6 +144,11 @@ const Navbar = () => {
                 <option value="vw">DE</option>
               </select>
 
+            </li>
+            <li onClick={toggleDark} className='navbar-container-right-darkMode'>
+              {
+                isDarkMode? <MdDarkMode size={22} />: <MdOutlineDarkMode size={22} /> 
+              }
             </li>
           </ul>
 

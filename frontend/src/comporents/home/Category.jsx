@@ -13,27 +13,31 @@ const Category = () => {
     ];
 
     return (
-        
+
         <div className='Category'>
-            {/*anasayfada kategori gorselleri */}
-            {
-                categories.map(item => (
-                    <div key={item.id} className='Category-container'>
+            <h1>
+                Konfor ve Huzurun Buluştuğu Adres
+            </h1>
+            <div className='Category-Categorys'>
+                {
+                    categories.map(item => (
+                        <div key={item.id} className='Category-Categorys-container'>
 
-                        {/*kategorinin gorseli */}
-                        <div className='Category-container-image'>
-                            <img src={item.imageUrl} alt="" />
+                            {/*kategorinin gorseli */}
+                            <div className='Category-Categorys-container-image'>
+                                <img src={item.imageUrl} alt="" />
+                            </div>
+
+                            {/*kategorinin adı */}
+                            <div className='Category-Categorys-container-text'>
+                                {item.name}
+                            </div>
+
                         </div>
+                    ))
+                }
 
-                        {/*kategorinin adı */}
-                        <div className='Category-container-text'>
-                            {item.name}
-                        </div>
-
-                    </div>
-                ))
-            }
-
+            </div>
         </div>
     )
 }

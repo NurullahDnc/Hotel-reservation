@@ -4,7 +4,7 @@
 
     width: 100%;
     display: flex;
-    margin: 25px 0;
+    margin: 35px 0;
      @include mobil{
         display: block;
     }
@@ -29,7 +29,7 @@
         }
 
         &-title{
-             font-size: $FontEight;
+             font-size: $FontSeven;
             font-weight: 500;
             color: $text-main;
             @include mobil{

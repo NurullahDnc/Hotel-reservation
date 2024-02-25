@@ -30,6 +30,15 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+//dark mode icin
+body.dark-mode{
+    background-color: $bg-blackTwo;
+  
+    // $text-white: red;
+    // color: $text-white;
+    
+
+}
 
 section {
     position: relative;
