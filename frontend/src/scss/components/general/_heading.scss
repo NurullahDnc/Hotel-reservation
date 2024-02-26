@@ -1,0 +1,14 @@
+
+.Heading{
+    text-align: center;
+    font-weight: 500;
+    font-size: $FontSeven;
+    padding: 20px 0;
+
+    @include mobil{
+        font-size: $FontSix;
+        padding: 10px 0;
+    }
+
+    
+}

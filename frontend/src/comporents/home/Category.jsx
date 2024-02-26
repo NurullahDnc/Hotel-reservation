@@ -1,4 +1,5 @@
 import React from 'react'
+import Heading from '../general/Heading';
 
 const Category = () => {
 
@@ -15,9 +16,8 @@ const Category = () => {
     return (
 
         <div className='Category'>
-            <h1>
-                Konfor ve Huzurun Buluştuğu Adres
-            </h1>
+        
+            <Heading title={"Konfor ve Huzurun Buluştuğu Adres"} />
             <div className='Category-Categorys'>
                 {
                     categories.map(item => (

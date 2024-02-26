@@ -7,6 +7,7 @@ import Services from '../comporents/home/Services'
 import Category from '../comporents/home/Category'
 import NavbarBottom from '../comporents/navbar/navbarBottom'
 import Activity from '../comporents/home/Activity'
+import CompanyProfile from '../comporents/home/CompanyProfile'
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
         <Activity />
         <Services />
       </PageContainerS>
+        <CompanyProfile />
     </div>
   )
 }

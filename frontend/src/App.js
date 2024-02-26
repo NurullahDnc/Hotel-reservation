@@ -4,6 +4,8 @@ import { Routes, Route, BrowserRouter as Router, } from 'react-router-dom';
 import Home from "./pages/Home";
 import Navbar from "./comporents/navbar/Navbar";
 import AdminLayout from "./layout/AdminLayout";
+import ActivitiesPage from "./pages/ActivitiesPage";
+import RestaurantPage from "./pages/RestaurantPage";
 
 
 function App() {
@@ -19,9 +21,11 @@ function App() {
               <MainLayout>
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/activities" element={<ActivitiesPage />} />
+                  <Route path="/restaurant" element={<RestaurantPage />} />
 
 
-                  <Route path="*" element={<div>Sayfa Bulunamadı</div>} />
+                  <Route path="*" element={<div className="notFound">Sayfa Bulunamadı</div>} />
                 </Routes>
               </MainLayout>
             }

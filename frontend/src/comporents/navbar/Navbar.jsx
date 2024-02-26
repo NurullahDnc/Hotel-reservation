@@ -12,8 +12,8 @@ const Navbar = () => {
   const navbardata = [
     { id: "1", name: "hakkımızda", url:"" },
     { id: "2", name: "odalar", url:"" },
-    { id: "3", name: "Aktiviteler", url:""},
-    { id: "4", name: "Restorant", url:""},
+    { id: "3", name: "Aktiviteler", url:"activities"},
+    { id: "4", name: "Restorant", url:"restaurant"},
     { id: "5", name: "galeri", url:""},
     { id: "6", name: "iletisim", url:""}
 
@@ -71,7 +71,7 @@ const Navbar = () => {
             navbardata.map(item => (
               <ul key={item.id} className='navbar-isMenu-item-items' >
                 <li  >
-                  <Link to={item.url}>{item.name}</Link>
+                  <Link onClick={()=>     setMenuOpen(!isMenuOpen)} to={item.url}>{item.name}</Link>
 
                 </li>
               </ul>
@@ -79,8 +79,8 @@ const Navbar = () => {
           }
         </div>
         <div className='navbar-isMenu-bottom'>
-          <button onClick={toogleReservation} className='navbar-isMenu-bottom-button'>Rezervasyon yap</button>
-           <p className='navbar-isMenu-bottom-text'>Yada iletisime geçin</p>
+          <button  className='navbar-isMenu-bottom-button'>Bizimle İletişime Geçin</button>
+           <p className='navbar-isMenu-bottom-text'>Yada Biz Size Ulaşalım</p>
            <p className='navbar-isMenu-bottom-number'>542 499 1111</p>
         </div>
       </div>
@@ -115,7 +115,7 @@ const Navbar = () => {
         </div>
         {/* ortada logo */}
         <div className='navbar-container-center'>
-          STAYEASE
+          <Link to={"/"} >STAYEASE</Link>
         </div>
 
         <div className='navbar-container-right'>
