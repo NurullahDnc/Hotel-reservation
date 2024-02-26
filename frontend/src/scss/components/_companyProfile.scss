@@ -1,0 +1,46 @@
+.CompanyProfile{
+    
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
+    // margin: auto;
+    margin: 50px 0;
+
+    background:linear-gradient(50deg, $text-main 50%, #09118c 50%);
+    color: $text-white;
+
+    
+    &-items{
+        display: flex;
+        
+    &-item{
+        width: 25%;
+        height: auto;
+        text-align: center;
+        padding: 30px 0;
+
+
+
+        &-number{
+            padding: 15px 0;
+
+            @include mobil{
+                font-size: $FontThree;
+            }
+
+      
+        }
+
+        &-text{
+            font-weight: 500;
+            font-size: $FontThree;
+
+            @include mobil{
+                font-size: $FontTwo;
+            }
+        }
+        
+    }
+    }
+}
