@@ -1,22 +1,27 @@
-// NavbarBottom.scss
-
 .navbarBottom {
     &-toolbar {
-        background-color: rgb(255, 117, 25);
+        background-color: $bg-grayTwo;
         height: 64px;
         display: flex;
         justify-content: center;
 
         .button {
-            color: black;
-            font-size: 17px;
+            color: $btn-gray;
+            font-family: $FontFamilyOne;
+            font-size: $FontThree;
             font-weight: bold;
             height: 100%;
+            border: none;
+            padding: 0 14px;
+            background-color: transparent;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; // Transform efekti eklendi
 
             &:hover {
-                background-color: rgb(221, 97, 15);
-
+                background-color: $bg-blueFour;
+                color: $text-white;
+                transform: scale(1.1); // Büyüklük artışı efekti eklendi
             }
+
         }
     }
 }

@@ -1,0 +1,151 @@
+.comment-container {
+  font-family: 'Arial', sans-serif;
+  max-width: 100rem;
+  margin: auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  .comment-header {
+    color: #5e72e4;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    font-weight: bold;
+  }
+
+  .comment-scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .comment-ul {
+    height: 23rem;
+    width: 25rem;
+    list-style: none;
+    padding: 20px;
+    display: inline-flex;
+    gap: 60px;
+
+    .comment-ul-item {
+      background-color: #fff;
+      width: 20rem;
+      /* veya istediğiniz genişlik değeri */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      padding: 20px;
+      transition: box-shadow 0.3s ease-in-out;
+
+      &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      &-userName {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      &-meta {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
+
+      &-content {
+        color: #555;
+        font-size: 16px;
+        margin-bottom: 16px;
+      }
+
+      &-rating {
+        display: flex;
+        align-items: center;
+
+        .star-icon {
+          color: #fdd835;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  .input-container {
+    &-writeComment {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #dcdcdc;
+      border-radius: 6px;
+      resize: none;
+      background-color: #fff;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: #5e72e4;
+      }
+    }
+
+    &-userName {
+      .label {
+        display: block;
+        margin-bottom: 8px;
+        color: #5e72e4;
+        font-weight: bold;
+      }
+
+      .user-name-input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #dcdcdc;
+        border-radius: 6px;
+        background-color: #fff;
+        transition: border-color 0.3s;
+
+        &:focus {
+          border-color: #5e72e4;
+        }
+      }
+    }
+
+    &-section {
+      .label {
+        display: block;
+        margin-bottom: 8px;
+        color: #5e72e4;
+        font-weight: bold;
+      }
+
+      &-rating {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #dcdcdc;
+        border-radius: 6px;
+        background-color: #fff;
+
+        .star-icon {
+          color: #f39c12;
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .commentBtn {
+      background-color: #5e72e4;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #3949ab;
+      }
+    }
+  }
+}

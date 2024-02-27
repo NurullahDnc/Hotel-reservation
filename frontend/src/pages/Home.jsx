@@ -6,6 +6,8 @@ import HolidayCart from '../comporents/home/HolidayCart'
 import Services from '../comporents/home/Services'
 import Category from '../comporents/home/Category'
 import NavbarBottom from '../comporents/navbar/navbarBottom'
+import Comment from '../comporents/home/Comment'
+
 
 const Home = () => {
   return (
@@ -14,11 +16,12 @@ const Home = () => {
       <NavbarBottom />
       <PageContainerS>
         <HolidayCart />
-        <Category/>
+        <Category />
         <ActivityCart title={"Spor Aktiviteleri"} text={"Profesyonel grubumuzun hazırladığı Animasyon programlarımız sabah erken saatlerde su aerobiği ile başlayarak gün boyu çeşitli su ve kara oyunları ile devam etmektedir. Sahil  bölümünde su sporlarıyla eğlenceli saatler geçirebilirsiniz. Plaj voleybolu ile turnuvalar düzenleyerek günün heyecanını daha da artırabilirsiniz."} imgOne={"./image/ozel2.jpg"} imgTwo={"./image/ozel3.jpg"} />
         <ActivityCart title={"Spor Aktiviteleri"} text={"Profesyonel grubumuzun hazırladığı Animasyon programlarımız sabah erken saatlerde su aerobiği ile başlayarak gün boyu çeşitli su ve kara oyunları ile devam etmektedir. Sahil  bölümünde su sporlarıyla eğlenceli saatler geçirebilirsiniz. Plaj voleybolu ile turnuvalar düzenleyerek günün heyecanını daha da artırabilirsiniz."} imgOne={"./image/ozel2.jpg"} imgTwo={"./image/ozel3.jpg"} />
 
         <Services />
+        <Comment />
       </PageContainerS>
     </div>
   )

@@ -3,23 +3,26 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        color: white;
+        height: 4rem;
+        color: $text-black;
+        font-style: italic;
+
+        background-color: $bg-light;
 
         &-instructionText {
             flex-grow: 1;
             text-align: center;
-            font-style: italic;
         }
 
         &-companyLogo {
-            content: url('../../logo/STAYEASE.png');
-            margin-left: -25px;
+            content: url('../../../public/logo/STAYEASE.png');
+            margin-left: -50px;
             height: 75px;
             width: 170px;
         }
 
         &-monitorLogo {
-            margin-left: 10px;
+            margin-left: -25px;
         }
 
         &-phoneLogo {

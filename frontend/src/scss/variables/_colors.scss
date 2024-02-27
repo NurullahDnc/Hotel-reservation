@@ -3,8 +3,21 @@
 
 $bg-black: #000000;
 $bg-blackTwo: #222;
+$bg-blackThree: rgb(36, 33, 33);
 $bg-gray: gray;
+$bg-grayTwo: #dde0ec;
+$bg-grayThree: rgb(105, 105, 105);
+$bg-grayFour: rgb(49, 49, 49);
 $bg-white: #fff;
+$bg-whiteTwo: rgb(226, 226, 226);
+$bg-blue: #2196f3;
+$bg-blueTwo: #1565c0;
+$bg-blueThree: #dde0ec;
+$bg-blueFour: #283593;
+
+
+//button 
+$btn-gray: rgb(51, 51, 51);
 
 //background color
 $bg-light: #fffffc;
@@ -13,11 +26,12 @@ $bg-light: #fffffc;
 $text-main: #080f6d;
 
 $text-white: #fffffc;
+$text-whiteTwo: rgb(207, 207, 207);
 $text-black: #000000;
 $text-gray: #454544;
 $text-btn: orange;
 
- 
+
 
 /*
 
@@ -37,7 +51,7 @@ FFC219  sari
 
 
 :root {
-    
+
     // --track-color: #202324;
     // --thumb-color: #454a4d;
     // --thumb-hover-color: #596268;

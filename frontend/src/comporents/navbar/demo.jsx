@@ -14,10 +14,10 @@ const Demo = ({ onClose }) => {
                 <DesktopWindowsIcon className="demo-toolbar-monitorLogo" />
                 <PhoneAndroidIcon className="demo-toolbar-phoneLogo" />
                 <Typography variant="body2" className="demo-toolbar-instructionText">Bu şablonu istediğiniz gibi değiştirebilirsiniz.</Typography>
-                <Button variant="contained" color="primary" className="demo-toolbar-requestDemoButton">
+                <Button variant="contained" className="demo-toolbar-requestDemoButton">
                     Demoyu Talep Et
                 </Button>
-                <IconButton color="inherit" className="demo-toolbar-closeIcon" onClick={onClose}>
+                <IconButton className="demo-toolbar-closeIcon" onClick={onClose}>
                     <CloseIcon />
                 </IconButton>
             </Toolbar>

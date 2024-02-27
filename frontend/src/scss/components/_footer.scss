@@ -1,6 +1,5 @@
 .footer {
-    background-color: rgb(36, 33, 33);
-
+    background-color: $bg-blackThree;
 
     &-container {
         padding: 100px 0;
@@ -8,9 +7,20 @@
         &-grid {
 
             &-logo {
-                color: $text-white;
+                content: url('../../../public/logo/STAYEASE.png');
+                margin-top: -7rem;
+                margin-left: -6rem;
             }
 
+            .logo-description {
+                margin-top: -10px;
+                margin-left: -5rem;
+                margin-right: 29.9px;
+                text-align: justify;
+                color: $text-whiteTwo;
+                font-size: $FontEleven;
+
+            }
 
             &-menu {
                 display: grid;
@@ -18,33 +28,90 @@
 
                 color: $text-white;
 
+
+                .header {
+                    font-family: $FontFamilyOne;
+                    font-size: $FontTwelve;
+                }
+
+                .footer-link {
+                    color: $text-white;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: $text-gray;
+                    }
+
+                }
+
+
+
             }
 
             &-follow {
                 display: grid;
-                color: white;
+                color: $text-white;
+
+
+                .header {
+                    font-family: $FontFamilyOne;
+                    font-size: $FontTwelve;
+                }
+
+                .footer-link {
+                    color: $text-white;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: $text-gray;
+                    }
+
+                }
+
             }
 
 
             &-newsletter {
-                color: white;
+                color: $text-white;
+
+                .header {
+                    font-family: $FontFamilyOne;
+                    font-size: $FontTwelve;
+                }
 
                 .textfield {
+                    background-color: $bg-grayFour;
                     margin: 10px 0;
-                    width: 17rem;
+                    width: 18rem;
+                    border-radius: 5px;
+
                 }
             }
 
             .divider {
-                background-color: rgb(105, 105, 105);
+                background-color: $bg-grayThree;
                 height: 15rem;
 
             }
 
-
+            .subscribe {
+                margin-top: 1px;
+            }
 
         }
 
+    }
+
+    .copyright {
+
+        background-color: $bg-whiteTwo;
+
+        &-text {
+            color: $text-black;
+            font-size: $FontTwo;
+            text-align: center;
+            padding: 18px;
+        }
     }
 
 }

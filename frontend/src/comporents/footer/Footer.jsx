@@ -1,5 +1,7 @@
 import React from 'react';
 import { Container, Grid, Typography, Link, TextField, Button, Divider } from '@mui/material';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import InputAdornment from '@mui/material/InputAdornment';
 
 const Footer = () => {
   return (
@@ -7,47 +9,57 @@ const Footer = () => {
       <Container className='footer-container'>
         <Grid container spacing={3} className='footer-container-grid'>
 
-          <Grid item xs={12} md={2} className='footer-container-grid-logo'>
-            {/*<img src={logoImage} alt="Logo" style={{ width: '100%', height: 'auto' }} />*/}
-            LOGO
-            <Typography variant="body2" className='logo-description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non sem in urna porttitor tincidunt.
+          <Grid item xs={12} md={2} className='footer-container-grid'>
+            <img alt="footer-logo" className="footer-container-grid-logo" />
+            <Typography className='logo-description'>
+
+              Tecrübeli teknik ekibimizle, güvenilir ve verimli hizmet anlayışımızla müşteri memnuniyeti ve kalite odaklı çalışıyoruz. Profesyonel yaklaşımımızla sektör standartlarına uygun çözümler sunarak, sürekli gelişmeyi ve müşteri beklentilerini aşmayı hedefliyoruz.
             </Typography>
           </Grid>
 
           <Divider orientation="vertical" flexItem className='divider' />
 
           <Grid item xs={12} md={2.8} className='footer-container-grid-menu'>
-            <Typography variant="h6" >Menu </Typography>
-            <Link href="#">Hakkımızda</Link>
-            <Link href="#">İletişim</Link>
-            <Link href="#">Şartlar ve Koşullar</Link>
-            <Link href="#">Gizlilik Politikası</Link>
+            <Typography variant="h6" className='header'>Menu </Typography>
+            <Link href="#" className='footer-link'>Hakkımızda</Link>
+            <Link href="#" className='footer-link'>İletişim</Link>
+            <Link href="#" className='footer-link'>Şartlar ve Koşullar</Link>
+            <Link href="#" className='footer-link'>Gizlilik Politikası</Link>
           </Grid>
 
           <Divider orientation="vertical" flexItem className='divider' />
 
           <Grid item xs={12} md={2.8} className='footer-container-grid-follow'>
-            <Typography variant="h6">Bizi Takip Edin:</Typography>
-            <Link href="#">Facebook</Link>
-            <Link href="#">Twitter</Link>
-            <Link href="#">Instagram</Link>
+            <Typography variant="h6" className='header'>Bizi Takip Edin</Typography>
+            <Link href="#" className='footer-link'>Facebook</Link>
+            <Link href="#" className='footer-link'>Twitter</Link>
+            <Link href="#" className='footer-link'>Instagram</Link>
           </Grid>
 
           <Divider orientation="vertical" flexItem className='divider' />
 
           <Grid item xs={12} md={2.8} className='footer-container-grid-newsletter'>
-            <Typography variant="h6">Abonelik ve Haber Bülteni</Typography>
-            {/* Abonelik ve haber bülteni formu veya input bileşeni buraya gelebilir */}
-            <TextField className='textfield' label="E-posta Adresiniz" variant="outlined" fullWidth />
-            <Button variant="contained" color="primary">Abone Ol</Button>
+            <Typography variant="h6" className='header'>Abonelik ve Haber Bülteni</Typography>
+            <TextField
+              className='textfield'
+              label="E-posta Adresiniz"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <MailOutlineIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <Button variant="contained" color="primary" className='subscribe'>Abone Ol</Button>
           </Grid>
         </Grid>
-
-        <Typography variant="body2" color="textSecondary" align="center" >
-          &copy; [Şirket Adı] [Yıl] - Tüm Hakları Saklıdır.
-        </Typography>
       </Container>
+      <div className='copyright'>
+        <Typography className='copyright-text'>
+          &copy; [STAYEASE] [2024] - Tüm Hakları Saklıdır.
+        </Typography>
+      </div>
     </footer>
   );
 }
