@@ -1,35 +1,27 @@
 import React from 'react';
 import { IoCall } from "react-icons/io5";
 import { FaAddressBook } from "react-icons/fa";
+import Heading from '../general/Heading';
+import { FaUtensils, FaBicycle, FaWifi, FaSwimmingPool, FaGlassCheers, FaSpa } from 'react-icons/fa';
 
 
 const Services = () => {
     const datas = [
-        { id: "1", icon: IoCall, name: "Telefon" },
-        { id: "2", icon: FaAddressBook, name: "Telefon" },
-        { id: "3", icon: IoCall, name: "Telefon" },
-        { id: "4", icon: FaAddressBook, name: "Telefon" },
-        { id: "5", icon: IoCall, name: "Telefon" },
-        { id: "6", icon: FaAddressBook, name: "Telefon" },
-        { id: "7", icon: IoCall, name: "Telefon" },
-        { id: "8", icon: FaAddressBook, name: "Telefon" },
-
-        { id: "9", icon: IoCall, name: "Telefon" },
-        { id: "10", icon: FaAddressBook, name: "Telefon" },
-        { id: "11", icon: IoCall, name: "Telefon" },
-        { id: "12", icon: FaAddressBook, name: "Telefon" },
-
- 
- 
+        { id: "1", icon: FaUtensils, name: "Yemek" },
+        { id: "2", icon: FaBicycle, name: "Aktiviteler" },
+        { id: "4", icon: FaWifi, name: "Wi-Fi" },
+        { id: "5", icon: FaSwimmingPool, name: "Havuz" },
+        { id: "6", icon: FaGlassCheers, name: "Restoran" },
+        { id: "7", icon: FaSpa, name: "Spa" },
 
     ];
 
     return (
         <div className='Services'>
             {/*hizmetlerin baslıgı */}
-            <div className='Services-title'>
-                Hizmetlerimiz
-            </div>
+
+            <Heading title={"Hizmetlerimiz"} />
+           
             <div className='Services-container'>
                 {
                     datas.map((item, i) => (

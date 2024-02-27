@@ -195,9 +195,9 @@
         &-right {
             margin-left: auto;
             width: 40%;
-
             //sağda olan ogeler
             ul {
+                
                 display: flex;
                 justify-content: end;
                 align-items: center;
@@ -272,8 +272,12 @@
                 background-color: transparent;
                 font-size: $FontThree;
                 margin: auto;
- 
 
+            }
+
+            &-darkMode{
+                padding: 0 10px;
+                cursor: pointer;
             }
 
         }

@@ -2,18 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-
+import { MdDarkMode } from "react-icons/md";
+import { MdOutlineDarkMode } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux';
+import {toggleDarkMode} from '../../redux/DarkModeSlice'
 
 
 const Navbar = () => {
   const navbardata = [
     { id: "1", name: "hakkımızda", url:"" },
     { id: "2", name: "odalar", url:"" },
-    { id: "3", name: "Aktiviteler", url:""},
-    { id: "4", name: "Restorant", url:""},
+    { id: "3", name: "Aktiviteler", url:"activities"},
+    { id: "4", name: "Restorant", url:"restaurant"},
     { id: "5", name: "galeri", url:""},
     { id: "6", name: "iletisim", url:""}
-
 
   ]
 
@@ -22,26 +24,42 @@ const Navbar = () => {
   const [isUserOpen, setUserOpen] = useState(true);
   const [currentDate, setCurrentDate] = useState('');
 
+  const dispatch = useDispatch();
+  const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+
+  //tarih icin
   useEffect(() => {
     // Bugünkü tarihi al, usestate at
     const today = new Date().toISOString().split("T")[0];
     setCurrentDate(today);
   }, []);
 
+  //isdarkmode degisklik oldugunda, body den dark-mode kaldır
+  useEffect(() => {
+    // useEffect içinde body'ye sınıf ekleyip çıkarma işlemi
+    document.body.classList.toggle('dark-mode', isDarkMode);
+  }, [isDarkMode]);
 
-
+  //sol menu ac kapa
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen)
   }
-
-
+  
+  //rezervasyon ac kapa
   const toogleReservation = () => {
     setReservationIsOpen(!reservationIsOpen)
     console.log("asd");
   }
 
+  //user ac kapa
   const toggleUser =()=>{
     setUserOpen(!isUserOpen);
+   }
+
+   //darkmode icin redux'daki func. tetikliyor
+  const toggleDark =()=>{
+    dispatch(toggleDarkMode());
+
    }
 
   return (
@@ -53,7 +71,7 @@ const Navbar = () => {
             navbardata.map(item => (
               <ul key={item.id} className='navbar-isMenu-item-items' >
                 <li  >
-                  <Link to={item.url}>{item.name}</Link>
+                  <Link onClick={()=>     setMenuOpen(!isMenuOpen)} to={item.url}>{item.name}</Link>
 
                 </li>
               </ul>
@@ -61,8 +79,8 @@ const Navbar = () => {
           }
         </div>
         <div className='navbar-isMenu-bottom'>
-          <button onClick={toogleReservation} className='navbar-isMenu-bottom-button'>Rezervasyon yap</button>
-           <p className='navbar-isMenu-bottom-text'>Yada iletisime geçin</p>
+          <button  className='navbar-isMenu-bottom-button'>Bizimle İletişime Geçin</button>
+           <p className='navbar-isMenu-bottom-text'>Yada Biz Size Ulaşalım</p>
            <p className='navbar-isMenu-bottom-number'>542 499 1111</p>
         </div>
       </div>
@@ -97,7 +115,7 @@ const Navbar = () => {
         </div>
         {/* ortada logo */}
         <div className='navbar-container-center'>
-          STAYEASE
+          <Link to={"/"} >STAYEASE</Link>
         </div>
 
         <div className='navbar-container-right'>
@@ -126,6 +144,11 @@ const Navbar = () => {
                 <option value="vw">DE</option>
               </select>
 
+            </li>
+            <li onClick={toggleDark} className='navbar-container-right-darkMode'>
+              {
+                isDarkMode? <MdDarkMode size={22} />: <MdOutlineDarkMode size={22} /> 
+              }
             </li>
           </ul>
 
