@@ -1,6 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import ScrollReveal from 'scrollreveal'
 
 const ActivityCart = ({ title, text, imgOne, imgTwo, btnText }) => {
+
+    useEffect(()=>{
+
+        ScrollReveal().reveal('.ActivityCart-right-image', {
+            duration: 1500,
+            scale: 0.5, 
+            easing: 'ease-in-out',
+            interval: 500
+        })
+
+        ScrollReveal().reveal('.ActivityCart-left-title', {
+            origin: "top",
+            distance: "100px",
+            duration: 1000,
+            easing: "ease-in-out",
+
+        })
+
+        ScrollReveal().reveal('.ActivityCart-left-text, .ActivityCart-left-button', {
+            origin: "left",
+            distance: "200px",
+            duration: 1000,
+            easing: "ease-in-out",
+        })
+
+    },[])
+
     return (
         <div className='ActivityCart'>
 
