@@ -167,10 +167,12 @@
             width: 40%;
             
             &-hamburgerIcon {
-                cursor: pointer; 
+                cursor: pointer;
             }
             .hamburgerIcons{
                 color: $text-main;
+                cursor: pointer; 
+
             }
 
             z-index: 1000;

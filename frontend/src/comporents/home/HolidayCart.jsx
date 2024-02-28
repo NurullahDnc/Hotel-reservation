@@ -1,7 +1,32 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import ScrollReveal from 'scrollreveal'
 //anasayfada tatil comporenti
 const HolidayCart = () => {
+
+    useEffect(() => {
+        ScrollReveal().reveal('.HolidayCart-right', {
+            duration: 1000,
+            scale: 0.5, // İlk durumda %50 küçük
+            easing: 'ease-in-out',
+        });
+
+        ScrollReveal().reveal('.HolidayCart-left-title, .HolidayCart-left-logo', {
+            distance: "150px",
+            duration: 1000 ,
+            easing: "ease-in-out",
+            origin: "top",
+        })
+
+        ScrollReveal().reveal('.HolidayCart-left-text', {
+            distance: "250px",
+            duration: 1000 ,
+            easing: "ease-in-out",
+            origin: "left",
+        })
+        
+
+    }, [])
+
     return (
         <div className='HolidayCart'>
 
@@ -10,7 +35,7 @@ const HolidayCart = () => {
                 <p className='HolidayCart-left-logo'>~STAYEASE</p>
                 <h1 className='HolidayCart-left-title'>Hayalleriniz bizim önceliklerimiz</h1>
                 <p className='HolidayCart-left-text'>
-                İyi bir tatilde beklentilerin ne kadar yüksek olduğunun bilincinde olan bir ekibin hizmet verdiği çok özel bir tesistesiniz. En büyük motivasyonumuz bizi tekrar ziyaret eden misafirlerimizin sürekli artması. Sizleri de misafir etmekten mutluluk duyarız.                </p>
+                    İyi bir tatilde beklentilerin ne kadar yüksek olduğunun bilincinde olan bir ekibin hizmet verdiği çok özel bir tesistesiniz. En büyük motivasyonumuz bizi tekrar ziyaret eden misafirlerimizin sürekli artması. Sizleri de misafir etmekten mutluluk duyarız.                </p>
 
             </div>
 

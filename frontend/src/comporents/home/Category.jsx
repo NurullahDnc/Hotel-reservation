@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Heading from '../general/Heading';
+import ScrollReveal from 'scrollreveal'
 
 const Category = () => {
 
@@ -12,6 +13,17 @@ const Category = () => {
 
 
     ];
+
+    useEffect(()=>{
+
+        ScrollReveal().reveal('.Category-Categorys-container', {
+            duration: 1500,
+            scale: 0.5, // İlk durumda %50 küçük
+            easing: 'ease-in-out',
+            interval: 500
+        })
+
+    },[])
 
     return (
 

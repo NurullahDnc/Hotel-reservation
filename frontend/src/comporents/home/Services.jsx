@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IoCall } from "react-icons/io5";
 import { FaAddressBook } from "react-icons/fa";
 import Heading from '../general/Heading';
 import { FaUtensils, FaBicycle, FaWifi, FaSwimmingPool, FaGlassCheers, FaSpa } from 'react-icons/fa';
-
+import ScrollReveal from 'scrollreveal'
 
 const Services = () => {
     const datas = [
@@ -15,6 +15,17 @@ const Services = () => {
         { id: "7", icon: FaSpa, name: "Spa" },
 
     ];
+
+    useEffect(()=>{
+
+    ScrollReveal().reveal('.Services-container-item', {
+        duration: 1500,
+        scale: 0.5, 
+        easing: 'ease-in-out',
+        interval: 300
+    })
+},[])
+
 
     return (
         <div className='Services'>
