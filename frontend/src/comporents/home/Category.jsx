@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
 import Heading from '../general/Heading';
 import ScrollReveal from 'scrollreveal'
+import { useNavigate } from 'react-router-dom';
 
 const Category = () => {
+
+    const navigate = useNavigate();
 
     const categories = [
         { id: 1, name: 'Kategori 1', imageUrl: './image/ozel2.jpg', },
@@ -33,7 +36,7 @@ const Category = () => {
             <div className='Category-Categorys'>
                 {
                     categories.map(item => (
-                        <div key={item.id} className='Category-Categorys-container'>
+                        <div onClick={()=> navigate(`odalar/${item.id}`)} key={item.id} className='Category-Categorys-container'>
 
                             {/*kategorinin gorseli */}
                             <div className='Category-Categorys-container-image'>
