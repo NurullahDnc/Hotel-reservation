@@ -23,6 +23,7 @@ const Navbar = () => {
   const [reservationIsOpen, setReservationIsOpen] = useState(false);
   const [isUserOpen, setUserOpen] = useState(true);
   const [currentDate, setCurrentDate] = useState('');
+  const [selectLanguage, setSelectLanguage] = useState("Tr")
 
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
@@ -40,6 +41,13 @@ const Navbar = () => {
     document.body.classList.toggle('dark-mode', isDarkMode);
   }, [isDarkMode]);
 
+  //dil'de secileni aliyor 
+  useEffect(()=>{
+
+    console.log(selectLanguage, "selectLanguage");
+
+  },[selectLanguage])
+
   //sol menu ac kapa
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen)
@@ -50,7 +58,6 @@ const Navbar = () => {
     setReservationIsOpen(!reservationIsOpen)
     console.log("asd");
   }
-
   //user ac kapa
   const toggleUser = () => {
     setUserOpen(!isUserOpen);
@@ -141,10 +148,10 @@ const Navbar = () => {
 
             {/*sagda rezervasyon yap button dil secme */}
             <li className='navbar-container-right-select'>
-              <select id="cars" >
-                <option value="volvo">TR</option>
-                <option value="saab">EN</option>
-                <option value="vw">DE</option>
+              <select onChange={e=> setSelectLanguage(e.target.value)} id="cars" >
+                <option value="Tr">Tr</option>
+                <option value="En">En</option>
+                <option value="Fr">Fr</option>
               </select>
 
             </li>
