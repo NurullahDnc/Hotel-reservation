@@ -1,63 +1,98 @@
 .comment-container {
-  font-family: 'Arial', sans-serif;
-  max-width: 100rem;
-  margin: auto;
-  padding: 20px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 8vw;
+  font-family: $FontFamilyOne;
 
   .comment-header {
-    color: #5e72e4;
-    margin-bottom: 15px;
-    font-size: 1.8em;
-    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    font-size: 2.5vw;
+
+    @include mobil {
+      font-size: 20px;
+    }
   }
 
   .comment-scroll-container {
     overflow-x: auto;
     white-space: nowrap;
-  }
+    background-color: #f4f4f4;
+    border-radius: 2vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2vw;
+    padding: 1vw;
 
-  .comment-ul {
-    height: 23rem;
-    width: 25rem;
-    list-style: none;
-    padding: 20px;
-    display: inline-flex;
-    gap: 60px;
+    .comment-ul {
+      width: 100%;
+      list-style: none;
+      padding: 2vw;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 2vw;
+    }
 
     .comment-ul-item {
       background-color: #fff;
-      width: 20rem;
-      /* veya istediğiniz genişlik değeri */
+      width: calc(33.333% - 2vw);
+      flex-shrink: 0;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      border-radius: 12px;
-      margin-bottom: 20px;
-      padding: 20px;
+      border-radius: 2vw;
+      margin-bottom: 2vw;
+      padding: 2vw;
       transition: box-shadow 0.3s ease-in-out;
 
       &:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
 
-      &-userName {
-        font-size: 18px;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 8px;
-      }
-
-      &-meta {
-        color: #777;
-        font-size: 14px;
-        margin-bottom: 12px;
+      &-userName,
+      &-meta,
+      &-content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       &-content {
+        overflow: visible;
+        text-overflow: unset;
+        white-space: pre-line;
+        overflow-wrap: break-word;
+      }
+
+      &-userName {
+        font-size: 1.5vw;
+        font-weight: bold;
+        color: #1a1a1a;
+        margin-bottom: 0.5vw;
+        display: block;
+
+        @include mobil {
+          font-size: 15px;
+        }
+      }
+
+      &-meta {
         color: #555;
-        font-size: 16px;
-        margin-bottom: 16px;
+        font-size: 1vw;
+        margin-bottom: 1vw;
+        display: block;
+
+        @include mobil {
+          font-size: 8px;
+        }
+      }
+
+      &-content {
+        color: #333;
+        font-size: 1vw;
+        margin-bottom: 1vw;
+        line-height: 1.4;
+        display: block;
+
+        @include mobil {
+          font-size: 13px;
+        }
+
       }
 
       &-rating {
@@ -65,86 +100,104 @@
         align-items: center;
 
         .star-icon {
-          color: #fdd835;
-          margin-right: 4px;
+          color: #ccc;
+          margin-right: 1vw;
         }
+      }
+
+      &-rating .star-icon:nth-child(-n + 5) {
+        color: #fdd835;
       }
     }
   }
 
   .input-container {
-    &-writeComment {
+    margin-top: 5vw;
+
+    .label-input {
+      font-size: 1.7vw;
+      font-weight: bold;
+
+      @include mobil {
+        font-size: 12px;
+      }
+
+    }
+
+    &-writeComment,
+    &-userName .user-name-input {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #dcdcdc;
-      border-radius: 6px;
+      box-sizing: border-box;
+      padding: 1.2vw;
+      margin-bottom: 1.5vw;
+      border: 0.1vw solid #ddd;
+      border-radius: 1.6vw;
       resize: none;
-      background-color: #fff;
+      background-color: #f9f9f9;
       transition: border-color 0.3s;
+      font-size: 15px;
+
+      @include mobil {
+        font-size: 10px;
+      }
+
 
       &:focus {
-        border-color: #5e72e4;
+        border-color: #3498db;
+        box-shadow: 0 0 1vw rgba(52, 152, 219, 0.5);
       }
     }
 
-    &-userName {
-      .label {
-        display: block;
-        margin-bottom: 8px;
-        color: #5e72e4;
-        font-weight: bold;
-      }
 
-      .user-name-input {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #dcdcdc;
-        border-radius: 6px;
-        background-color: #fff;
-        transition: border-color 0.3s;
-
-        &:focus {
-          border-color: #5e72e4;
-        }
-      }
+    &-userName .user-name-input {
+      margin-top: 1.6vw;
     }
 
     &-section {
       .label {
         display: block;
-        margin-bottom: 8px;
-        color: #5e72e4;
+        margin-bottom: 0.8vw;
+        color: #3498db;
         font-weight: bold;
+        font-size: 1.7vw;
       }
 
       &-rating {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #dcdcdc;
-        border-radius: 6px;
-        background-color: #fff;
+        display: flex;
+        align-items: center;
 
         .star-icon {
           color: #f39c12;
-          margin-right: 5px;
+          font-size: 2vw;
+          margin-right: 0.5vw;
+          cursor: pointer;
+          transition: color 0.3s;
+        }
+
+        .star-icon:hover,
+        .star-icon.active {
+          color: #f39c12;
         }
       }
     }
 
     .commentBtn {
-      background-color: #5e72e4;
+      margin-top: 2.5vw;
+      background-color: #3498db;
       color: #fff;
-      padding: 12px;
+      padding: 1.2vw;
       border: none;
-      border-radius: 6px;
+      border-radius: 1.6vw;
       cursor: pointer;
       transition: background-color 0.3s;
+      font-size: 15px;
+
+      @include mobil {
+        font-size: 10px;
+      }
 
       &:hover {
-        background-color: #3949ab;
+        background-color: #2980b9;
       }
     }
   }

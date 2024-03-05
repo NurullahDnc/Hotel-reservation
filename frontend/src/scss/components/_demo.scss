@@ -2,32 +2,41 @@
     &-toolbar {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        height: 4rem;
+        height: $FontTen;
         color: $text-black;
         font-style: italic;
-
         background-color: $bg-light;
+
+        @include mobil {}
+
 
         &-instructionText {
             flex-grow: 1;
             text-align: center;
+
         }
 
         &-companyLogo {
             content: url('../../../public/logo/STAYEASE.png');
-            margin-left: -50px;
-            height: 75px;
-            width: 170px;
+            margin-left: -5%;
+            height: 4.5rem;
+            width: 10rem;
+
+            @include mobil {
+                margin-left: -10%;
+            }
         }
 
         &-monitorLogo {
-            margin-left: -25px;
+            margin-left: -1.5rem;
         }
 
         &-phoneLogo {
-            margin-left: 10px;
+            margin-left: 1rem;
         }
 
+        Button {
+            font-size: 10px;
+        }
     }
 }
