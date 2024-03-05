@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaCity } from "react-icons/fa6";
 import { HiUsers } from "react-icons/hi2";
 import Heading from '../general/Heading';
@@ -6,7 +6,7 @@ import { FaPlus } from "react-icons/fa6";
 import { FaClockRotateLeft } from "react-icons/fa6";
 import { IoHappyOutline } from "react-icons/io5";
 import { FaSmileBeam } from "react-icons/fa";
-
+import ScrollReveal from 'scrollreveal'
 
 const CompanyProfile = () => {
 
@@ -37,6 +37,20 @@ const CompanyProfile = () => {
     
         }
     ]
+
+    useEffect(()=>{
+
+        ScrollReveal().reveal('.CompanyProfile-items-item', {
+            duration: 1000,
+            scale: 0.5, 
+            easing: 'ease-in-out',
+            interval: 300
+        })
+ 
+     
+
+    },[])
+
 
     return (
         <div className='CompanyProfile'>

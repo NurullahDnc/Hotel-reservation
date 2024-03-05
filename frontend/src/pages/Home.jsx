@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../comporents/home/Header'
 import ActivityCart from '../comporents/general/ActivityCart'
-import PageContainerS from '../containers/PageContainers'
+import PageContainers from '../containers/PageContainers'
 import HolidayCart from '../comporents/home/HolidayCart'
 import Services from '../comporents/home/Services'
 import Category from '../comporents/home/Category'
@@ -16,14 +16,15 @@ const Home = () => {
     <div>
       <Header />
       <NavbarBottom />
-      <PageContainerS>
-        <HolidayCart />
+      <PageContainers>
 
+        <HolidayCart />
         <Category/>
         <Activity />
         <Services />
         <Comment />
-       </PageContainerS>
+        
+       </PageContainers>
         <CompanyProfile />
     </div>
   )

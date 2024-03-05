@@ -12,6 +12,7 @@
     box-sizing: border-box;
 }
 
+//sayfa bulunamdı 
 .notFound{
     width: 100%;
     height: 100vh;
@@ -40,7 +41,7 @@ body {
 //dark mode icin
 body.dark-mode{
     background-color: $bg-blackTwo;
-  
+    color: $text-white  ;
     // $text-white: red;
     // color: $text-white;
     
@@ -62,6 +63,7 @@ textarea {
     font-size: inherit;
     font-family: inherit;
     background-color: transparent;
+    color: $text-black;
 }
 
 input[type="checkbox"],
