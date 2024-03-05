@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons'; // Import faStar icon
+import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
+import { FaStar } from 'react-icons/fa';
+
+
 
 const Comment = () => {
     const [comments, setComments] = useState([]);
@@ -27,64 +31,78 @@ const Comment = () => {
     return (
         <div className="comment-container">
             <h2 className='comment-header'>Yorumlar</h2>
+
+
             <div className="comment-scroll-container">
                 <ul className='comment-ul'>
                     {comments.slice(0).reverse().map((comment, index) => (
                         <li key={index} className="comment-ul-item">
-                            <strong className="comment-ul-item-userName">{comment.name}</strong> -
-                            <span className="comment-ul-item-meta">{comment.date} {comment.time}</span> -
-                            <span className="comment-ul-item-content">{comment.content}</span> -
+                            <strong className="comment-ul-item-userName">{comment.name}</strong>
+                            <span className="comment-ul-item-meta">{comment.date} - {comment.time}</span>
+                            <div className="comment-ul-item-content">
+                                {comment.content.split(' ').length > 50 ? (
+                                    <>
+                                        {comment.content.split(' ').slice(0, 50).join(' ')}...
+                                    </>
+                                ) : (
+                                    comment.content
+                                )}
+                            </div>
                             <span className="comment-ul-item-rating">
-                                Yıldız:
-                                {[...Array(comment.rating)].map((_, i) => (
-                                    <FontAwesomeIcon key={i} icon={faStar} className="star-icon" />
+                                {[...Array(5)].map((_, i) => (
+                                    <FontAwesomeIcon
+                                        key={i}
+                                        icon={i < comment.rating ? solidStar : regularStar}
+                                        className="star-icon"
+                                    />
                                 ))}
                             </span>
                         </li>
                     ))}
                 </ul>
             </div>
+
+
             <div className="input-container">
+                <label className="label-input">Yorumunuzu yazın:</label>
+                <div className="input-container-userName">
+                    <input
+                        className="user-name-input"
+                        type="text"
+                        value={name}
+                        placeholder="Kullanıcı adınızı girin"
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+
                 <textarea
                     className="input-container-writeComment"
                     placeholder="Yorumunuzu buraya yazın"
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
+                    rows={5}
                 />
-                <div className="input-container-userName">
-                    <label className="label">
-                        Kullanıcı Adı:
-                    </label>
-                    <input
-                        className="user-name-input"
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
 
-                </div>
+
                 <div className="input-container-section">
-                    <label className="label">
-                        Yıldız Ver:
-                    </label>
-                    <select
-                        className="input-container-section-rating"
-                        value={rating}
-                        onChange={(e) => setRating(parseInt(e.target.value))}
-                    >
-                        <option value={0}>0</option>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                    </select>
-
+                    <div className="input-container-section-rating">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                            <FaStar
+                                key={star}
+                                className="star-icon"
+                                color={star <= rating ? '#f39c12' : '#dcdcdc'}
+                                onClick={() => setRating(star)}
+                            />
+                        ))}
+                    </div>
                 </div>
+
                 <button className="commentBtn" onClick={addComment}>
                     Yorum Ekle
                 </button>
             </div>
+
+
         </div>
     );
 };
