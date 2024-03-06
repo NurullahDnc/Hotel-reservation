@@ -1,0 +1,31 @@
+{
+    "homePage": "Home Page",
+    "aboutUs": "About Us",
+    "rooms": "Rooms",
+    "activities": "Activities",
+    "restaurant": "Restaurant",
+    "gallery": "Gallery",
+    "contact": "Contact",
+
+    "instructionText": "You can customize this template as you wish.",
+    "requestDemoButton": "Request Demo",
+
+    "comments": "Comments",
+    "writeYourComment": "Write your comment:",
+    "enterYourUserName": "Enter your username",
+    "writeYourCommentHere": "Write your comment here",
+    "addComment": "Add Comment",
+
+    "logoDescription": "Experienced technical team, providing reliable and efficient services with a customer satisfaction and quality-oriented approach. We aim to continuously improve and exceed customer expectations.",
+    "menu": "Menu",
+    "termsAndConditions": "Terms and Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "followUs": "Follow Us",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "newsletter": "Subscription and Newsletter",
+    "emailAddress": "Email Address",
+    "subscribe": "Subscribe",
+    "copyright": "&copy; [STAYEASE] [2024] - All Rights Reserved."
+}
