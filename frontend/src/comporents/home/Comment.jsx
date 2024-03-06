@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
 import { FaStar } from 'react-icons/fa';
-
-
+import { useTranslation } from 'react-i18next';
 
 const Comment = () => {
+    const { t } = useTranslation();
+
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
-    const [name, setName] = useState('Nazlı');
+    const [name, setName] = useState('nazli');
     const [rating, setRating] = useState(0);
 
     const addComment = () => {
@@ -30,8 +31,7 @@ const Comment = () => {
 
     return (
         <div className="comment-container">
-            <h2 className='comment-header'>Yorumlar</h2>
-
+            <h2 className='comment-header'>{t('comments')}</h2>
 
             <div className="comment-scroll-container">
                 <ul className='comment-ul'>
@@ -62,27 +62,25 @@ const Comment = () => {
                 </ul>
             </div>
 
-
             <div className="input-container">
-                <label className="label-input">Yorumunuzu yazın:</label>
+                <label className="label-input">{t('writeYourComment')}</label>
                 <div className="input-container-userName">
                     <input
                         className="user-name-input"
                         type="text"
                         value={name}
-                        placeholder="Kullanıcı adınızı girin"
+                        placeholder={t('enterYourUserName')}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </div>
 
                 <textarea
                     className="input-container-writeComment"
-                    placeholder="Yorumunuzu buraya yazın"
+                    placeholder={t('writeYourCommentHere')}
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     rows={5}
                 />
-
 
                 <div className="input-container-section">
                     <div className="input-container-section-rating">
@@ -98,11 +96,9 @@ const Comment = () => {
                 </div>
 
                 <button className="commentBtn" onClick={addComment}>
-                    Yorum Ekle
+                    {t('addComment')}
                 </button>
             </div>
-
-
         </div>
     );
 };

@@ -1,0 +1,32 @@
+{
+    "homePage": "Anasayfa",
+    "aboutUs": "Hakkımızda",
+    "rooms": "Odalar",
+    "activities": "Aktiviteler",
+    "restaurant": "Restoran",
+    "gallery": "Galeri",
+    "contact": "İletişim",
+
+    "instructionText": "Bu şablonu istediğiniz gibi değiştirebilirsiniz.",
+    "requestDemoButton": "Demo Talep Et",
+
+    "comments": "Yorumlar",
+    "writeYourComment": "Yorumunuzu yazın:",
+    "enterYourUserName": "Kullanıcı adınızı girin",
+    "writeYourCommentHere": "Yorumunuzu buraya yazın",
+    "addComment": "Yorum Ekle",
+
+    "logoDescription": "Deneyimli teknik ekibimizle, müşteri memnuniyeti ve kalite odaklı bir yaklaşımla güvenilir ve verimli hizmetler sunuyoruz. Sürekli gelişmeyi ve müşteri beklentilerini aşmayı hedefliyoruz.",
+    "menu": "Menü",
+    "termsAndConditions": "Şartlar ve Koşullar",
+    "privacyPolicy": "Gizlilik Politikası",
+    "followUs": "Bizi Takip Edin",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "newsletter": "Abonelik ve Haber Bülteni",
+    "emailAddress": "E-posta Adresiniz",
+    "subscribe": "Abone Ol",
+    "copyright": "&copy; [STAYEASE] [2024] - Tüm Hakları Saklıdır."
+
+}

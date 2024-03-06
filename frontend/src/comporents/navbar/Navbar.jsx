@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleDarkMode } from '../../redux/DarkModeSlice'
+import { toggleDarkMode } from '../../redux/DarkModeSlice';
+import { useTranslation } from 'react-i18next';
 
 
 const Navbar = () => {
@@ -27,6 +28,13 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
+  const { t, i18n } = useTranslation();
+
+  const clickHandle = async (lang) => {
+    await i18n.changeLanguage(lang);
+  };
+
+
 
   //tarih icin
   useEffect(() => {
@@ -42,11 +50,7 @@ const Navbar = () => {
   }, [isDarkMode]);
 
   //dil'de secileni aliyor 
-  useEffect(()=>{
 
-    console.log(selectLanguage, "selectLanguage");
-
-  },[selectLanguage])
 
   //sol menu ac kapa
   const toggleMenu = () => {
@@ -148,12 +152,10 @@ const Navbar = () => {
 
             {/*sagda rezervasyon yap button dil secme */}
             <li className='navbar-container-right-select'>
-              <select onChange={e=> setSelectLanguage(e.target.value)} id="cars" >
-                <option value="Tr">Tr</option>
-                <option value="En">En</option>
-                <option value="Fr">Fr</option>
+              <select onChange={(e) => clickHandle(e.target.value)} >
+                <option value="tr">Tr</option>
+                <option value="en">En</option>
               </select>
-
             </li>
             <li onClick={toggleDark} className='navbar-container-right-darkMode'>
               {
