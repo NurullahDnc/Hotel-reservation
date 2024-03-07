@@ -12,7 +12,7 @@ const Footer = () => {
     <footer className='footer'>
       <Container className='footer-container'>
         <Grid container spacing={3} className='footer-container-grid'>
-          <Grid item xs={12} md={2} className='footer-container-grid'>
+          <Grid item xs={3.5} md={2} className='footer-container-grid'>
             <img alt="footer-logo" className="footer-container-grid-logo" />
             <Typography className='logo-description'>
               {t('logoDescription')}
@@ -21,7 +21,7 @@ const Footer = () => {
 
           <Divider orientation="vertical" flexItem className='divider' />
 
-          <Grid item xs={12} md={2.8} className='footer-container-grid-menu'>
+          <Grid item xs={2.3} md={2.8} className='footer-container-grid-menu'>
             <Typography variant="h6" className='header'>{t('menu')}</Typography>
             <Link href="#" className='footer-link'>{t('aboutUs')}</Link>
             <Link href="#" className='footer-link'>{t('contact')}</Link>
@@ -31,7 +31,7 @@ const Footer = () => {
 
           <Divider orientation="vertical" flexItem className='divider' />
 
-          <Grid item xs={12} md={2.8} className='footer-container-grid-follow'>
+          <Grid item xs={2.3} md={2.8} className='footer-container-grid-follow'>
             <Typography variant="h6" className='header'>{t('followUs')}</Typography>
             <Link href="#" className='footer-link'>{t('facebook')}</Link>
             <Link href="#" className='footer-link'>{t('twitter')}</Link>
@@ -40,7 +40,7 @@ const Footer = () => {
 
           <Divider orientation="vertical" flexItem className='divider' />
 
-          <Grid item xs={12} md={2.8} className='footer-container-grid-newsletter'>
+          <Grid item xs={3} md={2.8} className='footer-container-grid-newsletter'>
             <Typography variant="h6" className='header'>{t('newsletter')}</Typography>
             <TextField
               className='textfield'
