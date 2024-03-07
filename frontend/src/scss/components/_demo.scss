@@ -7,9 +7,6 @@
         font-style: italic;
         background-color: $bg-light;
 
-        @include mobil {}
-
-
         &-instructionText {
             flex-grow: 1;
             text-align: center;

@@ -11,6 +11,12 @@
                 margin-top: -7rem;
                 margin-left: -6rem;
 
+                @include mobil {
+                    margin-top: -2.9rem;
+                    margin-left: -3.5rem;
+                    padding: 25px;
+                }
+
             }
 
             .logo-description {
@@ -21,23 +27,41 @@
                 color: $text-whiteTwo;
                 font-size: $FontEleven;
 
+                @include mobil {
+                    text-align: left;
+                    margin-left: -11px;
+                    width: 9.5rem;
+                    font-size: 12px;
+                }
+
             }
 
             &-menu {
                 display: grid;
                 grid-gap: 5px;
-
                 color: $text-white;
+
+                @include mobil {
+                    font-size: 12px;
+
+                }
+
 
 
                 .header {
                     font-family: $FontFamilyOne;
                     font-size: $FontTwelve;
+
+                    @include mobil {
+                        font-size: 13px;
+                    }
+
                 }
 
                 .footer-link {
                     color: $text-white;
                     text-decoration: none;
+
 
                     &:hover {
                         color: $text-gray;
@@ -53,10 +77,18 @@
                 display: grid;
                 color: $text-white;
 
+                @include mobil {
+                    font-size: 12px;
+                }
 
                 .header {
                     font-family: $FontFamilyOne;
                     font-size: $FontTwelve;
+
+                    @include mobil {
+                        font-size: 13px;
+                    }
+
                 }
 
                 .footer-link {
@@ -78,6 +110,11 @@
                 .header {
                     font-family: $FontFamilyOne;
                     font-size: $FontTwelve;
+
+                    @include mobil {
+                        font-size: 13px;
+                    }
+
                 }
 
                 .textfield {
@@ -86,7 +123,21 @@
                     width: 18rem;
                     border-radius: 5px;
 
+                    @include mobil {
+                        width: 11.5rem;
+                        margin-left: -10px;
+                    }
+
                 }
+
+
+                .textfield label {
+                    @include mobil {
+                        font-size: 13px;
+                        padding: 4px;
+                    }
+                }
+
             }
 
             .divider {
@@ -97,6 +148,10 @@
 
             .subscribe {
                 margin-top: 1px;
+
+                @include mobil {
+                    margin-left: -10px;
+                }
             }
 
         }
