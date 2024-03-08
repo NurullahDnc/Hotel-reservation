@@ -1,0 +1,37 @@
+.about {
+
+    &-grid {
+        margin-top: 10%;
+        margin-bottom: 10%;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        &-1 {
+
+            &-image {
+                content: url('../../../public/image/about.jpg');
+            }
+
+        }
+
+        &-2 {
+
+            &-typography {
+                text-align: justify;
+                margin: 0 7%;
+                margin-top: 30%;
+            }
+
+            &-telNo{
+                margin: 0 8%;
+                margin-top: 10%;
+                font-size: 25px;
+                font-weight: bold;
+                
+            }
+
+        }
+    }
+}
