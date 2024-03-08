@@ -93,9 +93,9 @@ const Navbar = () => {
           }
         </div>
         <div className='navbar-isMenu-bottom'>
-          <button className='navbar-isMenu-bottom-button'>Bizimle İletişime Geçin</button>
-          <p className='navbar-isMenu-bottom-text'>Yada Biz Size Ulaşalım</p>
-          <p className='navbar-isMenu-bottom-number'>542 499 1111</p>
+          <p className='navbar-isMenu-bottom-number'>542 499 1111</p>   
+          <p className='navbar-isMenu-bottom-text'>Bizi Arayın</p>
+          <button className='navbar-isMenu-bottom-button'> Yada Biz Size Ulaşalım</button>
         </div>
       </div>
 

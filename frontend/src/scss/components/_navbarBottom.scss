@@ -4,6 +4,11 @@
         height: 64px;
         display: flex;
         justify-content: center;
+        overflow-x: auto;
+
+        @include mobil{
+            justify-content: start;
+        }
 
         .button {
             color: $btn-gray;
@@ -17,8 +22,8 @@
             transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; // Transform efekti eklendi
 
             @include mobil {
-                font-size: 10px;
-                padding: 0 5px;
+                font-size: 14px;
+                margin: 0 20px;
             }
 
             &:hover {
