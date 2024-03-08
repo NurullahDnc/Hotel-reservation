@@ -16,7 +16,7 @@ const MyGallery = () => {
       img: "http://localhost:3000/image/ozel2.jpg"
     }, {
 
-      img: "./image/ozel2.jpg"
+      img: "https://img.freepik.com/free-photo/desert-sand-dunes-panoramic-view_587448-8157.jpg?t=st=1709244386~exp=1709247986~hmac=350994ef7dcf770cf9dd7968817081b721ac48da1d3dd974897dd8dfb0ed33d4&w=1380"
     }, {
 
       img: "./image/ozel2.jpg"
@@ -68,7 +68,7 @@ const MyGallery = () => {
     }, {
 
       img: "https://placekitten.com/1024/768?image=1"
-    },{
+    }, {
 
       img: "https://placekitten.com/1024/768?image=1"
     }, {
@@ -144,8 +144,10 @@ const MyGallery = () => {
   return (
     <div className='gallery'>
 
-      <PageTitleImage iamge={"https://img.freepik.com/free-photo/desert-sand-dunes-panoramic-view_587448-8157.jpg?t=st=1709244386~exp=1709247986~hmac=350994ef7dcf770cf9dd7968817081b721ac48da1d3dd974897dd8dfb0ed33d4&w=1380"} title={"Galeri"} />
-
+      <PageTitleImage
+        image="https://img.freepik.com/free-photo/desert-sand-dunes-panoramic-view_587448-8157.jpg?t=st=1709244386~exp=1709247986~hmac=350994ef7dcf770cf9dd7968817081b721ac48da1d3dd974897dd8dfb0ed33d4&w=1380"
+        title={'Galeri'}
+      />
       <Gallery>
 
         {
