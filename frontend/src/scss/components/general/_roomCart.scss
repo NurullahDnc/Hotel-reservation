@@ -1,0 +1,66 @@
+.RoomCart {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 20px;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    & img {
+        object-fit: cover;
+        margin-bottom: -10px;
+        height: 160px;
+    }
+
+    & .MuiCardContent-root {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    & .MuiDivider-root {
+        margin: 10px 0;
+    }
+
+    & .MuiCardActions-root {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px;
+
+        & h6 {
+            color: #333;
+        }
+
+        .card-actions-book {
+            color: #333;
+            background-color: #ff9800;
+            border: 1px solid #ff9800;
+            transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
+
+            &:hover {
+                background-color: #e65100;
+                border: 1px solid #e65100;
+            }
+        }
+
+        .card-actions-detail {
+            color: #fff;
+            background-color: #4caf50;
+            border: 1px solid #4caf50;
+            transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
+
+            &:hover {
+                background-color: #388e3c;
+                border: 1px solid #388e3c;
+            }
+        }
+
+
+
+    }
+}

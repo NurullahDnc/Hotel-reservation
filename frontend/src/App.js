@@ -8,6 +8,7 @@ import ActivitiesPage from "./pages/ActivitiesPage";
 import RestaurantPage from "./pages/RestaurantPage";
 import AboutPage from "./pages/AboutPage";
 import RoomPage from "./pages/RoomPage";
+import RoomDetailPage from "./pages/RoomDetailPage";
 import GalleryPage from "./pages/GalleryPage";
 import ContactPage from './pages/ContactPage'
 import { ToastContainer, toast } from 'react-toastify';
@@ -28,7 +29,8 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/hakkımızda" element={<AboutPage />} />
-                  <Route path="/odalar/:id" element={<RoomPage />} />
+                  <Route path="/odalar" element={<RoomPage />} />
+                  <Route path="/odalar/:id" element={<RoomDetailPage />} />
                   <Route path="/aktiviteler" element={<ActivitiesPage />} />
                   <Route path="/restaurant" element={<RestaurantPage />} />
                   <Route path="/galeri" element={<GalleryPage />} />

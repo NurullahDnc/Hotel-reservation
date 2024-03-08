@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Scrollreveal from 'scrollreveal'
 
-const PageTitleImage = ({iamge, title}) => {
+const PageTitleImage = ({image, title}) => {
 
   useEffect(()=>{
     Scrollreveal().reveal(".PageTitleImage-title", {
@@ -16,7 +16,7 @@ const PageTitleImage = ({iamge, title}) => {
   return (
     <div className='PageTitleImage'>
       <div className='PageTitleImage-image'>
-        <img className='PageTitleImage-image-img' src={iamge} alt="Resim Yuklenmedi" />
+        <img className='PageTitleImage-image-img' src={image} alt="Resim Yuklenmedi" />
       </div>
       <h1 className='PageTitleImage-title'>
         {title}
