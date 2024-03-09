@@ -211,10 +211,15 @@
 
             }
             
-            //navbarda user icon
+            //navbarda user div
             &-user{
                 cursor: pointer;
                 position: relative;
+
+                 //navbarda user icon
+                &-icon{
+                    margin: 0 5px;
+                }
 
                 //user ac kapa, giris yap, kayıt ol
                 &-item{
@@ -229,6 +234,13 @@
                     flex-direction: column;
                     gap: 3px;
 
+                    //user acılır menu container
+                    &-container{
+                        width: 100%;
+                        
+                     }
+
+                    //user acılır menu item
                     li{
                         width: 100%;
                         border:2px solid $text-main;
@@ -237,7 +249,11 @@
                         text-align: center;
                         padding: 3px 1px;
                         background-color: $text-main;
+                        margin: 5px 0;
+                        margin-top: 9px;
                     }
+
+                  
 
 
                     @include mobil{
