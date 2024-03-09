@@ -13,13 +13,17 @@ import GalleryPage from "./pages/GalleryPage";
 import ContactPage from './pages/ContactPage'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Modal from "./comporents/auth/Modal";
+import Login from "./comporents/auth/Login";
+import Register from "./comporents/auth/Register";
 
 function App() {
 
   return (
     <div className="App">
     <ToastContainer position="top-right" reverseOrder={false} />
-
+<Register />
+<Login />
       <Router>
         <Routes>
           <Route
