@@ -7,7 +7,7 @@ import { registerModalFun } from '../../redux/ModalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { toast } from 'react-toastify';
+import {toast } from 'react-toastify';
 
 
 
@@ -17,26 +17,16 @@ const Register = () => {
     const { registermodal } = useSelector((state) => state.modal)
     const dispatch = useDispatch();
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
     const onSubmit = data => {
-
-        try {
-            axios.post("url", data)
-            toast.success("Kayıt işlemi başarıyla tamamlandı");
-
-        } catch (error) {
-
-            if (error.response) {
-                toast.error("Sunucu hatası: " + error.response);
-
-            } else if (error.request) {
-                toast.error("cevap alınamadı: " + error.request);
-
-            } else {
-                toast.error("Bir hata oluştu: " + error.message);
-            }
-        }
-
+        
+        axios.post("url", data)
+        .then(()=> {
+            toast.success("kayıt islemi başarılı")
+        })
+        .catch((err)=> {
+            toast.error("hata olustu: " + err.message)
+        }) 
+            
     }
 
     const bodyElement = (
@@ -47,14 +37,14 @@ const Register = () => {
             <Input id={"password"} type={"password"} placeholder={"Sifre"} register={register} errors={errors} required />
         </div>
     )
-
+                                                                
     const footerElement = (
         <div>
             <Button btnText={"Google ile Kayıt"} outline icon={FcGoogle} />
 
         </div>
     )
-
+                                       
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
 

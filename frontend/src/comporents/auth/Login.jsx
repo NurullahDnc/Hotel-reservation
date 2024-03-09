@@ -6,6 +6,8 @@ import { FcGoogle } from "react-icons/fc";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginModalFun } from '../../redux/ModalSlice';
 import { useForm } from "react-hook-form";
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 
@@ -15,22 +17,15 @@ const Login = () => {
     const dispacth = useDispatch()
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        try {
-            axios.post("url", data)
-            toast.success("Kayıt işlemi başarıyla tamamlandı");
+        
+        axios.post("url", data)
+        .then(()=> {
+            toast.success("giriş islemi başarılı")
+        })
+        .catch((err)=> {
+            toast.error("hata olustu: " + err.message)
+        }) 
 
-        } catch (error) {
-
-            if (error.response) {
-                toast.error("Sunucu hatası: " + error.response);
-
-            } else if (error.request) {
-                toast.error("cevap alınamadı: " + error.request);
-
-            } else {
-                toast.error("Bir hata oluştu: " + error.message);
-            }
-        }
     }
 
     //modalın icerik kısmı
