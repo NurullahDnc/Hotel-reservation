@@ -26,6 +26,7 @@ const Navbar = () => {
   const [isUserOpen, setUserOpen] = useState(true);
   const [currentDate, setCurrentDate] = useState('');
   const [selectLanguage, setSelectLanguage] = useState("Tr")
+  const [user, setUser] = useState(true)
 
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
@@ -138,20 +139,36 @@ const Navbar = () => {
 
             {/*user icon ve aç kapa bolumu */}
             <li className='navbar-container-right-user'>
-              <FaRegUser onClick={toggleUser} size={23} />
-              <ul className={`navbar-container-right-user-item ${isUserOpen ? "isUser" : ""} `}>
+                 <FaRegUser onClick={toggleUser} className='navbar-container-right-user-icon' size={23} />
+               <ul className={`navbar-container-right-user-item ${isUserOpen ? "isUser" : ""} `}>
 
                 {/*modal acıyor, tıklandıktan sonra user open kapatıyor */}
-                <li onClick={() => {
-                  dispatch(loginModalFun());
-                  setUserOpen(!isUserOpen)
-                }}
-                >Giriş Yap</li>
+                {
+                  user ?
+                    <div className='navbar-container-right-user-item-container'>
+                      <li onClick={() => {
+                        setUserOpen(!isUserOpen)
+                      }}
+                      >Profil</li>
 
-                <li onClick={() => {
-                  dispatch(registerModalFun());
-                  setUserOpen(!isUserOpen);
-                }}>Kayıt Ol</li>
+                      <li onClick={() => {
+                        setUserOpen(!isUserOpen);
+                      }}>Cıkış Yap</li>
+                    </div>
+                    :
+                    <div className='navbar-container-right-user-item-container'>
+                      <li onClick={() => {
+                        dispatch(loginModalFun());
+                        setUserOpen(!isUserOpen)
+                      }}
+                      >Giriş Yap</li>
+
+                      <li onClick={() => {
+                        dispatch(registerModalFun());
+                        setUserOpen(!isUserOpen);
+                      }}>Kayıt Ol</li>
+                    </div>
+                }
 
               </ul>
             </li>
