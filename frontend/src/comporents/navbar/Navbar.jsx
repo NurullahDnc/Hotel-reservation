@@ -7,6 +7,7 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../../redux/DarkModeSlice';
 import { useTranslation } from 'react-i18next';
+import { loginModalFun, registerModalFun } from '../../redux/ModalSlice';
 
 
 const Navbar = () => {
@@ -93,7 +94,7 @@ const Navbar = () => {
           }
         </div>
         <div className='navbar-isMenu-bottom'>
-          <p className='navbar-isMenu-bottom-number'>542 499 1111</p>   
+          <p className='navbar-isMenu-bottom-number'>542 499 1111</p>
           <p className='navbar-isMenu-bottom-text'>Bizi Arayın</p>
           <button className='navbar-isMenu-bottom-button'> Yada Biz Size Ulaşalım</button>
         </div>
@@ -139,8 +140,18 @@ const Navbar = () => {
             <li className='navbar-container-right-user'>
               <FaRegUser onClick={toggleUser} size={23} />
               <ul className={`navbar-container-right-user-item ${isUserOpen ? "isUser" : ""} `}>
-                <li>Giriş Yap</li>
-                <li>Kayıt Ol</li>
+
+                {/*modal acıyor, tıklandıktan sonra user open kapatıyor */}
+                <li onClick={() => {
+                  dispatch(loginModalFun());
+                  setUserOpen(!isUserOpen)
+                }}
+                >Giriş Yap</li>
+
+                <li onClick={() => {
+                  dispatch(registerModalFun());
+                  setUserOpen(!isUserOpen);
+                }}>Kayıt Ol</li>
 
               </ul>
             </li>
