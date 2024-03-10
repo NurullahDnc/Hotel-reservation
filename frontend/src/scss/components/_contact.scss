@@ -13,11 +13,11 @@
     }
 
     &-left {
-        background-color: $bg-grayTwo;
+        background-color: $bg-light;
         width: 50%;
         height: auto;
         border-radius: 7px;
-
+        box-shadow: 6px 10px $text-main;       
         
     @include mobil {
         width: 100%;

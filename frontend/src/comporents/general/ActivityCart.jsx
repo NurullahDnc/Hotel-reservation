@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import ScrollReveal from 'scrollreveal'
 
-const ActivityCart = ({ title, text, imgOne, imgTwo, btnText }) => {
+const ActivityCart = ({ title, text, imgOne, imgTwo, btnText, btnUrl }) => {
 
-    useEffect(()=>{
+    useEffect(() => {
 
         ScrollReveal().reveal('.ActivityCart-right-image', {
             duration: 1500,
-            scale: 0.5, 
+            scale: 0.5,
             easing: 'ease-in-out',
             interval: 500
         })
@@ -27,7 +28,7 @@ const ActivityCart = ({ title, text, imgOne, imgTwo, btnText }) => {
             easing: "ease-in-out",
         })
 
-    },[])
+    }, [])
 
     return (
         <div className='ActivityCart'>
@@ -40,9 +41,13 @@ const ActivityCart = ({ title, text, imgOne, imgTwo, btnText }) => {
 
                 {/* btnText varsa goster btn text yoksa gosterme ekranda*/
 
-                    btnText ? <button className='ActivityCart-left-button'>
-                        {btnText}
-                    </button> : ""
+                    btnText ?
+                        <Link to={btnUrl} >
+                            <button className='ActivityCart-left-button'>
+                                {btnText}
+
+                            </button>
+                        </Link> : ""
                 }
 
             </div>

@@ -14,11 +14,11 @@
     &-container {
       position: relative;
       cursor: pointer;
-      margin-bottom: 12px;
+      margin-bottom: 17px;
 
       /*1. ve 2. div secildi*/
       &:nth-child(-n+2) {
-        width: 49.50%;
+        width: 49.35%;
         max-height: 350px;
         background-size: cover;
         overflow: hidden;
@@ -26,7 +26,7 @@
 
       /*2. den sonraki divler secildi*/
       &:nth-child(n+3) {
-        width: 32.50%;
+        width: 32.35%;
         max-height: 250px;
         background-size: cover;
         overflow: hidden;

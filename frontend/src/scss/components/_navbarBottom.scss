@@ -8,6 +8,7 @@
 
         @include mobil{
             justify-content: start;
+            overflow-y: auto;
         }
 
         .button {
@@ -22,8 +23,10 @@
             transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; // Transform efekti eklendi
 
             @include mobil {
+                width: 100%;
                 font-size: 14px;
-             }
+                margin: 0 20px;
+            }
 
             &:hover {
                 background-color: $bg-blueFour;
