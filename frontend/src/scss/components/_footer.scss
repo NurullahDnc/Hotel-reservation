@@ -7,31 +7,25 @@
         &-grid {
 
             &-logo {
-                content: url('../../../public/logo/STAYEASE.png');
-                margin-top: -7rem;
-                margin-left: -6rem;
+                content: url('../../../public/logo/stayease.png');
+                margin: -53% 0 -10% -55.5%;
+                padding: 3rem;
 
                 @include mobil {
-                    margin-top: -2.9rem;
-                    margin-left: -3.5rem;
-                    padding: 25px;
+                    margin: -38%;
+                    padding: 13rem;
                 }
-
             }
 
             .logo-description {
-                margin-top: -10px;
-                margin-left: -5rem;
-                margin-right: 29.9px;
-                text-align: justify;
+                margin: 1rem 0 0 -5rem;
+                text-align: left;
                 color: $text-whiteTwo;
                 font-size: $FontEleven;
 
                 @include mobil {
-                    text-align: left;
-                    margin-left: -11px;
-                    width: 9.5rem;
-                    font-size: 12px;
+                    margin: 1%;
+                    margin-top: 15%;
                 }
 
             }
@@ -41,20 +35,10 @@
                 grid-gap: 5px;
                 color: $text-white;
 
-                @include mobil {
-                    font-size: 12px;
-
-                }
-
-
 
                 .header {
                     font-family: $FontFamilyOne;
                     font-size: $FontTwelve;
-
-                    @include mobil {
-                        font-size: 13px;
-                    }
 
                 }
 
@@ -69,26 +53,15 @@
 
                 }
 
-
-
             }
 
             &-follow {
                 display: grid;
                 color: $text-white;
 
-                @include mobil {
-                    font-size: 12px;
-                }
-
                 .header {
                     font-family: $FontFamilyOne;
                     font-size: $FontTwelve;
-
-                    @include mobil {
-                        font-size: 13px;
-                    }
-
                 }
 
                 .footer-link {
@@ -102,7 +75,6 @@
                 }
 
             }
-
 
             &-newsletter {
                 color: $text-white;
@@ -110,11 +82,7 @@
                 .header {
                     font-family: $FontFamilyOne;
                     font-size: $FontTwelve;
-
-                    @include mobil {
-                        font-size: 13px;
-                    }
-
+                    margin-bottom: 0.5rem;
                 }
 
                 .textfield {
@@ -123,19 +91,6 @@
                     width: 18rem;
                     border-radius: 5px;
 
-                    @include mobil {
-                        width: 11.5rem;
-                        margin-left: -10px;
-                    }
-
-                }
-
-
-                .textfield label {
-                    @include mobil {
-                        font-size: 13px;
-                        padding: 4px;
-                    }
                 }
 
             }
@@ -148,10 +103,6 @@
 
             .subscribe {
                 margin-top: 1px;
-
-                @include mobil {
-                    margin-left: -10px;
-                }
             }
 
         }
@@ -166,7 +117,7 @@
             color: $text-black;
             font-size: $FontTwo;
             text-align: center;
-            padding: 18px;
+            padding: 1.5%;
         }
     }
 
