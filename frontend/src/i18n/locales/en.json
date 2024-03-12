@@ -1,31 +1,90 @@
 {
-    "homePage": "Home Page",
-    "aboutUs": "About Us",
-    "rooms": "Rooms",
-    "activities": "Activities",
-    "restaurant": "Restaurant",
-    "gallery": "Gallery",
-    "contact": "Contact",
-
-    "instructionText": "You can customize this template as you wish.",
-    "requestDemoButton": "Request Demo",
-
-    "comments": "Comments",
-    "writeYourComment": "Write your comment:",
-    "enterYourUserName": "Enter your username",
-    "writeYourCommentHere": "Write your comment here",
-    "addComment": "Add Comment",
-
-    "logoDescription": "Experienced technical team, providing reliable and efficient services with a customer satisfaction and quality-oriented approach. We aim to continuously improve and exceed customer expectations.",
-    "menu": "Menu",
-    "termsAndConditions": "Terms and Conditions",
-    "privacyPolicy": "Privacy Policy",
-    "followUs": "Follow Us",
-    "facebook": "Facebook",
-    "twitter": "Twitter",
-    "instagram": "Instagram",
-    "newsletter": "Subscription and Newsletter",
-    "emailAddress": "Email Address",
-    "subscribe": "Subscribe",
-    "copyright": "© [STAYEASE] [2024] - All Rights Reserved."
+  "homePage": "Home Page",
+  "aboutUs": "About Us",
+  "rooms": "Rooms",
+  "activities": "Activities",
+  "restaurant": "Restaurant",
+  "gallery": "Gallery",
+  "contact": "Contact",
+  "instructionText": "You can customize this template as you wish.",
+  "requestDemoButton": "Request Demo",
+  "comments": "Comments",
+  "writeYourComment": "Write your comment:",
+  "enterYourUserName": "Enter your username",
+  "writeYourCommentHere": "Write your comment here",
+  "addComment": "Add Comment",
+  "logoDescription": "Experienced technical team, providing reliable and efficient services with a customer satisfaction and quality-oriented approach. We aim to continuously improve and exceed customer expectations.",
+  "menu": "Menu",
+  "termsAndConditions": "Terms and Conditions",
+  "privacyPolicy": "Privacy Policy",
+  "followUs": "Follow Us",
+  "facebook": "Facebook",
+  "twitter": "Twitter",
+  "instagram": "Instagram",
+  "newsletter": "Subscription and Newsletter",
+  "emailAddress": "Email Address",
+  "subscribe": "Subscribe",
+  "copyright": "© [STAYEASE] [2024] - All Rights Reserved.",
+  "whoAreWe": "Who Are You?",
+  "properties": "Features",
+  "price": "Price",
+  "bookNow": "Book Now",
+  "features": [
+    {
+      "label": "Number and Types of Beds",
+      "value": "2 single beds"
+    },
+    {
+      "label": "Room Type",
+      "value": "Standard Room"
+    },
+    {
+      "label": "WiFi",
+      "value": "Free Wifi"
+    },
+    {
+      "label": "View",
+      "value": "City view"
+    },
+    {
+      "label": "View",
+      "value": "Sea view"
+    },
+    {
+      "label": "View",
+      "value": "Garden view"
+    },
+    {
+      "label": "Air Conditioning or Heating",
+      "value": "Air conditioning or heating"
+    },
+    {
+      "label": "Television",
+      "value": "Television"
+    },
+    {
+      "label": "Minibar",
+      "value": "Minibar"
+    },
+    {
+      "label": "Bathroom Type",
+      "value": "Shower and bathtub"
+    },
+    {
+      "label": "Room Service",
+      "value": "Room Service"
+    },
+    {
+      "label": "Check-in and Check-out Times",
+      "value": "Check-in: 14:00, Check-out: 12:00"
+    },
+    {
+      "label": "Breakfast Service",
+      "value": "Breakfast"
+    },
+    {
+      "label": "Security Features",
+      "value": "Security"
+    }
+  ]
 }
