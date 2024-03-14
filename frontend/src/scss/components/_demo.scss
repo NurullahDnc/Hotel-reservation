@@ -11,9 +11,14 @@
             flex-grow: 1;
             text-align: center;
 
-        }
+        } 
 
         &-companyLogo {
+            content: url('../../../public/logo/logo.png');
+            margin-left: -5%;
+            height: 4.5rem;
+            width: 10rem;
+          
             content: url('../../../public/logo/stayease.png');
             margin-left: -2.5%;
             height: auto;

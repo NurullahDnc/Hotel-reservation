@@ -5,8 +5,13 @@
         padding: 7% 0;
 
         &-grid {
-
+ 
             &-logo {
+
+                content: url('../../../public/logo/logo.png');
+                margin-top: -7rem;
+                margin-left: -6rem;
+
                 content: url('../../../public/logo/stayease.png');
                 margin: -53% 0 -10% -55.5%;
                 padding: 3rem;
