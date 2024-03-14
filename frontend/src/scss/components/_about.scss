@@ -1,37 +1,30 @@
 .about {
-
     &-grid {
-        margin-top: 10%;
-        margin-bottom: 10%;
+        margin: 5%;
         border: 1px solid #ddd;
         border-radius: 8px;
-        overflow: hidden;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-        &-1 {
-
-            &-image {
-                content: url('../../../public/image/about.jpg');
-            }
-
-        }
-
         &-2 {
-
             &-typography {
                 text-align: justify;
-                margin: 0 7%;
-                margin-top: 30%;
+                margin: 5%;
+                margin-top: 17%;
+
+                @include mobil {
+                    margin: 5%;
+                }
             }
 
-            &-telNo{
-                margin: 0 8%;
-                margin-top: 10%;
-                font-size: 25px;
+            &-telNo {
+                margin: 5%;
+                font-size: 20px;
                 font-weight: bold;
-                
-            }
 
+                @include mobil {
+                    margin: 5%;
+                }
+            }
         }
     }
 }

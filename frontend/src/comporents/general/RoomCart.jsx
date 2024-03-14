@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import StarIcon from '@mui/icons-material/Star';
+
 import {
     Card,
     CardContent,
@@ -12,8 +14,10 @@ import {
     Grid,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useTranslation } from 'react-i18next';
 
 const RoomCart = ({ roomInfo }) => {
+    const { t } = useTranslation();
     const [expanded, setExpanded] = useState(false);
 
     const handleAccordionChange = () => {
@@ -33,7 +37,7 @@ const RoomCart = ({ roomInfo }) => {
 
                 <CardContent sx={{ flex: 3, marginLeft: 1 }} className="room-card-content">
                     <Typography variant="h6" gutterBottom className="room-name">
-                        {roomInfo.name}
+                        {t(roomInfo.name)}
                     </Typography>
                     <Accordion
                         expanded={expanded}
@@ -46,7 +50,7 @@ const RoomCart = ({ roomInfo }) => {
                             aria-controls="room-details"
                             className="room-details-header"
                         >
-                            <Typography variant="body2">Özellikler</Typography>
+                            <Typography variant="body2">{t('properties')}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <div className="room-details">
@@ -65,20 +69,27 @@ const RoomCart = ({ roomInfo }) => {
                                                 {feature.icon}
                                             </IconButton>
                                             {feature.value}
+
                                         </Grid>
                                     ))}
                                 </Grid>
                             </div>
                         </AccordionDetails>
                     </Accordion>
+
+                    <div>
+                        {Array.from({ length: 5 }, (_, i) => (
+                            <StarIcon key={i} color="primary" style={{ color: '#fdd835', marginTop: '2%' }} />
+                        ))}
+                    </div>
                 </CardContent>
 
                 <CardContent sx={{ flex: 0.9 }} className="room-price">
                     <Typography variant="h6" sx={{ marginTop: 1 }}>
-                        Fiyat: {roomInfo.price} ₺
+                        {t('price')} : {roomInfo.price} ₺
                     </Typography>
                     <Button variant="contained" sx={{ marginTop: 2 }} className="reservation-button">
-                        Rezervasyon Yap
+                        {t('bookNow')}
                     </Button>
                 </CardContent>
             </div>

@@ -1,32 +1,98 @@
 {
-    "homePage": "Anasayfa",
-    "aboutUs": "Hakkımızda",
-    "rooms": "Odalar",
-    "activities": "Aktiviteler",
-    "restaurant": "Restoran",
-    "gallery": "Galeri",
-    "contact": "İletişim",
-
-    "instructionText": "Bu şablonu istediğiniz gibi değiştirebilirsiniz.",
-    "requestDemoButton": "Demo Talep Et",
-
-    "comments": "Yorumlar",
-    "writeYourComment": "Yorumunuzu yazın:",
-    "enterYourUserName": "Kullanıcı adınızı girin",
-    "writeYourCommentHere": "Yorumunuzu buraya yazın",
-    "addComment": "Yorum Ekle",
-
-    "logoDescription": "Deneyimli teknik ekibimizle, müşteri memnuniyeti ve kalite odaklı bir yaklaşımla güvenilir ve verimli hizmetler sunuyoruz. Sürekli gelişmeyi ve müşteri beklentilerini aşmayı hedefliyoruz.",
-    "menu": "Menü",
-    "termsAndConditions": "Şartlar ve Koşullar",
-    "privacyPolicy": "Gizlilik Politikası",
-    "followUs": "Bizi Takip Edin",
-    "facebook": "Facebook",
-    "twitter": "Twitter",
-    "instagram": "Instagram",
-    "newsletter": "Abonelik ve Haber Bülteni",
-    "emailAddress": "E-posta Adresiniz",
-    "subscribe": "Abone Ol",
-    "copyright": "© [STAYEASE] [2024] - Tüm Hakları Saklıdır."
-
+  "homePage": "ANASAYFA",
+  "aboutUs": "HAKKIMIZDA",
+  "rooms": "ODALAR",
+  "activities": "AKTİVİTELER",
+  "restaurant": "RESTORAN",
+  "gallery": "GALERİ",
+  "contact": "İLETİŞİM",
+  "instructionText": "Bu şablonu istediğiniz gibi değiştirebilirsiniz.",
+  "requestDemoButton": "Demo Talep Et",
+  "comments": "Yorumlar",
+  "writeYourComment": "Yorumunuzu yazın:",
+  "enterYourUserName": "Kullanıcı adınızı girin",
+  "writeYourCommentHere": "Yorumunuzu buraya yazın",
+  "addComment": "Yorum Ekle",
+  "logoDescription": "Deneyimli teknik ekibimizle, müşteri memnuniyeti ve kalite odaklı bir yaklaşımla güvenilir ve verimli hizmetler sunuyoruz. Sürekli gelişmeyi ve müşteri beklentilerini aşmayı hedefliyoruz.",
+  "menu": "Menü",
+  "termsAndConditions": "Şartlar ve Koşullar",
+  "privacyPolicy": "Gizlilik Politikası",
+  "followUs": "Bizi Takip Edin",
+  "facebook": "Facebook",
+  "twitter": "Twitter",
+  "instagram": "Instagram",
+  "newsletter": "Abonelik ve Haber Bülteni",
+  "emailAddress": "E-posta Adresiniz",
+  "subscribe": "Abone Ol",
+  "copyright": "© [STAYEASE] [2024] - Tüm Hakları Saklıdır.",
+  "whoAreWe": "Biz Kimiz?",
+  "properties": "Özellikler",
+  "price": "Fiyat",
+  "bookNow": "Rezervasyon Yap",
+  "features": [
+    {
+      "label": "Yatak Sayısı ve Türleri",
+      "value": "2 adet tek kişilik yatak"
+    },
+    {
+      "label": "Oda Tipi",
+      "value": "Standart Oda"
+    },
+    {
+      "label": "Oda Tipi",
+      "value": "Deluxe Oda"
+    },
+    {
+      "label": "Oda Tipi",
+      "value": "Aile Odası"
+    },
+    {
+      "label": "WiFi",
+      "value": "Ücretsiz Wifi"
+    },
+    {
+      "label": "Manzara",
+      "value": "Şehir manzaralı"
+    },
+    {
+      "label": "Manzara",
+      "value": "Deniz manzaralı"
+    },
+    {
+      "label": "Manzara",
+      "value": "Bahçe manzaralı"
+    },
+    {
+      "label": "Klima veya Isıtma",
+      "value": "Klima veya Isıtma"
+    },
+    {
+      "label": "Televizyon",
+      "value": "Televizyon"
+    },
+    {
+      "label": "Minibar",
+      "value": "Minibar"
+    },
+    {
+      "label": "Banyo Tipi",
+      "value": "Duş ve küvet"
+    },
+    {
+      "label": "Oda Hizmeti",
+      "value": "Oda Hizmeti"
+    },
+    {
+      "label": "Giriş ve Çıkış Saatleri",
+      "value": "Check-in: 14:00, Check-out: 12:00"
+    },
+    {
+      "label": "Kahvaltı Hizmeti",
+      "value": "Kahvaltı"
+    },
+    {
+      "label": "Güvenlik Özellikleri",
+      "value": "Güvenlik"
+    }
+  ]
 }
