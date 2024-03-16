@@ -19,7 +19,7 @@ const Register = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         
-        axios.post("url", data)
+        axios.post("http://localhost:5000/user/register", data)
         .then(()=> {
             toast.success("kayıt islemi başarılı")
         })

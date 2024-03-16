@@ -18,11 +18,12 @@ const Login = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         
-        axios.post("url", data)
+        axios.post("http://localhost:5000/user/login", data)
         .then(()=> {
             toast.success("giriş islemi başarılı")
         })
         .catch((err)=> {
+            console.log(err.response.data.error);
             toast.error("hata olustu: " + err.message)
         }) 
 

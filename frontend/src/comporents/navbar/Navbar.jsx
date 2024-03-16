@@ -26,7 +26,7 @@ const Navbar = () => {
   const [isUserOpen, setUserOpen] = useState(true);
   const [currentDate, setCurrentDate] = useState('');
   const [selectLanguage, setSelectLanguage] = useState("Tr")
-  const [user, setUser] = useState(true)
+  const [user, setUser] = useState(false)
 
   const dispatch = useDispatch();
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
