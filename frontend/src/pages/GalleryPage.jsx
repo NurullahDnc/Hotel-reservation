@@ -2,7 +2,6 @@ import React from 'react'
 import PageContainers from '../containers/PageContainers'
 import TitleSpace from '../comporents/general/TitleSpace'
 import Gallery from '../comporents/gallery/Gallery'
-import PageTitleImage from '../comporents/general/PageTitleImage'
 
 const GalleryPage = () => {
   return (
