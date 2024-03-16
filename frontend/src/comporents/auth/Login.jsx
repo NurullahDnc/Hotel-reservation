@@ -19,12 +19,17 @@ const Login = () => {
     const onSubmit = data => {
         
         axios.post("http://localhost:5000/user/login", data)
-        .then(()=> {
+        .then((response)=> {
             toast.success("giriş islemi başarılı")
+            console.log(response.data.message);
+            
+            dispacth(loginModalFun())
+            
         })
         .catch((err)=> {
             console.log(err.response.data.error);
-            toast.error("hata olustu: " + err.message)
+            toast.error(err.response.data.error)
+        
         }) 
 
     }

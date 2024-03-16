@@ -5,29 +5,46 @@ import jwt from 'jsonwebtoken'
 const createUser = async (req, res) => {
 
     try {
-        //body'den verileri al, pass. hash'le
-        const { name, email, password } = req.body;
+        //body'den verileri al
+        const {
+            firstName,
+            lastName,
+            email,
+            password
+        } = req.body;
 
-        //pass. hash'le degiskene at
+        //kulanıcı kontrol et uye mi
+        const existingUser = await User.findOne({ email });
+
+        if (existingUser) {
+            return res.status(400).json({
+                success: false,
+                error: "bu kullanıcı zaten kayıtlı"
+            })
+        }
+
+        //pass. hash'le
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        //user olsutur, degerleri ata
+
+        //user olsutur
         const user = await User.create({
-            name: name,
+            firstName,
+            lastName,
             email: email,
             password: hashedPassword,
         })
 
         res.status(201).json({
             succeded: true,
-            user
+            message: "Üyelik başarıyla oluşturuldu."
         })
 
     } catch (error) {
 
         res.status(400).json({
             succeded: false,
-            error
+            error: error.message
         })
 
     }
@@ -36,46 +53,58 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
 
     try {
-        const { email, password } = req.body;
+        const {
+            email,
+            password
+        } = req.body;
 
-        //user ara email'e gore
+        //user email kontol et varmı
         const user = await User.findOne({
             email: email
         })
 
-
-        //user varmı varsa, pass. karsılastır
-        if (user && await bcrypt.compare(password, user.password)) {
-
-            //userId func. parametre gec. degisekene at
-            const token = createToken(user._id);
-            console.log("token olustuldu", token);
-
-            //token'i cookie'ye kayıt ediyor
-            res.cookie('jwt', token, {
-                httpOnly: true,
-                maxAge: 1000 * 60 * 60 * 24, //1 gun
-            })
-
-            return res.status(200).json({
-                success: true
-            })
-
-        } else {
+        if (!user) {
             return res.status(401).json({
                 success: false,
-                error: "kulanıcı adı veya sifre hatalıdır"
+                error: 'Kullanıcı bulunamadı',
+            });
+        }
 
+        //pass. karsılastırma
+        const hashedPassword = await bcrypt.compare(password, user.password);
+
+        //pass. kontrol
+        if (!hashedPassword) {
+            return res.status(401).json({
+                success: false,
+                error: "şifre yanlış!"
             })
         }
 
+        //token olusturma
+        const token = createToken(user._id);
+
+        //token'i cookie'ye kayıt ediyor
+        res.cookie('jwt', token, {
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24, //1 gun
+        })
+
+        console.log("teoken", token);
+
+        res.status(200).json({
+            success: true,
+            token,
+            message: "Giriş başarılı"
+        });
+
+
     } catch (error) {
-        res.status(400).json({
+         res.status(400).json({
             succeded: false,
             error: error.message
         })
-        console.log("error", error);
-    }
+     }
 
 }
 
