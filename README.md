@@ -17,7 +17,7 @@ StayEase, otel sahiplerine kendi otelleri için özelleştirilebilir ve kullanı
 3. Backend için: `cd backend && npm install && npm start`
 
 ## Kullanılan Teknolojiler
-
+ 
 - **Frontend:**
   - [React.js](https://reactjs.org/)
   - [Redux](https://redux.js.org/)
