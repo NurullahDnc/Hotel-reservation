@@ -1,6 +1,10 @@
 import User from "../models/userModal.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import {
+    createAccessToken,
+    createRefreshToken
+} from "../helpers/GenerateToken.js";
 
 const createUser = async (req, res) => {
 
@@ -14,7 +18,9 @@ const createUser = async (req, res) => {
         } = req.body;
 
         //kulanıcı kontrol et uye mi
-        const existingUser = await User.findOne({ email });
+        const existingUser = await User.findOne({
+            email
+        });
 
         if (existingUser) {
             return res.status(400).json({
@@ -71,56 +77,44 @@ const loginUser = async (req, res) => {
         }
 
         //pass. karsılastırma
-        const hashedPassword = await bcrypt.compare(password, user.password);
+        const validPassword = await bcrypt.compare(password, user.password);
 
         //pass. kontrol
-        if (!hashedPassword) {
+        if (!validPassword) {
             return res.status(401).json({
                 success: false,
                 error: "şifre yanlış!"
             })
         }
 
-        //token olusturma
-        const token = createToken(user._id);
+        //kulanıcının ıd gore token olusturuyor.
+        const accessToken = createAccessToken({
+            id: user._id
+        });
 
-        //token'i cookie'ye kayıt ediyor
-        res.cookie('jwt', token, {
+        // Yenileme tokeninin kullanıcıya gönderilmesi, X
+        res.cookie('jwt', accessToken, {
             httpOnly: true,
-            maxAge: 1000 * 60 * 60 * 24, //1 gun
-        })
+            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 gün
+        });
 
-        console.log("teoken", token);
-
-        res.status(200).json({
+         res.status(200).json({
             success: true,
-            token,
+            accessToken,
+            user,
             message: "Giriş başarılı"
         });
 
 
+
     } catch (error) {
-         res.status(400).json({
+        res.status(400).json({
             succeded: false,
             error: error.message
         })
-     }
+    }
 
 }
-
-//userId'ye gore token olsuturma
-const createToken = (userId) => {
-
-    return jwt.sign({
-        userId
-    }, process.env.JWT_SECRET, {
-        expiresIn: "1d"
-    })
-
-}
-
-
-
 
 
 export {

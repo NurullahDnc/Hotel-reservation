@@ -1,12 +1,12 @@
-import User from '../models/userModal.js';
+import User from '../../models/userModal.js';
 import jwt from 'jsonwebtoken';
 
-
+// Kullanıcı oturumunu kontrol etmek için bir ara yazılım (middleware) oluşturun
 //token buluyor, token varsa kontol eder, tokenden kulanıcıyı alır ve locals'a atar
 const checkUser = async (req, res, next) => {
     //cookies icinde jwt al degisekene at
     const token = req.cookies.jwt;
-
+    console.log("tokenmidel", token);
     if (token) {
         jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
             if (err) {
@@ -15,7 +15,7 @@ const checkUser = async (req, res, next) => {
                 next(); // Bir sonraki işlevi çağır
             } else {
                 // Token'dan çözümlenen token'dan kullanıcı kimliğini al
-                const user = await User.findById(decodedToken.userId);
+                const user = await User.findById(decodedToken.id);
                 res.locals.user = user;
                 next(); // Bir sonraki işlevi çağır
             }
