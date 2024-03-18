@@ -27,15 +27,16 @@ const RoomCart = ({ roomInfo }) => {
     return (
         <Card className="room-cart" sx={{ display: 'flex', flexDirection: 'column', marginBottom: 2 }}>
             <div className="room-cart-content" style={{ display: 'flex', flexDirection: 'row' }}>
-                <CardMedia
-                    component="img"
-                    image={roomInfo.image}
-                    alt={roomInfo.name}
-                    sx={{ flex: 1.3 }}
-                    className="room-image"
-                />
+                <CardContent sx={{ flex: 1}} className="room-card-content-1">
+                    <CardMedia
+                        component="img"
+                        image={roomInfo.image}
+                        alt={roomInfo.name}
+                        className="room-image"
+                    />
+                </CardContent>
 
-                <CardContent sx={{ flex: 3, marginLeft: 1 }} className="room-card-content">
+                <CardContent sx={{ flex: 3, marginLeft: 1 }} className="room-card-content-2">
                     <Typography variant="h6" gutterBottom className="room-name">
                         {t(roomInfo.name)}
                     </Typography>
@@ -85,7 +86,7 @@ const RoomCart = ({ roomInfo }) => {
                 </CardContent>
 
                 <CardContent sx={{ flex: 0.9 }} className="room-price">
-                    <Typography variant="h6" sx={{ marginTop: 1 }}>
+                    <Typography variant="h6" sx={{ marginTop: 1 }} className='price'>
                         {t('price')} : {roomInfo.price} ₺
                     </Typography>
                     <Button variant="contained" sx={{ marginTop: 2 }} className="reservation-button">
