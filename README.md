@@ -7,7 +7,7 @@ StayEase, otel sahiplerine kendi otelleri için özelleştirilebilir ve kullanı
 - Temiz ve etkileyici tasarım.
 - Otel sahipleri için özel panel.
 - Her otel için özelleştirilebilir web sitesi.
-- Rezervasyon yönetimi ve müsaitlik takvimi.
+- Rezervasyon yönetimi ve müsaitlik takvimi. 
 - Responsive tasarım ile mobil uyumluluk.
 
 ## Kurulum
@@ -17,7 +17,7 @@ StayEase, otel sahiplerine kendi otelleri için özelleştirilebilir ve kullanı
 3. Backend için: `cd backend && npm install && npm start`
 
 ## Kullanılan Teknolojiler
-
+ 
 - **Frontend:**
   - [React.js](https://reactjs.org/)
   - [Redux](https://redux.js.org/)

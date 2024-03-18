@@ -1,11 +1,23 @@
-.room-cart {
-    &-content {
-        background-color: #f7fbff;
+.room-card {
+    background-color: #f7fbff;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
 
-        .room-card-content-1 {
 
 
-            .room-image {
+    .room-card-content {
+        display: flex;
+        flex-direction: row;
+
+        @include mobil {
+            flex-direction: column;
+        }
+
+        &-1 {
+            flex: 1;
+
+            &-image {
                 width: 100%;
                 object-fit: cover;
                 border-radius: 10px;
@@ -13,34 +25,27 @@
 
                 @include mobil {
                     margin-left: 0;
-
+                   
                 }
             }
-
-
         }
 
+        &-2 {
+            flex: 3;
+            margin-left: 1rem;
 
-        .room-card-content-2 {
-
-
-            .room-name {
+            &-name {
                 font-size: 1.5rem;
                 margin-bottom: 0.5rem;
                 color: #333;
-
-                @include mobil {
-                    font-size: 1rem;
-                }
-
             }
 
-            .room-accordion {
+            &-accordion {
                 margin-top: 1rem;
 
 
                 @include mobil {
-                    width: 10.5rem;
+                    width: 15rem;
                     font-size: 5px;
                 }
 
@@ -51,7 +56,7 @@
                     color: #555;
 
                     @include mobil {
-                        font-size: 0.5rem;
+                        font-size: 0.7rem;
                     }
                 }
 
@@ -61,18 +66,12 @@
                     margin-bottom: 0.5rem;
 
                     @include mobil {
-                        font-size: 4px;
+                        font-size: 6px;
                     }
 
                     .feature-icon {
                         margin-right: 0.5rem;
                         color: #007bff;
-
-                        @include mobil {
-                            width: 0;
-                            margin-right: 0.7rem;
-                        }
-
                     }
                 }
             }
@@ -88,23 +87,21 @@
                 font-size: 13px;
             }
 
-
-
             .reservation-button {
-                margin-top: 2rem;
-                background-color: #28a745;
-                color: #fff;
+                margin-top: 3rem;
+                background-color: #fe9d14;
+                color: #000000;
 
                 @include mobil {
-                    font-size: 9px;
+                    margin-top: 1rem;
                 }
 
-
-
                 &:hover {
-                    background-color: #218838;
+                    background-color: #bd631e;
                 }
             }
         }
+
     }
+
 }
