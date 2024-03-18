@@ -29,62 +29,29 @@
   "properties": "Features",
   "price": "Price",
   "bookNow": "Book Now",
-  "features": [
-    {
-      "label": "Number and Types of Beds",
-      "value": "2 single beds"
-    },
-    {
-      "label": "Room Type",
-      "value": "Standard Room"
-    },
-    {
-      "label": "WiFi",
-      "value": "Free Wifi"
-    },
-    {
-      "label": "View",
-      "value": "City view"
-    },
-    {
-      "label": "View",
-      "value": "Sea view"
-    },
-    {
-      "label": "View",
-      "value": "Garden view"
-    },
-    {
-      "label": "Air Conditioning or Heating",
-      "value": "Air conditioning or heating"
-    },
-    {
-      "label": "Television",
-      "value": "Television"
-    },
-    {
-      "label": "Minibar",
-      "value": "Minibar"
-    },
-    {
-      "label": "Bathroom Type",
-      "value": "Shower and bathtub"
-    },
-    {
-      "label": "Room Service",
-      "value": "Room Service"
-    },
-    {
-      "label": "Check-in and Check-out Times",
-      "value": "Check-in: 14:00, Check-out: 12:00"
-    },
-    {
-      "label": "Breakfast Service",
-      "value": "Breakfast"
-    },
-    {
-      "label": "Security Features",
-      "value": "Security"
-    }
-  ]
+  "Single Room": "Single Room",
+  "Double Room": "Double Room",
+  "Family Room": "Family Room",
+  "Junior Suite": "Junior Suite",
+  "Luxury Room": "Luxury Room",
+  "1 single bed": "1 single bed",
+  "1 double bed": "1 double bed",
+  "1 king bed": "1 king bed",
+  "City view": "City view",
+  "Garden view": "Garden view",
+  "Sea view": "Sea view",
+  "Air Conditioning or Heating": "Air Conditioning or Heating",
+  "Television": "Television",
+  "Minibar": "Minibar",
+  "Shower": "Shower",
+  "Shower and bathtub": "Shower and bathtub",
+  "Private jacuzzi": "Private jacuzzi",
+  "Room Service": "Room Service",
+  "Check-in: 14:00, Check-out: 12:00": "Check-in: 14:00, Check-out: 12:00",
+  "Check-in: 15:00, Check-out: 11:00": "Check-in: 15:00, Check-out: 11:00",
+  "Free Wifi": "Free Wifi",
+  "Breakfast": "Breakfast",
+  "Security": "Security"
+  
+ 
 }

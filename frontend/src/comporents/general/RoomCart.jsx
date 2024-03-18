@@ -55,7 +55,7 @@ const RoomCart = ({ roomInfo }) => {
                         <AccordionDetails>
                             <div className="room-details">
                                 <Typography variant="body2" className="room-card-content-2-accordion-description">
-                                    {roomInfo.description}
+                                    {t(roomInfo.description)}
                                 </Typography>
                                 <Grid container spacing={1}>
                                     {roomInfo.features.map((feature, index) => (
