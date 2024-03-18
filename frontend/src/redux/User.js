@@ -15,7 +15,7 @@ const MessageSlice = createSlice({
     initialState,
     reducers:{},
     extraReducers: (builder) =>{
-        builder.addCase(getMessage.fulfilled, (state, action) => {
+        builder.addCase(getLogout.fulfilled, (state, action) => {
              state.message = action.payload.data;
         });
 

@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Modal from "./comporents/auth/Modal";
 import Login from "./comporents/auth/Login";
 import Register from "./comporents/auth/Register";
+import Account from "./pages/Account";
 
 function App() {
 
@@ -37,6 +38,8 @@ function App() {
                   <Route path="/restaurant" element={<RestaurantPage />} />
                   <Route path="/galeri" element={<GalleryPage />} />
                   <Route path="/iletisim" element={<ContactPage />} />
+                  <Route path="/profil" element={<Account />} />
+
 
 
                   <Route path="*" element={<div className="notFound">Sayfa Bulunamadı</div>} />

@@ -98,10 +98,11 @@ const loginUser = async (req, res) => {
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 gün
         });
 
-         res.status(200).json({
+        console.log("accessToken", accessToken);
+
+        res.status(200).json({
             success: true,
             accessToken,
-            user,
             message: "Giriş başarılı"
         });
 
@@ -115,6 +116,26 @@ const loginUser = async (req, res) => {
     }
 
 }
+
+export const getInfo = async (req, res) => {
+
+    try {
+        // kulanıcının sifreisni gonderme
+        const user = await User.findById(req.user.id).select('-password')
+
+        //kulanıcı yoksa
+        if (!user) return res.status(400).json({
+            error: "Kullanıcı mevcut değil."
+        });
+
+        res.status(200).json(user)
+    } catch (error) {
+        return res.status(500).json({
+            error: error.message
+        })
+    }
+}
+
 
 
 export {

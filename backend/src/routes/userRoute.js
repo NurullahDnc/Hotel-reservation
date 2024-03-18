@@ -6,6 +6,8 @@ const route = express.Router();
 
 route.route("/register").post( UserController.createUser)
 route.route("/login").post(UserController.loginUser)
+route.route("/profile").get(authMiddleware.authenticateToken, UserController.getInfo)
+
 
 
 
