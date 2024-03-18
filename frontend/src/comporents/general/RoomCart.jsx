@@ -25,9 +25,9 @@ const RoomCart = ({ roomInfo }) => {
     };
 
     return (
-        <Card className="room-cart" sx={{ display: 'flex', flexDirection: 'column', marginBottom: 2 }}>
-            <div className="room-cart-content" style={{ display: 'flex', flexDirection: 'row' }}>
-                <CardContent sx={{ flex: 1}} className="room-card-content-1">
+        <Card className="room-card">
+            <div className="room-card-content">
+                <CardContent className="room-card-content-1">
                     <CardMedia
                         component="img"
                         image={roomInfo.image}
@@ -36,14 +36,13 @@ const RoomCart = ({ roomInfo }) => {
                     />
                 </CardContent>
 
-                <CardContent sx={{ flex: 3, marginLeft: 1 }} className="room-card-content-2">
+                <CardContent className="room-card-content-2">
                     <Typography variant="h6" gutterBottom className="room-name">
                         {t(roomInfo.name)}
                     </Typography>
                     <Accordion
                         expanded={expanded}
                         onChange={handleAccordionChange}
-                        sx={{ marginTop: 1 }}
                         className="room-accordion"
                     >
                         <AccordionSummary
@@ -63,14 +62,12 @@ const RoomCart = ({ roomInfo }) => {
                                         <Grid item key={index} xs={4} className="room-feature">
                                             <IconButton
                                                 size="small"
-                                                sx={{ marginRight: 1 }}
                                                 aria-label={feature.label}
                                                 className="feature-icon"
                                             >
                                                 {feature.icon}
                                             </IconButton>
                                             {feature.value}
-
                                         </Grid>
                                     ))}
                                 </Grid>
@@ -78,18 +75,18 @@ const RoomCart = ({ roomInfo }) => {
                         </AccordionDetails>
                     </Accordion>
 
-                    <div>
+                    <div className="star-icons">
                         {Array.from({ length: 5 }, (_, i) => (
-                            <StarIcon key={i} color="primary" style={{ color: '#fdd835', marginTop: '2%' }} />
+                            <StarIcon key={i} color="primary" />
                         ))}
                     </div>
                 </CardContent>
 
-                <CardContent sx={{ flex: 0.9 }} className="room-price">
-                    <Typography variant="h6" sx={{ marginTop: 1 }} className='price'>
+                <CardContent className="room-price">
+                    <Typography variant="h6" className='price'>
                         {t('price')} : {roomInfo.price} ₺
                     </Typography>
-                    <Button variant="contained" sx={{ marginTop: 2 }} className="reservation-button">
+                    <Button variant="contained" className="reservation-button">
                         {t('bookNow')}
                     </Button>
                 </CardContent>

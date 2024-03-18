@@ -1,104 +1,80 @@
-.room-cart {
-    &-content {
-        background-color: #f7fbff;
-
-        .room-card-content-1 {
-
-
-            .room-image {
-                width: 100%;
-                object-fit: cover;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-                @include mobil {
-                    margin-left: 0;
-                   
-                }
-            }
+.room-card {
+    background-color: #f7fbff;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
 
 
-        }
+}
 
+.room-card-content {
+    display: flex;
+    flex-direction: row;
 
-        .room-card-content-2 {
-
-
-            .room-name {
-                font-size: 1.5rem;
-                margin-bottom: 0.5rem;
-                color: #333;
-
-                @include mobil {
-                    font-size: 1rem;
-                }
-
-            }
-
-            .room-accordion {
-                margin-top: 1rem;
-
-
-                @include mobil {
-                    width: 15rem;
-                    font-size: 5px;
-                }
-
-                .room-description {
-                    font-size: 1rem;
-                    margin-top: 1rem;
-                    margin-bottom: 1rem;
-                    color: #555;
-
-                    @include mobil {
-                        font-size: 0.7rem;
-                    }
-                }
-
-                .room-feature {
-                    display: flex;
-                    align-items: center;
-                    margin-bottom: 0.5rem;
-
-                    @include mobil {
-                        font-size: 6px;
-                    }
-
-                    .feature-icon {
-                        margin-right: 0.5rem;
-                        color: #007bff;
-                    }
-                }
-            }
-        }
-
-        .room-price {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-
-            .price {
-                font-size: 13px;
-            }
-
-
-
-            .reservation-button {
-                margin-top: 2rem;
-                background-color: #28a745;
-                color: #fff;
-
-                @include mobil {
-                    font-size: 9px;
-                }
-
-
-
-                &:hover {
-                    background-color: #218838;
-                }
-            }
-        }
+    @include mobil {
+        flex-direction: column;
     }
+
+}
+
+.room-card-content-1 {
+    flex: 1;
+}
+
+.room-image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.room-card-content-2 {
+    flex: 3;
+    margin-left: 1rem;
+}
+
+.room-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.room-accordion {
+    margin-top: 1rem;
+}
+
+.room-description {
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.room-feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.feature-icon {
+    margin-right: 0.5rem;
+    color: #007bff;
+}
+
+.star-icons {
+    margin-top: 2%;
+}
+
+.price {
+    font-size: 13px;
+}
+
+.reservation-button {
+    margin-top: 2rem;
+    background-color: #28a745;
+    color: #fff;
+}
+
+.reservation-button:hover {
+    background-color: #218838;
 }
