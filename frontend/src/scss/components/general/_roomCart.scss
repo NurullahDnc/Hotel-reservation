@@ -13,7 +13,7 @@
 
                 @include mobil {
                     margin-left: 0;
-                   
+
                 }
             }
 
@@ -40,7 +40,7 @@
 
 
                 @include mobil {
-                    width: 15rem;
+                    width: 10.5rem;
                     font-size: 5px;
                 }
 
@@ -51,7 +51,7 @@
                     color: #555;
 
                     @include mobil {
-                        font-size: 0.7rem;
+                        font-size: 0.5rem;
                     }
                 }
 
@@ -61,12 +61,18 @@
                     margin-bottom: 0.5rem;
 
                     @include mobil {
-                        font-size: 6px;
+                        font-size: 4px;
                     }
 
                     .feature-icon {
                         margin-right: 0.5rem;
                         color: #007bff;
+
+                        @include mobil {
+                            width: 0;
+                            margin-right: 0.7rem;
+                        }
+
                     }
                 }
             }
