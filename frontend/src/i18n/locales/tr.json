@@ -29,70 +29,27 @@
   "properties": "Özellikler",
   "price": "Fiyat",
   "bookNow": "Rezervasyon Yap",
-  "features": [
-    {
-      "label": "Yatak Sayısı ve Türleri",
-      "value": "2 adet tek kişilik yatak"
-    },
-    {
-      "label": "Oda Tipi",
-      "value": "Standart Oda"
-    },
-    {
-      "label": "Oda Tipi",
-      "value": "Deluxe Oda"
-    },
-    {
-      "label": "Oda Tipi",
-      "value": "Aile Odası"
-    },
-    {
-      "label": "WiFi",
-      "value": "Ücretsiz Wifi"
-    },
-    {
-      "label": "Manzara",
-      "value": "Şehir manzaralı"
-    },
-    {
-      "label": "Manzara",
-      "value": "Deniz manzaralı"
-    },
-    {
-      "label": "Manzara",
-      "value": "Bahçe manzaralı"
-    },
-    {
-      "label": "Klima veya Isıtma",
-      "value": "Klima veya Isıtma"
-    },
-    {
-      "label": "Televizyon",
-      "value": "Televizyon"
-    },
-    {
-      "label": "Minibar",
-      "value": "Minibar"
-    },
-    {
-      "label": "Banyo Tipi",
-      "value": "Duş ve küvet"
-    },
-    {
-      "label": "Oda Hizmeti",
-      "value": "Oda Hizmeti"
-    },
-    {
-      "label": "Giriş ve Çıkış Saatleri",
-      "value": "Check-in: 14:00, Check-out: 12:00"
-    },
-    {
-      "label": "Kahvaltı Hizmeti",
-      "value": "Kahvaltı"
-    },
-    {
-      "label": "Güvenlik Özellikleri",
-      "value": "Güvenlik"
-    }
-  ]
+  "Single Room": "Tek Kişilik Oda",
+  "Double Room": "Çift Kişilik Oda",
+  "Family Room": "Aile Odası",
+  "Junior Suite": "Junior Süit",
+  "Luxury Room": "Lüks Oda",
+  "1 single bed": "1 adet tek kişilik yatak",
+  "1 double bed": "1 adet çift kişilik yatak",
+  "1 king bed": "1 adet king yatak",
+  "City view": "Şehir manzarası",
+  "Garden view": "Bahçe manzarası",
+  "Sea view": "Deniz manzarası",
+  "Air Conditioning or Heating": "Klima veya Isıtma",
+  "Television": "Televizyon",
+  "Minibar": "Minibar",
+  "Shower": "Duş",
+  "Shower and bathtub": "Duş ve küvet",
+  "Private jacuzzi": "Özel jakuzi",
+  "Room Service": "Oda Hizmeti",
+  "Check-in: 14:00, Check-out: 12:00": "Giriş: 14:00, Çıkış: 12:00",
+  "Check-in: 15:00, Check-out: 11:00": "Giriş: 15:00, Çıkış: 11:00",
+  "Free Wifi": "Ücretsiz Wifi",
+  "Breakfast": "Kahvaltı",
+  "Security": "Güvenlik"
 }
