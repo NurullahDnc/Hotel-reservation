@@ -1,56 +1,33 @@
 import User from "../models/userModal.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import {
-    createAccessToken,
-    createRefreshToken
-} from "../helpers/GenerateToken.js";
 
 const createUser = async (req, res) => {
 
     try {
-        //body'den verileri al
-        const {
-            firstName,
-            lastName,
-            email,
-            password
-        } = req.body;
+        //body'den verileri al, pass. hash'le
+        const { name, email, password } = req.body;
 
-        //kulanıcı kontrol et uye mi
-        const existingUser = await User.findOne({
-            email
-        });
-
-        if (existingUser) {
-            return res.status(400).json({
-                success: false,
-                error: "bu kullanıcı zaten kayıtlı"
-            })
-        }
-
-        //pass. hash'le
+        //pass. hash'le degiskene at
         const hashedPassword = await bcrypt.hash(password, 10);
 
-
-        //user olsutur
+        //user olsutur, degerleri ata
         const user = await User.create({
-            firstName,
-            lastName,
+            name: name,
             email: email,
             password: hashedPassword,
         })
 
         res.status(201).json({
             succeded: true,
-            message: "Üyelik başarıyla oluşturuldu."
+            user
         })
 
     } catch (error) {
 
         res.status(400).json({
             succeded: false,
-            error: error.message
+            error
         })
 
     }
@@ -59,82 +36,61 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
 
     try {
-        const {
-            email,
-            password
-        } = req.body;
+        const { email, password } = req.body;
 
-        //user email kontol et varmı
+        //user ara email'e gore
         const user = await User.findOne({
             email: email
         })
 
-        if (!user) {
+
+        //user varmı varsa, pass. karsılastır
+        if (user && await bcrypt.compare(password, user.password)) {
+
+            //userId func. parametre gec. degisekene at
+            const token = createToken(user._id);
+            console.log("token olustuldu", token);
+
+            //token'i cookie'ye kayıt ediyor
+            res.cookie('jwt', token, {
+                httpOnly: true,
+                maxAge: 1000 * 60 * 60 * 24, //1 gun
+            })
+
+            return res.status(200).json({
+                success: true
+            })
+
+        } else {
             return res.status(401).json({
                 success: false,
-                error: 'Kullanıcı bulunamadı',
-            });
-        }
+                error: "kulanıcı adı veya sifre hatalıdır"
 
-        //pass. karsılastırma
-        const validPassword = await bcrypt.compare(password, user.password);
-
-        //pass. kontrol
-        if (!validPassword) {
-            return res.status(401).json({
-                success: false,
-                error: "şifre yanlış!"
             })
         }
-
-        //kulanıcının ıd gore token olusturuyor.
-        const accessToken = createAccessToken({
-            id: user._id
-        });
-
-        // Yenileme tokeninin kullanıcıya gönderilmesi, X
-        res.cookie('jwt', accessToken, {
-            httpOnly: true,
-            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 gün
-        });
-
-        console.log("accessToken", accessToken);
-
-        res.status(200).json({
-            success: true,
-            accessToken,
-            message: "Giriş başarılı"
-        });
-
-
 
     } catch (error) {
         res.status(400).json({
             succeded: false,
             error: error.message
         })
+        console.log("error", error);
     }
 
 }
 
-export const getInfo = async (req, res) => {
+//userId'ye gore token olsuturma
+const createToken = (userId) => {
 
-    try {
-        // kulanıcının sifreisni gonderme
-        const user = await User.findById(req.user.id).select('-password')
+    return jwt.sign({
+        userId
+    }, process.env.JWT_SECRET, {
+        expiresIn: "1d"
+    })
 
-        //kulanıcı yoksa
-        if (!user) return res.status(400).json({
-            error: "Kullanıcı mevcut değil."
-        });
-
-        res.status(200).json(user)
-    } catch (error) {
-        return res.status(500).json({
-            error: error.message
-        })
-    }
 }
+
+
 
 
 

@@ -15,17 +15,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import Modal from "./comporents/auth/Modal";
 import Login from "./comporents/auth/Login";
 import Register from "./comporents/auth/Register";
-import Account from "./pages/Account";
-import ProfileLayout from "./layout/ProfileLayout";
-import UserProfile from "./comporents/account/profil";
- function App() {
+
+function App() {
 
   return (
     <div className="App">
     <ToastContainer position="top-right" reverseOrder={false} />
 <Register />
 <Login />
-       <Router>
+      <Router>
         <Routes>
           <Route
             path="/*"
@@ -41,8 +39,6 @@ import UserProfile from "./comporents/account/profil";
                   <Route path="/iletisim" element={<ContactPage />} />
 
 
-
-  <Route path="/user/profil" element={<UserProfile />} />
                   <Route path="*" element={<div className="notFound">Sayfa Bulunamadı</div>} />
                 </Routes>
               </MainLayout>
@@ -62,21 +58,6 @@ import UserProfile from "./comporents/account/profil";
               </AdminLayout>
             }
           />
-{/* 
-        <Route
-            path="/user/*"
-            element={
-              <ProfileLayout > 
-                <Routes>
-
-
-
-                <Route path="*" element={<div className="notFound">Sayfa Bulunamadı</div>} />
-
-                </Routes>
-              </ProfileLayout>
-            }
-          /> */}
 
 
         </Routes>

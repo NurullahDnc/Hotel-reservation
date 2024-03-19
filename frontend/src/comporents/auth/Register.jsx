@@ -3,7 +3,7 @@ import Input from '../general/Input'
 import Modal from './Modal'
 import Button from '../general/Button'
 import { FcGoogle } from "react-icons/fc";
-import { loginModalFun, registerModalFun } from '../../redux/ModalSlice';
+import { registerModalFun } from '../../redux/ModalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -20,24 +20,19 @@ const Register = () => {
     const onSubmit = data => {
         
         axios.post("http://localhost:5000/user/register", data)
-        .then((response)=> {
-            toast.success(response.data.message)
-            
-            dispatch(registerModalFun())
-            dispatch(loginModalFun())
-
+        .then(()=> {
+            toast.success("kayıt islemi başarılı")
         })
         .catch((err)=> {
-            toast.success(err.response.data.error)
-
+            toast.error("hata olustu: " + err.message)
         }) 
             
     }
 
     const bodyElement = (
         <div>
-            <Input id={"firstName"} type={"text"} placeholder={"Ad"} register={register} errors={errors} required />
-            <Input id={"lastName"} type={"text"} placeholder={"Soyad"} register={register} errors={errors} required />
+            <Input id={"name"} type={"text"} placeholder={"Ad"} register={register} errors={errors} required />
+            <Input id={"surname"} type={"text"} placeholder={"Soyad"} register={register} errors={errors} required />
             <Input id={"email"} type={"email"} placeholder={"e-posta"} register={register} errors={errors} required />
             <Input id={"password"} type={"password"} placeholder={"Sifre"} register={register} errors={errors} required />
         </div>
