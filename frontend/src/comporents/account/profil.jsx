@@ -8,16 +8,9 @@ const UserProfile = () => {
   const user = useSelector((state) => state.getUser.user);
   const router = useNavigate()
 
-  //user degistiginde tetiklenecek
-  useEffect(() => {
-    if (!user) {
-      toast.error("Oturum Sonlandırıldı. Lütfen Giriş Yapınız");
-      //  router("/")
-    }
-  }, [user]);
-
 
   if (!user) {
+    router("/")
     return <div className='notFound'>{"Kullanıcı profil bilgileri yükleniyor..."}</div>;
   }
 
