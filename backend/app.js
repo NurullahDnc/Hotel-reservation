@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors'; // cors modülünü import et
 import bodyParser from 'body-parser';
 
-
+//express olustur
 const app = express();
 
 conn();
@@ -19,7 +19,7 @@ dotenv.config();
 
 const port = process.env.PORT || 5000;
 
-//veriyi json formatında isliyor
+//Gelen isteklerdeki JSON verilerini işle
 app.use(express.json());
 
 //cookie ekleme 

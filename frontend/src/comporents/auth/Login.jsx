@@ -26,7 +26,7 @@ const Login = () => {
             //token'i cookie kayıt etme
             document.cookie = `jwt=${token}; max-age=${7 * 24 * 60 * 60}; path=/`;
             console.log(response);
-            // dispacth(loginModalFun())
+            dispacth(loginModalFun())
             
         })
         .catch((err)=> {

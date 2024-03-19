@@ -16,15 +16,16 @@ import Modal from "./comporents/auth/Modal";
 import Login from "./comporents/auth/Login";
 import Register from "./comporents/auth/Register";
 import Account from "./pages/Account";
-
-function App() {
+import ProfileLayout from "./layout/ProfileLayout";
+import UserProfile from "./comporents/account/profil";
+ function App() {
 
   return (
     <div className="App">
     <ToastContainer position="top-right" reverseOrder={false} />
 <Register />
 <Login />
-      <Router>
+       <Router>
         <Routes>
           <Route
             path="/*"
@@ -38,10 +39,10 @@ function App() {
                   <Route path="/restaurant" element={<RestaurantPage />} />
                   <Route path="/galeri" element={<GalleryPage />} />
                   <Route path="/iletisim" element={<ContactPage />} />
-                  <Route path="/profil" element={<Account />} />
 
 
 
+  <Route path="/user/profil" element={<UserProfile />} />
                   <Route path="*" element={<div className="notFound">Sayfa Bulunamadı</div>} />
                 </Routes>
               </MainLayout>
@@ -61,6 +62,21 @@ function App() {
               </AdminLayout>
             }
           />
+{/* 
+        <Route
+            path="/user/*"
+            element={
+              <ProfileLayout > 
+                <Routes>
+
+
+
+                <Route path="*" element={<div className="notFound">Sayfa Bulunamadı</div>} />
+
+                </Routes>
+              </ProfileLayout>
+            }
+          /> */}
 
 
         </Routes>

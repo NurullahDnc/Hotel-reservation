@@ -6,8 +6,7 @@ import jwt from 'jsonwebtoken';
 const checkUser = async (req, res, next) => {
     //cookies icinde jwt al degisekene at
     const token = req.cookies.jwt;
-    console.log("tokenmidel", token);
-    if (token) {
+     if (token) {
         jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
             if (err) {
                 console.log(err.message);
@@ -39,19 +38,23 @@ const authenticateToken = async (req, res, next) => {
             // Çözümlenen token'dan kullanıcı kimliğini al
              const user = await User.findById(decodedToken.id);
              if (!user) {
+                 res.redirect("/")
                 return res.status(401).json({
                     succeeded: false,
-                    error: "Invalid token - user not found"
+                    error: "Invalid token - user not found",
+
                 });
             }
             //user gonder, giris yapan kulanıcı
             req.user = user;
             next();
         } else {
+            res.redirect("/")
 
             return res.status(401).json({
                 succeeded: false,
-                error: "Token not provided"
+                error: "Token not provided",
+
             });
         }
     } catch (error) {
