@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaRegUser } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdDarkMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../../redux/DarkModeSlice';
 import { useTranslation } from 'react-i18next';
 import { loginModalFun, registerModalFun } from '../../redux/ModalSlice';
+import { getUser, logout } from '../../redux/User';
+import {useCookies} from 'react-cookie'
+import AuthManager from '../account/AuthManager';
 
 
 const Navbar = () => {
@@ -26,39 +29,41 @@ const Navbar = () => {
   const [isUserOpen, setUserOpen] = useState(true);
   const [currentDate, setCurrentDate] = useState('');
   const [selectLanguage, setSelectLanguage] = useState("Tr")
-  const [user, setUser] = useState(false)
-
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.getUser.user);  
+  const router = useNavigate();
+  const [cookies] = useCookies(['jwt']);
+
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
   const { t, i18n } = useTranslation();
 
   const clickHandle = async (lang) => {
     await i18n.changeLanguage(lang);
   };
+ 
 
-
-
+  
   //tarih icin
   useEffect(() => {
     // Bugünkü tarihi al, usestate at
     const today = new Date().toISOString().split("T")[0];
     setCurrentDate(today);
   }, []);
-
+  
   //isdarkmode degisklik oldugunda, body den dark-mode kaldır
   useEffect(() => {
     // useEffect içinde body'ye sınıf ekleyip çıkarma işlemi
     document.body.classList.toggle('dark-mode', isDarkMode);
   }, [isDarkMode]);
-
+  
   //dil'de secileni aliyor 
-
-
+  
+  
   //sol menu ac kapa
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen)
   }
-
+  
   //rezervasyon ac kapa
   const toogleReservation = () => {
     setReservationIsOpen(!reservationIsOpen)
@@ -67,16 +72,19 @@ const Navbar = () => {
   //user ac kapa
   const toggleUser = () => {
     setUserOpen(!isUserOpen);
+    
   }
-
+  
   //darkmode icin redux'daki func. tetikliyor
   const toggleDark = () => {
     dispatch(toggleDarkMode());
-
+    
   }
-
+  
   return (
     <div className='navbar'>
+      <AuthManager />
+      
       {/*solda acılır kapanır menu */}
       <div className={`navbar-isMenu ${isMenuOpen ? `navbar-isOpen` : `""`} `}>
         <div className='navbar-isMenu-item'>
@@ -148,10 +156,12 @@ const Navbar = () => {
                     <div className='navbar-container-right-user-item-container'>
                       <li onClick={() => {
                         setUserOpen(!isUserOpen)
+                        router("/user/profil")
                       }}
                       >Profil</li>
 
                       <li onClick={() => {
+                        dispatch(logout())
                         setUserOpen(!isUserOpen);
                       }}>Cıkış Yap</li>
                     </div>
