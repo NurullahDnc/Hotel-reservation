@@ -98,8 +98,7 @@ const loginUser = async (req, res) => {
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 gün
         });
 
-        console.log("accessToken", accessToken);
-
+ 
         res.status(200).json({
             success: true,
             accessToken,
@@ -127,7 +126,8 @@ export const getInfo = async (req, res) => {
         if (!user) return res.status(400).json({
             error: "Kullanıcı mevcut değil."
         });
-
+        
+        console.log("giris yapan", res.locals.user._id);
         res.status(200).json(user)
     } catch (error) {
         return res.status(500).json({
