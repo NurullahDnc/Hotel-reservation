@@ -19,12 +19,20 @@ const Login = () => {
     const onSubmit = data => {
         
         axios.post("http://localhost:5000/user/login", data)
-        .then(()=> {
-            toast.success("giriş islemi başarılı")
+        .then((response)=> {
+            toast.success(response.data.message)
+            const token = response.data.accessToken
+
+            //token'i cookie kayıt etme
+            document.cookie = `jwt=${token}; max-age=${7 * 24 * 60 * 60}; path=/`;
+            console.log(response);
+            dispacth(loginModalFun())
+            
         })
         .catch((err)=> {
             console.log(err.response.data.error);
-            toast.error("hata olustu: " + err.message)
+            toast.error(err.response.data.error)
+        
         }) 
 
     }
@@ -47,6 +55,7 @@ const Login = () => {
     return (
 
         <form onSubmit={handleSubmit(onSubmit)}>
+            
 
             {/*modal'a props geciyoruz */}
             <Modal

@@ -15,6 +15,11 @@
         padding: 15px;
         border-radius: 7px;
 
+        @include mobil{
+            width: 90%;
+            
+        }
+
         &-title{
             display: flex;
             justify-content: space-between;
