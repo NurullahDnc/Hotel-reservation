@@ -15,7 +15,7 @@ const UserProfile = () => {
   }
 
   return (
-    <div>
+    <div style={{margin: "7rem"}}>
       {/*Kulanıcı oturumunu kontrol ediyor */}
       <AuthManager />
 

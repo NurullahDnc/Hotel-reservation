@@ -68,7 +68,6 @@ const Navbar = () => {
   //rezervasyon ac kapa
   const toogleReservation = () => {
     setReservationIsOpen(!reservationIsOpen)
-    console.log("asd");
   }
   //user ac kapa
   const toggleUser = () => {

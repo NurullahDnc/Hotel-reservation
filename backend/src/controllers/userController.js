@@ -5,6 +5,12 @@ import {
     createAccessToken,
     createRefreshToken
 } from "../helpers/GenerateToken.js";
+import {
+    OAuth2Client
+} from "google-auth-library";
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
 
 const createUser = async (req, res) => {
 
@@ -98,7 +104,6 @@ const loginUser = async (req, res) => {
             maxAge: 7 * 24 * 60 * 60 * 1000 // 7 gün
         });
 
-        console.log("accessToken", accessToken);
 
         res.status(200).json({
             success: true,
@@ -128,6 +133,7 @@ export const getInfo = async (req, res) => {
             error: "Kullanıcı mevcut değil."
         });
 
+        console.log("giris yapan", res.locals.user._id);
         res.status(200).json(user)
     } catch (error) {
         return res.status(500).json({
@@ -135,6 +141,64 @@ export const getInfo = async (req, res) => {
         })
     }
 }
+
+
+// Google ile giriş veya kayıt olma işlemi
+export const googleAuth = async (req, res) => {
+
+    const {
+        token
+    } = req.body;
+    try {
+
+        //token dogrula, karsılastır
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+
+        const {
+            email,
+            given_name,
+            family_name
+        } = ticket.getPayload();
+
+        //kulanıcıyı kontrol et 
+        let user = await User.findOne({
+            email
+        });
+
+
+        if (!user) {
+            // Eğer kullanıcı yoksa, kayıt et
+            const hashedPassword = await bcrypt.hash(token, 10);
+            user = await User.create({
+                firstName: given_name,
+                email,
+                password: hashedPassword,
+                googleId: ticket.getUserId()
+            });
+        }
+
+        // Kullanıcıya token olustur, client gonder cookie kayıt et
+        const accessToken = createAccessToken({
+            id: user._id
+        });
+
+        res.status(200).json({
+            success: true,
+            message: 'Giriş başarılı',
+            accessToken
+        });
+    } catch (error) {
+        console.error('Google Auth Hatası:', error);
+        res.status(401).json({
+            success: false,
+            message: 'Google ile giriş başarısız'
+        });
+    }
+};
+
 
 
 

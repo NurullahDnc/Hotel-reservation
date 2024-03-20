@@ -9,8 +9,7 @@ const checkUser = async (req, res, next) => {
      if (token) {
         jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
             if (err) {
-                console.log(err.message);
-                res.locals.user = null;
+                 res.locals.user = null;
                 next(); // Bir sonraki işlevi çağır
             } else {
                 // Token'dan çözümlenen token'dan kullanıcı kimliğini al
@@ -45,6 +44,10 @@ const authenticateToken = async (req, res, next) => {
 
                 });
             }
+
+            //user bilgisini gecici sureligine degiskene at
+            res.locals.user = user;
+
             //user gonder, giris yapan kulanıcı
             req.user = user;
             next();
@@ -58,6 +61,8 @@ const authenticateToken = async (req, res, next) => {
             });
         }
     } catch (error) {
+        res.locals.user = null
+
         return res.status(401).json({
             succeeded: false,
             error: "Invalid token"
