@@ -55,17 +55,16 @@ const Contact = () => {
       toast.error("Lütfen Tüm Alanları Doldurun")
 
     } else {
+      console.log("data", inputData);
 
       try {
-        console.log(inputData);
 
         setInputData({ surname: "", mail: "", text: "" })
-
+ 
         const res = await axios.post("url", { inputData })
         toast.success("Mesajınız başarılı bir şekilde gönderildi", res);
 
       } catch (error) {
-        console.log(error);
         toast.error("Mesajınız gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz.", error);
 
       }

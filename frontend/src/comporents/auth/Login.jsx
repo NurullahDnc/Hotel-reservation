@@ -1,76 +1,78 @@
-import React, { useEffect } from 'react'
-import Input from '../general/Input'
-import Modal from './Modal'
-import Button from '../general/Button'
-import { FcGoogle } from "react-icons/fc";
+import React from 'react';
+import Input from '../general/Input';
+import Modal from './Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginModalFun } from '../../redux/ModalSlice';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
-
+import GoogleAuth from './GoogleAuth'
 
 const Login = () => {
+    const { loginModal } = useSelector((state) => state.modal);
+    const dispatch = useDispatch();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
-    const { loginModal } = useSelector((state) => state.modal)
-    const dispacth = useDispatch()
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
-        
         axios.post("http://localhost:5000/user/login", data)
-        .then((response)=> {
-            toast.success(response.data.message)
-            const token = response.data.accessToken
+            .then((response) => {
+                toast.success(response.data.message);
+                const token = response.data.accessToken;
+                document.cookie = `jwt=${token}; max-age=${7 * 24 * 60 * 60}; path=/`;
+                 dispatch(loginModalFun());
+            })
+            .catch((err) => {
+                toast.error(err.response.data.error);
+            });            
+    };
 
-            //token'i cookie kayıt etme
-            document.cookie = `jwt=${token}; max-age=${7 * 24 * 60 * 60}; path=/`;
-            console.log(response);
-            dispacth(loginModalFun())
-            
-        })
-        .catch((err)=> {
-            console.log(err.response.data.error);
-            toast.error(err.response.data.error)
-        
-        }) 
+   
 
-    }
-
-    //modalın icerik kısmı
     const bodyElement = (
         <div>
-            <Input id={"email"} type={"email"} placeholder={"e-posta"} register={register} errors={errors} required />
-            <Input id={"password"} type={"password"} placeholder={"Sifre"} register={register} errors={errors} required />
+            <Input id="email" type="email" placeholder="E-posta" register={register} errors={errors} required />
+            <Input id="password" type="password" placeholder="Şifre" register={register} errors={errors} required />
         </div>
-    )
+    );
 
-    //modalın alt kısmı
     const footerElement = (
         <div>
-            <Button btnText={"Google ile Giriş"} outline icon={FcGoogle} />
+            <GoogleAuth />
         </div>
-    )
+    );
 
     return (
-
         <form onSubmit={handleSubmit(onSubmit)}>
-            
-
-            {/*modal'a props geciyoruz */}
-            <Modal
+            <Modal 
                 isOpen={loginModal}
                 bodyElement={bodyElement}
                 footerElement={footerElement}
-                title={"Giriş Yap"}
-                btnLabel={"Giriş Yap"}
-                onClose={() => { dispacth(loginModalFun()) }}
-                onSubmit={() => { }}
-
+                title="Giriş Yap"
+                btnLabel="Giriş Yap"
+                onClose={() => dispatch(loginModalFun())}
+                onSubmit={() => {}}
             />
-
         </form>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;
+
+
+/*
+
+  if (response.error === "popup_closed_by_user") {
+                // Eğer kullanıcı popup'ı kapattıysa bir şey yapma
+                console.log("Kullanıcı popup'ı kapattı.");
+            } else if (response.error === "idpiframe_initialization_failed") {
+                // İdP iframe başlatma hatası
+                console.error("İdP iframe başlatma hatası:", response.details);
+                // Hata mesajını kullanıcıya bildirebilirsiniz
+                toast.error("Giriş işlemi sırasında bir hata oluştu. Lütfen tekrar deneyin.");
+            } else {
+                // Diğer durumlarda, yani giriş başarılıysa modalı aç
+                dispatch(loginModalFun());
+                console.log("Google ile giriş başarılı:", response);
+            }
+*/

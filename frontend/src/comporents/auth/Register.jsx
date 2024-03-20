@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import {toast } from 'react-toastify';
+import GoogleAuth from './GoogleAuth'
 
 
 
@@ -42,12 +43,14 @@ const Register = () => {
             <Input id={"password"} type={"password"} placeholder={"Sifre"} register={register} errors={errors} required />
         </div>
     )
-                                                                
+                                                                 
     const footerElement = (
-        <div>
-            <Button btnText={"Google ile Kayıt"} outline icon={FcGoogle} />
-
-        </div>
+        <div onClick={() => {
+            dispatch(loginModalFun());
+            dispatch(registerModalFun());
+          }}>
+            <GoogleAuth />
+          </div>
     )
                                        
     return (
@@ -62,9 +65,7 @@ const Register = () => {
                 onClose={() => { dispatch(registerModalFun()) }}
                 onSubmit={() => { }}
 
-
             />
-
 
         </form>
     )
