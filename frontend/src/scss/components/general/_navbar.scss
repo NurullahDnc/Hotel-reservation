@@ -1,0 +1,70 @@
+.generalNavbar {
+    display: flex;
+}
+
+.generalSidebar {
+    width: 18%;
+    height: 100vh;
+    background-color: $text-whiteTwo;
+    position: fixed;
+    top: 0; /* Üst kısıma sabitleme */
+    left: 0; /* Sol kısıma sabitleme */
+    transition: left 0.5s; /* Yan menü açılıp kapanma efekti */
+
+    &-hamburgerMenu {
+        position: absolute;
+        right: -35px;
+        top: 15px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .title {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        padding: 0 35px;
+        font-size: $FontFour;
+        font-weight: 500;
+        position: relative;
+        border-bottom: 2px gray solid;
+    }
+
+    .menuİtems {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        padding-top: 15px;     
+
+        &-item {
+            padding: 10px 35px;
+            font-size: $FontThree;
+            transition: 0.5s;
+            &:hover{
+                background-color: rebeccapurple;
+            }
+        }
+    }
+    
+    &.setOpenMenu {
+        left: -18%;
+    }
+}
+
+.generalTopbar {
+    height: 60px;
+    background-color: rebeccapurple;
+    width: 100%;    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 30px;
+    position: fixed;
+    z-index: -100;
+ }
+
+ 
+ .profile-content{
+    flex: 1;
+     background-color: beige;
+    margin-left: auto;
+ }
