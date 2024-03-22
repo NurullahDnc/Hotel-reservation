@@ -10,14 +10,14 @@ const initialState ={
 export const getUser = createAsyncThunk("getUser", async () => {
     //cookiden den token alıyor
     const token = document.cookie.split('; ').find(row => row.startsWith('jwt='));
-    
     //kulanıcının bilgisini almak icin istek atıldı ve token gonderildi
    const res = await axios.get('http://localhost:5000/user/profile', {
         headers: {
           Authorization: `jwt ${token.split('=')[1]}`
         }
       });
-     return res.data; 
+
+      return await res.data; 
 });
 
 const UserSlice = createSlice({

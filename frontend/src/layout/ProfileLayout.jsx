@@ -1,22 +1,15 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
- 
-
+import React from 'react';
+import Navbar from '../account/comporents/navbar/Navbar';
 
 const ProfileLayout = ({ children }) => {
-
-    const router = useNavigate()
-
   return (
     <>
-        <div onClick={()=> router("/") }>
-            navbar/anasayfa don
-        </div>
-      {children}
-
+      <Navbar />
+      <div className="profile-content">
+        {children}
+      </div>
     </>
-  )
+  );
 }
 
-export default ProfileLayout
-
+export default ProfileLayout;
