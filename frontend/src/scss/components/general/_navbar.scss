@@ -10,13 +10,13 @@
     top: 0; /* Üst kısıma sabitleme */
     left: 0; /* Sol kısıma sabitleme */
     transition: left 0.5s; /* Yan menü açılıp kapanma efekti */
+    z-index: 1000;
 
     &-hamburgerMenu {
         position: absolute;
         right: -35px;
         top: 15px;
         cursor: pointer;
-        z-index: 1000;
     }
 
     .title {
@@ -59,7 +59,6 @@
     align-items: center;
     padding-right: 30px;
     position: fixed;
-    z-index: -100;
  }
 
  
@@ -67,4 +66,5 @@
     flex: 1;
      background-color: beige;
     margin-left: auto;
+    height: 100vh;
  }

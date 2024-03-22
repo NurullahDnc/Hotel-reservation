@@ -7,6 +7,7 @@ import Input from '../../../comporents/general/Input'
 import { useForm } from 'react-hook-form';
 import Button from '../../../comporents/general/Button';
 import { getUser } from '../../../redux/User';
+import Table from '../general/Table';
 
 const Profile = () => {
   const user = useSelector((state) => state.getUser.user);
@@ -24,7 +25,7 @@ const Profile = () => {
   }
 
   return (
-    <div style={{margin: "7rem", marginBottom:"50rem"}}>
+    <div >
       {/*Kulanıcı oturumunu kontrol ediyor */}
       <AuthManager />
 
@@ -37,6 +38,8 @@ const Profile = () => {
       <p>Email: {user.email}</p>
         </div>
       }
+  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus.
+      {/* <Table /> */}
  
     </div>
   );
