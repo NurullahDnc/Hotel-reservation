@@ -1,5 +1,5 @@
 import React from 'react';
-import RoomCart from '../general/RoomCart';
+import RoomCart from './RoomCart';
 import roomData from '../../data/RoomData';
 import PageTitleImage from '../general/PageTitleImage';
 

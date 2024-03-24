@@ -23,8 +23,8 @@
 @import './components/about';
 @import './components/gallery';
 @import './components/modal';
-
-
+@import './components/roomCart';
+@import './components/activityCart';
 
 
 
@@ -32,8 +32,6 @@
 
 
 /*general*/
-@import './components/general/activityCart';
-@import './components/general/roomCart';
 @import './components/general/heading';
 @import './components/general/pageTitleImage';
 @import './components/general/input';

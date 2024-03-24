@@ -17,8 +17,9 @@ import Login from "./comporents/auth/Login";
 import Register from "./comporents/auth/Register";
 import Account from "./pages/Account";
 import ProfileLayout from "./layout/ProfileLayout";
-import UserProfile from "./comporents/account/profil";
-import ProfilePage from "./account/page/ProfilePage";
+import ProfilePage from "./pages/ProfilePage";
+import Table from "./comporents/general/Table";
+import Reservation from "./comporents/account/reservation/Reservation";
  function App() {
 
   return (
@@ -70,6 +71,10 @@ import ProfilePage from "./account/page/ProfilePage";
                 <Routes>
 
                 <Route path="/profil" element={<ProfilePage />} />
+                <Route path="/reservation" element={<Reservation />} />
+
+                <Route path="/profils" element={<Table/>} />
+
 
                 {/* <Route path="/profil" element={<UserProfile />} /> */}
 

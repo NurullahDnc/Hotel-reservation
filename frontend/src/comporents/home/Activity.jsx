@@ -1,5 +1,5 @@
 import React from 'react'
-import ActivityCart from '../general/ActivityCart'
+import ActivityCart from '../activities/ActivityCart'
 
 const Activity = () => {
 

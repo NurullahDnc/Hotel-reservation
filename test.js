@@ -1,74 +1,111 @@
-// server.js veya app.js gibi bir dosya adıyla kaydedebilirsiniz
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+"use client";
+import React, { useState } from "react";
+import Image from "next/image";
+import logo from "../images/logo.svg";
+import { FaHouse, FaRegCalendar, FaCrown } from "react-icons/fa6";
+import { AiFillMessage } from "react-icons/ai";
+import { GrDocumentVerified } from "react-icons/gr";
+import { BiMessageRoundedMinus } from "react-icons/bi";
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+export default function Sidebar() {
+  const [sidebarActive, setSidebarActive] = useState(false);
+  return (
+    <div
+      className={"sidebar" + (sidebarActive ? " active" : "")}
+      id="side_nav"
+      style={{ background: "#5439f4" }}
+    >
+      <div className="header-box px-2 pt-3 pb-4 d-flex justify-content-center">
+        <a href="#" className="fs-4">
+          <Image src={logo} alt="logo" className="p-2 text-center" />
+        </a>
+        <button
+          className={
+            "btn d-md-none d-block close-btn px-1 py-0 text-white" +
+            (sidebarActive ? " active" : "")
+          }
+          onClick={() => setSidebarActive(!sidebarActive)}
+        >
+          <i className="fal fa-stream"></i>
+        </button>
+      </div>
 
-// MongoDB bağlantısı
-mongoose.connect('mongodb://localhost:27017/your-database-name', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+      <ul className="list-unstyled px-2">
+        <li className="active">
+          <a
+            href="#"
+            className="text-decoration-none text-white d-flex justify-content-start align-items-center px-3 py-2 d-block"
+          >
+            <FaHouse className="me-2" color="white" />
+            Anasayfa
+          </a>
+        </li>
+        <li className="">
+          <a
+            href="#"
+            className="text-decoration-none text-white d-flex justify-content-start align-items-center px-3 py-2 d-block"
+          >
+            <FaRegCalendar className="me-2" color="white" /> Randevularım
+          </a>
+        </li>
+        <li className="">
+          <a
+            href="#"
+            className="text-decoration-none text-white d-flex justify-content-start align-items-center px-3 py-2 d-block "
+          >
+            <AiFillMessage className="me-2" color="white" />
+            Mesajlarım
+            <span className="bg-dark rounded-pill text-white py-0 px-2">
+              02
+            </span>
+          </a>
+        </li>
+        <li className="">
+          <a
+            href="#"
+            className="text-decoration-none text-white d-flex justify-content-start align-items-center px-3 py-2 d-block"
+          >
+            <GrDocumentVerified className="me-2" color="white" />
+            Bloglarım
+          </a>
+        </li>
+        <li className="">
+          <a
+            href="#"
+            className="text-decoration-none text-white d-flex justify-content-start align-items-center px-3 py-2 d-block"
+          >
+            <GrDocumentVerified className="me-2" color="white" />
+            Testler
+          </a>
+        </li>
+        <li className="">
+          <a
+            href="#"
+            className="text-decoration-none text-white d-flex justify-content-start align-items-center px-3 py-2 d-block"
+          >
+            <BiMessageRoundedMinus className="me-2" color="white" />
+            Neyim Var?
+          </a>
+        </li>
+        <li className="">
+          <a
+            href="#"
+            className="text-decoration-none text-white d-flex justify-content-start align-items-center px-3 py-2 d-block"
+          >
+            <FaCrown className="me-2" color="white" />
+            Psiko+
+          </a>
+        </li>
+      </ul>
+      <ul className="list-unstyled px-2"></ul>
 
-const User = mongoose.model('User', {
-  email: String,
-  password: String,
-});
-
-app.use(bodyParser.json());
-
-// Kullanıcı kaydı
-app.post('/register', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    // Şifre hashleme
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // MongoDB'ye kullanıcı ekleme
-    const user = new User({ email, password: hashedPassword });
-    await user.save();
-
-    res.json({ success: true, message: 'Kayıt başarıyla tamamlandı.' });
-  } catch (error) {
-    console.error('Kayıt hatası:', error);
-    res.status(500).json({ success: false, message: 'Kayıt sırasında bir hata oluştu.' });
-  }
-});
-
-// Kullanıcı girişi
-app.post('/login', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    // Kullanıcıyı e-posta adresine göre bulma
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(401).json({ success: false, message: 'Kullanıcı bulunamadı.' });
-    }
-
-    // Şifre karşılaştırma
-    const passwordMatch = await bcrypt.compare(password, user.password);
-
-    if (!passwordMatch) {
-      return res.status(401).json({ success: false, message: 'Şifre yanlış.' });
-    }
-
-    // JWT oluşturma
-    const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '1h' });
-
-    res.json({ success: true, token });
-  } catch (error) {
-    console.error('Giriş hatası:', error);
-    res.status(500).json({ success: false, message: 'Giriş sırasında bir hata oluştu.' });
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+      <div
+        className="position-absolute "
+        style={{ padding: "10px", height: "60px", bottom: 0, right: 0 }}
+        onClick={() => setSidebarActive(!sidebarActive)}
+      >
+        aç 
+      </div>
+    </div>
+  );
+}

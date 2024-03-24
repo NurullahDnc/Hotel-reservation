@@ -1,12 +1,17 @@
 import React from 'react';
-import Navbar from '../account/comporents/navbar/Navbar';
+import Navbar from '../comporents/general/Navbar';
+import Sidebar from '../comporents/general/Sidebar';
 
 const ProfileLayout = ({ children }) => {
   return (
     <>
       <Navbar />
       <div className="profile-content">
-        {children}
+        <Sidebar />
+        <div className='profile-content-children'>
+      
+          {children}
+        </div>
       </div>
     </>
   );

@@ -10,8 +10,8 @@ import { useTranslation } from 'react-i18next';
 import { loginModalFun, registerModalFun } from '../../redux/ModalSlice';
 import { getUser, logout } from '../../redux/User';
 import {useCookies} from 'react-cookie'
-import AuthManager from '../../account/comporents/profile/AuthManager';
 import { toast } from 'react-toastify';
+import AuthManager from '../account/AuthManager';
 
 
 const Navbar = () => {

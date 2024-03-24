@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../comporents/home/Header'
-import ActivityCart from '../comporents/general/ActivityCart'
+import ActivityCart from '../comporents/activities/ActivityCart'
 import PageContainers from '../containers/PageContainers'
 import HolidayCart from '../comporents/home/HolidayCart'
 import Services from '../comporents/home/Services'
