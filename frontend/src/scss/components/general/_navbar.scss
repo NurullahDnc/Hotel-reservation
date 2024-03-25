@@ -22,7 +22,7 @@
     //icerik kısmı
     &-children {
         padding-top: 45px;
-        padding: 85px 15px;
+        padding: 85px 25px;
         overflow: auto;
         flex: 1;
         height: auto;
@@ -48,8 +48,9 @@
         margin-bottom: 15px;
         border-bottom: 2px solid gray;
         position: relative;
-        font-weight: 500;
-
+        font-weight: 600;
+        font-size: $FontFour;
+        
         &-hamburgerMenu {
             position: absolute;
             right: -35px;
@@ -64,8 +65,9 @@
 
             display: flex;
             align-items: center;
-            padding: 10px 20px;
-
+            padding: 13px 20px;
+            cursor: pointer;
+            
             &-icon {
                 width: 35px;
                 height: 35px;
@@ -89,45 +91,3 @@
 }
 
 
-//table
-.table-container {
-    font-family: 'Roboto', sans-serif;
-    border-radius: 10px;
-    box-shadow: 0 0 5px 0 gray;
-    overflow: auto;
-    // border: 10px solid rgb(203, 202, 202);
-    
-
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    padding: 12px 15px;
-    text-align: left;
-    text-align: center;
-    min-width: 100px;
-
-}
-
-th {
-    color: red;
-    /* Başlık metin rengi beyaz */
-}
-
-tbody tr:nth-child(odd) {
-    background-color: #ddd;
-    /* Çift sıradaki satırların arka plan rengi gri tonu */
-}
-
-//   tbody tr:nth-child(odd) {
-//     background-color: #fafafa; /* Tek sıradaki satırların arka plan rengi beyaz tonu */
-//   }
-
-tbody tr:hover {
-    // background-color: $text-main; /* Tek sıradaki satırların arka plan rengi beyaz tonu */
-}

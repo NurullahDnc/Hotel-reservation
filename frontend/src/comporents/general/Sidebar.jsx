@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { RxHamburgerMenu } from 'react-icons/rx'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useNavigation } from 'react-router-dom'
 import { FaUser } from "react-icons/fa";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaPlusCircle } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import { FaCheckCircle } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/User';
 
 
 const Sidebar = () => {
@@ -13,25 +15,37 @@ const Sidebar = () => {
   const data = [
     { "name": "Profil", url: "/user/profil", icon: FaUser },
     { "name": "Rezervasyonlarım", url: "/user/reservation", icon: FaAngleLeft },
-    { "name": "Rezervasyon Yap", url: "", icon: FaCheckCircle },
-    { "name": "Odalar", url: "", icon: RxHamburgerMenu },
-    { "name": "Siteye Git", url: "", icon: FaPlusCircle },
-    { "name": "Çıkış Yap", url: "", icon: CiLogout }
+    { "name": "Rezervasyon Yap", url: "/user/reservationform", icon: FaCheckCircle },
+    { "name": "Odalar", url: "/user/room", icon: RxHamburgerMenu },
+    { "name": "Siteye Git", url: "/", icon: FaPlusCircle },
 
   ]
 
   const [openMenu, setOpenMenu] = useState(false)
+  const dispatch = useDispatch();
+  const router = useNavigate()
 
+
+  // Menu aç/kap func.
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
     console.log("ada");
   }
 
+  //logout Func.
+  const handleLogout = () => {
+    dispatch(logout())
+    router("/")
+  }
+
+
+
   return (
     <div className={`generalSidebar ${openMenu ? "setOpenMenu" : ""}`}>
 
       <div className='generalSidebar-title'>
-        Admin Panel
+
+        STAYEASE
 
         <div onClick={toggleMenu} className='generalSidebar-title-hamburgerMenu'>
           <RxHamburgerMenu size={25} />
@@ -54,6 +68,12 @@ const Sidebar = () => {
           </div>
         ))
       }
+
+      {/*logout item */}
+      <ul onClick={handleLogout} className='generalSidebar-items-item'>
+        <li className='generalSidebar-items-item-icon'> <CiLogout /> </li>
+        <li> Cıkıs Yap </li>
+      </ul>
 
     </div>
   )

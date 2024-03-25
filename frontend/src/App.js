@@ -20,6 +20,9 @@ import ProfileLayout from "./layout/ProfileLayout";
 import ProfilePage from "./pages/ProfilePage";
 import Table from "./comporents/general/Table";
 import Reservation from "./comporents/account/reservation/Reservation";
+import ReservationFormPage from "./pages/ReservationFormPage";
+import ReservationPage from "./pages/ReservationPage";
+import AccountRoomPage from "./pages/AccountRoomPage";
  function App() {
 
   return (
@@ -71,7 +74,11 @@ import Reservation from "./comporents/account/reservation/Reservation";
                 <Routes>
 
                 <Route path="/profil" element={<ProfilePage />} />
-                <Route path="/reservation" element={<Reservation />} />
+                <Route path="/reservation" element={<ReservationPage />} />
+                <Route path="/reservationform" element={<ReservationFormPage />} />
+                <Route path="/room" element={<AccountRoomPage />} />
+
+
 
                 <Route path="/profils" element={<Table/>} />
 
