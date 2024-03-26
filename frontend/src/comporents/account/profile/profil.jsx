@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
- import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AuthManager from '../../../comporents/account/AuthManager';
 import Input from '../../../comporents/general/Input'
 import { useForm } from 'react-hook-form';
 import Button from '../../../comporents/general/Button';
-import { getUser } from '../../../redux/User';
+import { getUser } from '../../../redux/UserSlice';
 import Table from '../../general/Table';
 import Title from '../Title';
 
@@ -15,10 +15,10 @@ const Profile = () => {
   const router = useNavigate()
   const dispact = useDispatch()
 
-  useEffect(()=>{
+  useEffect(() => {
     dispact(getUser())
-  },[dispact] )
- 
+  }, [dispact])
+
 
   if (!user) {
     router("/")
@@ -32,19 +32,19 @@ const Profile = () => {
       <AuthManager />
 
       {
-        user && <div style={{position: "relative", top: "-100px", background : "gray", width: "90%", margin: "auto"  }}>
-            <h1>Kullanıcı Profili</h1>
-      <p>Kullanıcı Adı: {user._id}</p>
-      <p>Adı: {user.firstName}</p>
-      <p>Soyadı: {user.lastName}</p>
-      <p>Email: {user.email}</p>
+        user && <div style={{ position: "relative", top: "-100px", background: "gray", width: "90%", margin: "auto" }}>
+          <h1>Kullanıcı Profili</h1>
+          <p>Kullanıcı Adı: {user._id}</p>
+          <p>Adı: {user.firstName}</p>
+          <p>Soyadı: {user.lastName}</p>
+          <p>Email: {user.email}</p>
         </div>
       }
-      
+
       {/* <Table /> */}
-      
-  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus.
- 
+
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus.
+
     </div>
   );
 };

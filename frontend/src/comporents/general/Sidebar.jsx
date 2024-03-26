@@ -7,7 +7,7 @@ import { FaPlusCircle } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import { FaCheckCircle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { logout } from '../../redux/User';
+import { logout } from '../../redux/UserSlice';
 
 
 const Sidebar = () => {
@@ -29,8 +29,7 @@ const Sidebar = () => {
   // Menu aç/kap func.
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
-    console.log("ada");
-  }
+   }
 
   //logout Func.
   const handleLogout = () => {

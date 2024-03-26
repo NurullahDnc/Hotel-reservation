@@ -4,9 +4,13 @@ import conn from './config/db.js'
 import UserRoute from './src/routes/userRoute.js'
 // import {checkUser} from './src/helpers/middlewares/authMiddleware.js';
 import cookieParser from 'cookie-parser';
-import cors from 'cors'; // cors modülünü import et
+import cors from 'cors';  
 import bodyParser from 'body-parser';
-import { OAuth2Client } from 'google-auth-library'; // Doğru şekilde import edin
+import { OAuth2Client } from 'google-auth-library'; 
+import RoomRoute from './src/routes/RoomRoute.js'
+import ReservationRote from './src/routes/reservationRoute.js'
+import CategoriesRoute from './src/routes/categoriesRoute.js'
+
 
 
 
@@ -32,8 +36,14 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
-  
+
 app.use("/user", UserRoute )
+app.use("/room", RoomRoute )
+app.use("/reservation", ReservationRote )
+app.use("/categories", CategoriesRoute )
+
+
+
 
 
 

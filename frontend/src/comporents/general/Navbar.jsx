@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '../../redux/User';
+import { getUser } from '../../redux/UserSlice';
 
 const Navbar = ({ onClick }) => {
 

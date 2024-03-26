@@ -1,62 +1,44 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Table from '../../general/Table'
+import { useDispatch, useSelector } from 'react-redux'
+import { getReservation } from '../../../redux/ReservationSlice'
+import { getUser } from '../../../redux/UserSlice'
 
 const Reservation = () => {
 
-  const reservationData = [
-    {
-      img: '../image/ozel3.jpg',
-      category: '2 Kisilik',
-      gun: '7',
-      fiyat: "2.800",
-      acıklama: 'sunucu tarafından istenen kaynağa erişimin yasak olduğunu belirtmek için kullanılır. Bu durum kodu çeşitli nedenlerle tetiklenir ve sunucunun isteği anladığını ancak erişim izni vermeyi reddettiğini belirtir.',
-      KisiSayısı: '2',
-
-    }, {
-      img: '../image/ozel2.jpg',
-      category: '2 Kisilik',
-      gun: '7',
-      fiyat: "2.800",
-      acıklama: 'sınırlandırmalıyız dedik. En güzel çözüm CSS ile webkit-line-clamp yardımı ile bunu yapmaktı. Acaba bu özelliğin desteği ne kadar diye biraz bakınca %92’ye(şu an %98 Temmuz 2019) yakın destek bizi bu kodu kullanmaya itti',
-      KisiSayısı: '2',
-
-    }, {
-      img: '../image/ozel2.jpg',
-      category: '2 Kisilik',
-      gun: '7',
-      fiyat: "2.800",
-      acıklama: 'Lorem test test test test test',
-      KisiSayısı: '2',
-
-    }, {
-      img: '../image/ozel3.jpg',
-      category: '2 Kisilik',
-      gun: '7',
-      fiyat: "2.800",
-      acıklama: 'Lorem test test test test test',
-      KisiSayısı: '2',
-
-    }, {
-      img: '../image/ozel.jpg',
-      category: '2 Kisilik',
-      gun: '7',
-      fiyat: "2.800",
-      acıklama: 'Lorem test test test test test',
-      KisiSayısı: '2',
-
-    }
-  ]
 
   const reservationTitle = [
     { title: "oda" },
     { title: "kategori" },
-    { title: "Fiyat" },
-    { title: "Acıklama" },
     { title: "Kisi Sayısı" },
+    { title: "Acıklama" },
+    { title: "Fiyat" },
+    { title: "giris" },
+    { title: "cıkıs" },
     { title: "Gün" },
-
+    { title: "durumu" },
 
   ]
+
+  const reservation = useSelector((state) => state.getReservation.reservation);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.getUser.user);
+
+  useEffect(() => {
+    dispatch(getReservation())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getUser())
+  }, [dispatch])
+
+  //getReservation, userId gore rezervasyonları getirecek
+  useEffect(() => {
+    if (user) {
+      dispatch(getReservation(user._id));
+    }
+  }, [dispatch, user]);
+
 
   //tablo comps. title degisken olarak gonderiyorum
   const titleElement = (
@@ -68,23 +50,33 @@ const Reservation = () => {
   );
 
   //tablo comps. body degisken olarak gonderiyorum
-  const bodyElement = reservationData.map((row, index) => (
+  const bodyElement = reservation.map((row, index) => (
     <tr key={index} style={{ display: "flex" }}>
-      <td><img src={row.img} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="as" /></td>
-      <td>{row.category}</td>
-      <td>{row.fiyat}</td>
-      <td>{row.acıklama.length > 20 ? `${row.acıklama.substring(0, 100)}...` : row.acıklama} </td>
-      <td>{row.KisiSayısı}</td>
-      <td>{row.gun}</td>
+      <td><img src={"../image/ozel3.jpg"} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="as" /></td>
+      <td>{row.room.category}</td>
+      <td>{row.numberOfGuests}</td>
+      <td>{row.description}</td>
+      <td>{row.totalPrice}</td>
+
+      <td>{row.checkInDate}</td>
+      <td>{row.checkOutDate}</td>
+      <td>{row.dayCount}</td>
+
+      <td style={{ color: row.status === "pending" ? "gold" : row.status === "cancelled" ? "red" : row.status === "approved" ? "green" : "black" }}>
+        {row.status === "pending" ? "Bekleniyor" : row.status === "cancelled" ? "iptal edildi" : row.status === "approved" ? "Onaylandı" : "hata olsutu"}
+
+      </td>
     </tr>
   ))
 
   return (
     <div>
       <Table bodyElement={bodyElement} titleElement={titleElement} />
+
     </div>
   )
 
 }
 
 export default Reservation
+

@@ -1,34 +1,71 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import Input from '../../general/Input';
 import Button from '../../general/Button';
 import Select from '../../general/Select';
+import React, { useEffect, useState } from 'react';
+import 'react-datepicker/dist/react-datepicker.css';
+import DateRangePicker from '../../general/DatePicker';
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../../../redux/UserSlice';
+import { toast } from 'react-toastify';
+import { getCategories, getRoom } from '../../../redux/RoomSlice';
+
 
 const ReservationForm = () => {
 
-    const roomOptions = [
-        { value: "single", label: "Single Room" },
-        { value: "double", label: "Double Room" },
-        { value: "suite", label: "Suite" }
-    ];
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const dispact = useDispatch();
+
+    const user = useSelector((state) => state.getUser.user);
+    const room = useSelector((state) => state.getRoom.rooms);
+    
+    useEffect(() => {
+        dispact(getRoom())
+    }, [dispact])
+
+    useEffect(() => {
+        dispact(getUser())
+    }, [dispact])
 
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => {
+    const onSubmit = async data => {
 
-        console.log(data);
+        //rezervasyon degiskeni
+        const newReservation = {
+            room: data.roomType,
+            user: user._id,
+            checkInDate: startDate,
+            checkOutDate: endDate,
+            numberOfGuests: data.numberOfGuests,
+            Price: 1500,
+            description: data.description,
+        }
+
+
+        try {
+            const res = await axios.post("http://localhost:5000/reservation/create", newReservation);
+            toast.success("Rezervasyonunuz Oluşturuldu");
+
+        } catch (error) {
+            toast.error("Rezervasyon oluşturulurken bir hata oluştu");
+         }
+
     };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
 
-                <Select id="roomType" title="Oda Seçiniz" placeholder={"Seçiniz"} options={roomOptions} register={register} errors={errors} defaultValue="" />
+                <Select id="roomType" title="Oda Seçiniz" placeholder={"Seçiniz"} options={room} register={register} errors={errors} defaultValue="" />
 
-                <Input id="email" title="Kişi Sayısı" type="number" placeholder="1" register={register} errors={errors} required />
-                <Input id="test" title="Tarih" type="date" register={register} errors={errors} required />
-                <Input id="emasdl" title="Not" type="text" placeholder="Varsa Eklemek İstedikleriniz" register={register} errors={errors} required />
+                <Input id="numberOfGuests" title="Kişi Sayısı" type="number" placeholder="1" register={register} errors={errors} required />
 
+                <DateRangePicker title="Giriş / Çıkış Tarihleri" setStartDate={setStartDate} setEndDate={setEndDate} />
+
+                <Input id="description" title="Not" type="text" placeholder="Varsa Eklemek İstedikleriniz" register={register} errors={errors} required />
 
 
             </div>

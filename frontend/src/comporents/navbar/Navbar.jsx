@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../../redux/DarkModeSlice';
 import { useTranslation } from 'react-i18next';
 import { loginModalFun, registerModalFun } from '../../redux/ModalSlice';
-import { getUser, logout } from '../../redux/User';
+import { getUser, logout } from '../../redux/UserSlice';
 import {useCookies} from 'react-cookie'
 import { toast } from 'react-toastify';
 import AuthManager from '../account/AuthManager';

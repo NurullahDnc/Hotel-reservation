@@ -55,8 +55,7 @@ const Contact = () => {
       toast.error("Lütfen Tüm Alanları Doldurun")
 
     } else {
-      console.log("data", inputData);
-
+ 
       try {
 
         setInputData({ surname: "", mail: "", text: "" })

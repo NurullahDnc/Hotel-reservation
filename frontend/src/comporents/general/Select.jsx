@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Select = ({ register, errors, id, title, placeholder, options, defaultValue }) => {
+    
     return (
         <div className='inputs'>
             <p className='inputs-title'>{title}</p>
@@ -9,7 +10,7 @@ const Select = ({ register, errors, id, title, placeholder, options, defaultValu
                 <option value="" disabled>{placeholder} </option>
 
                 {options.map(option => (
-                    <option key={option.value} value={option.value}>{option.label}</option>
+                    <option key={option._id} value={option._id}>{option.category}</option>
                 ))}        
 
             </select>

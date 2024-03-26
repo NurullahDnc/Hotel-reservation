@@ -133,7 +133,6 @@ export const getInfo = async (req, res) => {
             error: "Kullanıcı mevcut değil."
         });
 
-        console.log("giris yapan", res.locals.user._id);
         res.status(200).json(user)
     } catch (error) {
         return res.status(500).json({

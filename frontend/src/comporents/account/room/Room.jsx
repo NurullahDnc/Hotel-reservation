@@ -1,22 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Table from '../../general/Table'
+import { useDispatch, useSelector } from 'react-redux'
+import { getRoom } from '../../../redux/RoomSlice'
 
 const Room = () => {
-
-
-
-
-    const roomData = [
-        {
-            id: "21234",
-            img: '../image/ozel3.jpg',
-            category: "suit oda",
-            description: 'sunucu tarafından istenen kaynağa erişimin yasak olduğunu belirtmek için kullanılır. Bu durum kodu çeşitli nedenlerle tetiklenir ve sunucunun isteği anladığını ancak erişim izni vermeyi reddettiğini belirtir.',
-            price: "1500",
-            capacity: "2",
-            Availability: "boş"
-        }
-    ]
 
     const roomTitle = [
 
@@ -29,7 +16,12 @@ const Room = () => {
 
     ]
 
-    //tablo comps. title degisken olarak gonderiyorum
+    const room = useSelector((state) => state.getRoom.rooms);
+    const dispacth = useDispatch();
+
+    useEffect(() => { dispacth(getRoom()) }, [dispacth])
+ 
+    //tablo comps. title, degisken olarak gonderiyorum
     const titleElement = (
         <tr style={{ display: "flex" }}>
             {roomTitle.map((item, i) => (
@@ -38,15 +30,15 @@ const Room = () => {
         </tr>
     );
 
-    //tablo comps. body degisken olarak gonderiyorum
-    const bodyElement = roomData.map((row, index) => (
+    //tablo comps. body, degisken olarak gonderiyorum
+    const bodyElement = room.map((item, index) => (
         <tr key={index} style={{ display: "flex" }}>
-            <td><img src={row.img} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="as" /></td>
-            <td>{row.category}</td>
-            <td>{row.price}</td>
-            <td>{row.description.length > 20 ? `${row.description.substring(0, 100)}...` : row.description} </td>
-            <td>{row.capacity}</td>
-            <td>{row.Availability}</td>
+            <td><img src={item.img} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="room image" /></td>
+            <td>{item.category}</td>
+            <td>{item.price}</td>
+            <td>{item.description.length > 20 ? `${item.description.substring(0, 100)}...` : item.description} </td>
+            <td>{item.capacity}</td>
+            <td>{item.Availability}</td>
         </tr>
     ))
 
@@ -55,7 +47,7 @@ const Room = () => {
     return (
         <div>
 
-            <Table titleElement={titleElement} bodyElement={bodyElement}  />
+            <Table titleElement={titleElement} bodyElement={bodyElement} />
 
         </div>
     )
