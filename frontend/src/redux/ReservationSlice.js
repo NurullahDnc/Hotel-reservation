@@ -11,7 +11,7 @@ const initialState ={
 export const getReservation = createAsyncThunk("getReservation", async (userId) => {
 
     try {
-        const response = await axios.get('http://localhost:5000/reservation/user',{
+        const response = await axios.get('http://localhost:5000/reservation/',{
             headers: {
                 Authorization: userId
               }

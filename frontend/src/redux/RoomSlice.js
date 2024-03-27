@@ -15,7 +15,7 @@ const initialState = {
 export const getRoom = createAsyncThunk("getRoom", async () => {
 
     try {
-        const response = await axios.post('http://localhost:5000/room/rooms');
+        const response = await axios.post('http://localhost:5000/room');
         return response.data.room;
     } catch (error) {
         throw Error("Failed to fetch rooms");
@@ -26,7 +26,7 @@ export const getRoom = createAsyncThunk("getRoom", async () => {
 export const getCategories = createAsyncThunk("getCategories", async () => {
 
     try {
-        const response = await axios.get('http://localhost:5000/categories/categories');
+        const response = await axios.get('http://localhost:5000/categories');
         return response.data.categories;
     } catch (error) {
         throw Error("Failed to fetch rooms");

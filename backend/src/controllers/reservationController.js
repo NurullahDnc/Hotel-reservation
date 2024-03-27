@@ -63,12 +63,12 @@ const getApReservations = async (req, res) => {
 
     try {
 
-        // Kullanıcının rezervasyonlarını bulun
+        // gelen userId gore rezervasyonlarını bul
         const reservations = await Reservation.find({
             user: req.headers.authorization
         }).populate('room'); // Odaları da al
 
-        // Eğer her rezervasyonun oda bilgisi alındıysa
+
         if (reservations) {
             //tarih foramtına ceviriyor
             const formattedReservations = reservations.map((reservation) => {

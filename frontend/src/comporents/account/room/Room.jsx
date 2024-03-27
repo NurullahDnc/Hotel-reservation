@@ -38,7 +38,9 @@ const Room = () => {
             <td>{item.price}</td>
             <td>{item.description.length > 20 ? `${item.description.substring(0, 100)}...` : item.description} </td>
             <td>{item.capacity}</td>
-            <td>{item.Availability}</td>
+            <td style={{ color:  item.Availability === false? "red": item.Availability === true? "green":"" }} >
+                {item.Availability === false? "Dolu": item.Availability === true? "Boş": ""  }
+            </td>
         </tr>
     ))
 

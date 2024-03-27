@@ -4,9 +4,8 @@ import * as ReservationController from '../controllers/reservationController.js'
 const router = express.Router();
 
 router.route("/create").post(ReservationController.createReservation);
-// router.route("/getReservations").get(ReservationController.getApReservations);
 
-router.route('/user').get(ReservationController.getApReservations);
+router.route('/').get(ReservationController.getApReservations);
 
  router.route("/cancelled").get(ReservationController.setCancelled);
 
