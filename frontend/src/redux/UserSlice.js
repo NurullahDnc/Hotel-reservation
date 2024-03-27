@@ -1,8 +1,11 @@
  import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { STATUS } from "../utils/Status";
 
 const initialState ={
     user: null,
+    //baslangic degeri
+    userStatus: STATUS.IDLE,
     token: null,
     logout: false
 }
@@ -34,13 +37,19 @@ const UserSlice = createSlice({
         }
     },
     extraReducers: (builder) =>{
+
+        builder.addCase(getUser.pending, (state, action) => {
+            state.userStatus = STATUS.LOADING
+        });
+
         builder.addCase(getUser.fulfilled, (state, action) => {
+            state.userStatus = STATUS.SUCCESS
             state.user = action.payload;
         });
 
         //kulanıcı bilgiisni alırken hata olusa, user null yap
         builder.addCase(getUser.rejected, (state) => {
-            state.user = null; 
+            state.userStatus = STATUS.FAIL
         });
     }
 });

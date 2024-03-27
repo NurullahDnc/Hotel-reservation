@@ -3,6 +3,7 @@ import Table from '../../general/Table'
 import { useDispatch, useSelector } from 'react-redux'
 import { getReservation } from '../../../redux/ReservationSlice'
 import { getUser } from '../../../redux/UserSlice'
+import Loading from '../../Loading'
 
 const Reservation = () => {
 
@@ -21,6 +22,8 @@ const Reservation = () => {
   ]
 
   const reservation = useSelector((state) => state.getReservation.reservation);
+  const reservationStatus = useSelector((state) => state.getReservation.reservationStatus);
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.getUser.user);
 
@@ -71,8 +74,13 @@ const Reservation = () => {
 
   return (
     <div>
-      <Table bodyElement={bodyElement} titleElement={titleElement} />
+      {
+        reservationStatus === "LOADING" ? <Loading /> :
+          <>
+            <Table bodyElement={bodyElement} titleElement={titleElement} />
 
+          </>
+      }
     </div>
   )
 

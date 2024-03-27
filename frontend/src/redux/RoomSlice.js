@@ -3,9 +3,11 @@ import {
     createSlice
 } from "@reduxjs/toolkit";
 import axios from "axios";
+import {STATUS} from '../utils/Status'
 
 const initialState = {
     rooms: [],
+    roomStatus: STATUS.IDLE,
     status: "idle",
     error: null,
     categories: []
@@ -43,16 +45,15 @@ const RoomSlice = createSlice({
 
         builder
             .addCase(getRoom.pending, (state) => {
-                state.status = "loading";
+                state.roomStatus = STATUS.LOADING
             })
             .addCase(getRoom.fulfilled, (state, action) => {
-                state.status = "succeeded";
+                state.roomStatus = STATUS.SUCCESS
                 state.rooms = action.payload;
             })
             .addCase(getRoom.rejected, (state, action) => {
-                state.status = "failed";
-                state.error = action.error.message;
-            })
+                state.roomStatus = STATUS.FAIL
+             })
 
             .addCase(getCategories.fulfilled, (state, action) => {
                 state.categories = action.payload;

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Table from '../../general/Table'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRoom } from '../../../redux/RoomSlice'
-
+import Loading from '../../Loading';
 const Room = () => {
 
     const roomTitle = [
@@ -17,10 +17,12 @@ const Room = () => {
     ]
 
     const room = useSelector((state) => state.getRoom.rooms);
+    const roomStatus = useSelector((state) => state.getRoom.roomStatus); // Slice adını doğru şekilde belirt
+
     const dispacth = useDispatch();
 
     useEffect(() => { dispacth(getRoom()) }, [dispacth])
- 
+    console.log("rom", roomStatus);
     //tablo comps. title, degisken olarak gonderiyorum
     const titleElement = (
         <tr style={{ display: "flex" }}>
@@ -38,8 +40,8 @@ const Room = () => {
             <td>{item.price}</td>
             <td>{item.description.length > 20 ? `${item.description.substring(0, 100)}...` : item.description} </td>
             <td>{item.capacity}</td>
-            <td style={{ color:  item.Availability === false? "red": item.Availability === true? "green":"" }} >
-                {item.Availability === false? "Dolu": item.Availability === true? "Boş": ""  }
+            <td style={{ color: item.Availability === false ? "red" : item.Availability === true ? "green" : "" }} >
+                {item.Availability === false ? "Dolu" : item.Availability === true ? "Boş" : ""}
             </td>
         </tr>
     ))
@@ -48,9 +50,15 @@ const Room = () => {
 
     return (
         <div>
+            <div>
+                {roomStatus === 'LOADING' ? <Loading />:
+                <>
+                    <Table titleElement={titleElement} bodyElement={bodyElement} />
 
-            <Table titleElement={titleElement} bodyElement={bodyElement} />
-
+                </>
+                
+            }
+            </div>
         </div>
     )
 }

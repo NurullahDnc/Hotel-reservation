@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { STATUS } from "../utils/Status";
 
 const initialState ={
     reservation: [],
+    reservationStatus: STATUS.IDLE,
     status: "idle",
     error: null
     
@@ -34,15 +36,14 @@ const ReservationSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(getReservation.pending, (state) => {
-                state.status = "loading";
+                state.reservationStatus = STATUS.LOADING;
             })
             .addCase(getReservation.fulfilled, (state, action) => {
-                state.status = "succeeded";
+                state.reservationStatus = STATUS.SUCCESS;
                 state.reservation = action.payload;
             })
             .addCase(getReservation.rejected, (state, action) => {
-                state.status = "failed";
-                state.error = action.error.message;
+                state.reservationStatus = STATUS.FAIL;
             });
     }
 });

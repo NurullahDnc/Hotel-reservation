@@ -9,42 +9,40 @@ import Button from '../../../comporents/general/Button';
 import { getUser } from '../../../redux/UserSlice';
 import Table from '../../general/Table';
 import Title from '../Title';
+import Loading from '../../Loading';
 
 const Profile = () => {
   const user = useSelector((state) => state.getUser.user);
-  const router = useNavigate()
+  const userStatus = useSelector((state) => state.getUser.userStatus);
+
   const dispact = useDispatch()
 
+  console.log("se", user);
   useEffect(() => {
     dispact(getUser())
   }, [dispact])
 
-
-  if (!user) {
-    router("/")
-    return <div className='notFound'>{"Kullanıcı profil bilgileri yükleniyor..."}</div>;
-  }
-
   return (
-    <div  >
+    <div>
+
       <Title />
-      {/*Kulanıcı oturumunu kontrol ediyor */}
+
+      {/* Kullanıcı oturumunu kontrol ediyor */}
       <AuthManager />
 
-      {
-        user && <div style={{ position: "relative", top: "-100px", background: "gray", width: "90%", margin: "auto" }}>
+      {userStatus === 'LOADING' ? (
+        <Loading />
+      ) : user ? (
+        <div style={{ position: "relative", top: "-100px", background: "gray", width: "90%", margin: "auto" }}>
           <h1>Kullanıcı Profili</h1>
           <p>Kullanıcı Adı: {user._id}</p>
           <p>Adı: {user.firstName}</p>
           <p>Soyadı: {user.lastName}</p>
           <p>Email: {user.email}</p>
         </div>
-      }
-
-      {/* <Table /> */}
-
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus.
-
+      ) : (
+        <p>Kullanıcı bilgileri yüklenirken bir hata oluştu. Lütfen tekrar deneyin.</p>
+      )}
     </div>
   );
 };
