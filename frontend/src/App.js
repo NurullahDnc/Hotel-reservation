@@ -23,6 +23,7 @@ import Reservation from "./comporents/account/reservation/Reservation";
 import ReservationFormPage from "./pages/ReservationFormPage";
 import ReservationPage from "./pages/ReservationPage";
 import AccountRoomPage from "./pages/AccountRoomPage";
+import DashboardPage from "./pages/DashboardPage";
  function App() {
 
   return (
@@ -59,6 +60,8 @@ import AccountRoomPage from "./pages/AccountRoomPage";
             element={
               <AdminLayout > 
                 <Routes>
+
+                  <Route path="/" element={<DashboardPage />} />
 
                 <Route path="*" element={<div>Sayfa Bulunamadı</div>} />
 

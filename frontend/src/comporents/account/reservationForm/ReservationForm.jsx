@@ -20,7 +20,7 @@ const ReservationForm = () => {
 
     const user = useSelector((state) => state.getUser.user);
     const room = useSelector((state) => state.getRoom.rooms);
-    
+
     useEffect(() => {
         dispact(getRoom())
     }, [dispact])
@@ -29,6 +29,7 @@ const ReservationForm = () => {
         dispact(getUser())
     }, [dispact])
 
+    console.log("room", room);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async data => {
@@ -40,10 +41,11 @@ const ReservationForm = () => {
             checkInDate: startDate,
             checkOutDate: endDate,
             numberOfGuests: data.numberOfGuests,
-            Price: 1500,
+            // Price: roo,
             description: data.description,
         }
 
+        console.log("newReservation", newReservation);
 
         try {
             const res = await axios.post("http://localhost:5000/reservation/create", newReservation);
@@ -51,7 +53,7 @@ const ReservationForm = () => {
 
         } catch (error) {
             toast.error("Rezervasyon oluşturulurken bir hata oluştu");
-         }
+        }
 
     };
 
@@ -61,7 +63,7 @@ const ReservationForm = () => {
 
                 <Select id="roomType" title="Oda Seçiniz" placeholder={"Seçiniz"} options={room} register={register} errors={errors} defaultValue="" />
 
-                <Input id="numberOfGuests" title="Kişi Sayısı" type="number" placeholder="1" register={register} errors={errors} required />
+                <Input id="numberOfGuests" title="Misafir Sayısı" type="number" placeholder="Misafir Giriniz" register={register} errors={errors} required />
 
                 <DateRangePicker title="Giriş / Çıkış Tarihleri" setStartDate={setStartDate} setEndDate={setEndDate} />
 

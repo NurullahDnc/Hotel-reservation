@@ -17,7 +17,6 @@ const Profile = () => {
 
   const dispact = useDispatch()
 
-  console.log("se", user);
   useEffect(() => {
     dispact(getUser())
   }, [dispact])

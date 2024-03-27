@@ -1,41 +1,48 @@
+import Room from '../models/roomModal.js'; // Room modelini içeri aktarın
 import Reservation from '../models/reservationModal.js';
 
-//rezervasyon olsuturma 
 const createReservation = async (req, res) => {
     try {
-        // data değişkenine at
+
         const {
             room,
             user,
             checkInDate,
             checkOutDate,
             numberOfGuests,
-            Price,
             description
         } = req.body;
 
-
         if (!user) {
-            res.status(500).json({
+            return res.status(400).json({
                 success: false,
-                error: "Kullanıcı bulunamadı."
+                error: "Kullanıcı bilgisi eksik."
             });
         }
-
 
         // Giriş ve çıkış tarihlerini Date objelerine dönüştür
         const checkIn = new Date(checkInDate);
         const checkOut = new Date(checkOutDate);
 
-        // Gün sayısını hesapla
         const dayDifference = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
 
-        const totalPrice = dayDifference * Price;
+        //odayı id gore bul, price al
+        const roomDoc = await Room.findById(room);
 
-        // Yeni bir rezervasyon belgesi oluşturun, db'ye kaydedin
+        if (!roomDoc) {
+            return res.status(404).json({
+                success: false,
+                error: "Oda bulunamadı."
+            });
+        }
+
+        const roomPrice = roomDoc.price;
+
+        const totalPrice = dayDifference * roomPrice;
+
         const newReservation = await Reservation.create({
-            room,
-            user, // Kullanıcının kimliğini rezervasyon belgesine ekleyin
+            room: roomDoc,
+            user,
             checkInDate,
             checkOutDate,
             numberOfGuests,
@@ -45,7 +52,6 @@ const createReservation = async (req, res) => {
             dayCount: dayDifference // Gün sayısını ekle
         });
 
- 
         res.status(201).json({
             success: true,
             data: newReservation
@@ -53,10 +59,13 @@ const createReservation = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            error: error.error
+            error: error.message || "Rezervasyon oluşturulurken bir hata oluştu."
         });
     }
 };
+
+
+
 
 //gelen userId gore rezervasyonları buluyor
 const getApReservations = async (req, res) => {
@@ -77,7 +86,8 @@ const getApReservations = async (req, res) => {
                     checkInDate: new Date(reservation.checkInDate).toLocaleDateString(),
                     checkOutDate: new Date(reservation.checkOutDate).toLocaleDateString()
                 };
-            });
+            }).reverse(); // Diziyi tersine çevir
+
 
             res.status(200).json({
                 success: true,
@@ -126,7 +136,7 @@ const setCancelled = async (reservationId) => {
         }, {
             new: true
         });
- 
+
         return reservation;
     } catch (error) {
         res.status(500).json({
