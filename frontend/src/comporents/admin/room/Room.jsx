@@ -19,7 +19,7 @@ const Room = () => {
     const dispatch = useDispatch();
     const [createOpen, setCreateOpen] = useState(false);
     const [updateOpen, setUpdateOpen] = useState(false);
-    const [selectedRoom, setSelectedRoom] = useState(null); 
+    const [selectedRoom, setSelectedRoom] = useState(null);
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const Room = () => {
 
         return {
             id: item._id,
-            img: item.img,
+            img: item.image,
             category: item.category,
             description: item.description,
             price: item.price,
@@ -46,7 +46,14 @@ const Room = () => {
 
     //tablonun title
     const columns = useMemo(() => [
-        { field: 'img', headerName: 'image', width: 100 },
+        {
+            field: 'img',
+            headerName: 'Resim',
+            width: 100,
+            renderCell: (params) => (
+                <img src={params.value} alt="Room Image" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            )
+        },
         { field: 'description', headerName: 'Açıklama', width: 250 },
         { field: 'category', headerName: 'Kategori', width: 150 },
         { field: 'price', headerName: 'Fiyat', width: 150 },
@@ -104,19 +111,21 @@ const Room = () => {
     const roomCreate = async data => {
 
         const newRooms = {
-            img: data.image[0].name,
+            image: data.image[0].name,
             category: data.category,
             description: data.description,
             price: data.price,
             capacity: data.capacity,
             Availability: false,
-        }
+        };
 
+        console.log(newRooms);
         try {
             const response = await axios.post(`http://localhost:5000/room/create`, newRooms);
             toast.success("Oda Başarılı bir şekilde Oluşturuldu")
         } catch (error) {
             toast.error("Hata Oluştu")
+            console.log("err", error);
         }
     }
 
@@ -140,7 +149,7 @@ const Room = () => {
     };
 
     useEffect(() => {
-        // Seçilen oda değiştiğinde formdaki inputların değerlerini set et
+        // Seçilen oda değiştiğinde formdaki inputların değerlerini set et, update icin
         if (selectedRoom) {
             setValue('id', selectedRoom.id);
             setValue('category', selectedRoom.category);
@@ -155,7 +164,7 @@ const Room = () => {
     //create elementi
     const createElement = (
         <div>
-            <form onSubmit={handleSubmit(roomCreate)} enctype="multipart/form-data">
+            <form onSubmit={handleSubmit(roomCreate)} encType="multipart/form-data">
                 <Input id="category" title="Kategori Giriniz" type="text" placeholder="Kategori Giriniz" register={register} errors={errors} required />
                 <Input id="description" title="Açıklama Giriniz" type="text" placeholder="Açıklama Giriniz" register={register} errors={errors} required />
                 <Input id="price" title="Fiyat" type="number" placeholder="Fiyat" register={register} errors={errors} required />
@@ -169,7 +178,7 @@ const Room = () => {
     //create elementi
     const updateElement = (
         <div>
-            <form onSubmit={handleSubmit(roomUpdate)} enctype="multipart/form-data">
+            <form onSubmit={handleSubmit(roomUpdate)} encType="multipart">
                 <Input id="category" title="Kategori Giriniz" type="text" placeholder="Kategori Giriniz" register={register} errors={errors} required />
                 <Input id="description" title="Açıklama Giriniz" type="text" placeholder="Açıklama Giriniz" register={register} errors={errors} required />
                 <Input id="price" title="Fiyat" type="number" placeholder="Fiyat" register={register} errors={errors} required />

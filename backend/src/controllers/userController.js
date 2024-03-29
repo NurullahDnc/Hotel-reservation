@@ -122,6 +122,28 @@ const loginUser = async (req, res) => {
 
 }
 
+const getuser = async (req, res) => {
+    try {
+        // Kullanıcıları veritabanından al
+        const users = await User.find();
+
+        // Kullanıcıların tarih alanlarını belirli bir formatta dönüştür
+        const formattedUsers = users.map(user => ({
+            ...user.toObject(),
+            createdAt: user.createdAt.toISOString().slice(0, 10),  
+            updatedAt: user.updatedAt.toDateString()  
+        })).reverse();
+
+         res.status(200).json(formattedUsers);
+    } catch (error) {
+         return res.status(500).json({
+            error: error.message
+        });
+    }
+}
+
+
+
 export const getInfo = async (req, res) => {
 
     try {
@@ -203,5 +225,6 @@ export const googleAuth = async (req, res) => {
 
 export {
     createUser,
-    loginUser
+    loginUser,
+    getuser
 }

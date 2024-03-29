@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
-import { getUser, logout } from '../../redux/UserSlice';
+import { getUser, getUserInfo, logout } from '../../redux/UserSlice';
 import { useNavigate } from 'react-router';
 
 const AuthManager = () => {
@@ -17,7 +17,7 @@ const AuthManager = () => {
       router("/")
 
     } else {
-      dispatch(getUser());
+      dispatch(getUserInfo());
     }
   }, [dispatch, cookies.jwt]);
 

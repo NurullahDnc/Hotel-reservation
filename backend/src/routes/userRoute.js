@@ -8,7 +8,7 @@ route.route("/register").post( UserController.createUser)
 route.route("/login").post(UserController.loginUser)
 route.route("/google").post(UserController.googleAuth)
 
-
+route.route("/").get(UserController.getuser)
 
 //authenticateToken, token dogrulaması yapıyor.
 route.route("/profile").get(authMiddleware.authenticateToken, UserController.getInfo)

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Table from '../../general/Table'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserReservation } from '../../../redux/ReservationSlice'
-import { getUser } from '../../../redux/UserSlice'
+import { getUser, getUserInfo } from '../../../redux/UserSlice'
 import Loading from '../../Loading'
 
 const Reservation = () => {
@@ -32,7 +32,7 @@ const Reservation = () => {
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(getUser())
+    dispatch(getUserInfo())
   }, [dispatch])
 
   //getUserReservation props olarak userId gonderiyoruz, userId gore rezervasyonları getirecek

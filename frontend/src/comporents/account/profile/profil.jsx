@@ -6,7 +6,7 @@ import AuthManager from '../../../comporents/account/AuthManager';
 import Input from '../../../comporents/general/Input'
 import { useForm } from 'react-hook-form';
 import Button from '../../../comporents/general/Button';
-import { getUser } from '../../../redux/UserSlice';
+import { getUser, getUserInfo } from '../../../redux/UserSlice';
 import Table from '../../general/Table';
 import Title from '../Title';
 import Loading from '../../Loading';
@@ -18,7 +18,7 @@ const Profile = () => {
   const dispact = useDispatch()
 
   useEffect(() => {
-    dispact(getUser())
+    dispact(getUserInfo())
   }, [dispact])
 
   return (

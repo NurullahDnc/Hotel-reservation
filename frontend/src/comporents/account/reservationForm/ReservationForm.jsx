@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import DateRangePicker from '../../general/DatePicker';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '../../../redux/UserSlice';
+import { getUser, getUserInfo } from '../../../redux/UserSlice';
 import { toast } from 'react-toastify';
 import { getCategories, getRoom } from '../../../redux/RoomSlice';
 
@@ -26,7 +26,7 @@ const ReservationForm = () => {
     }, [dispact])
 
     useEffect(() => {
-        dispact(getUser())
+        dispact(getUserInfo())
     }, [dispact])
 
     console.log("room", room);
