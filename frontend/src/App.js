@@ -25,6 +25,7 @@ import AccountRoomPage from "./pages/AccountRoomPage";
 import DashboardPage from "./pages/admin/DashboardPage";
 import ReservationsPage from "./pages/admin/ReservationsPage";
 import RoomAdminPage from "./pages/admin/RoomPage";
+import CustomersPage from "./pages/admin/CustomersPage";
 
 
 
@@ -68,6 +69,7 @@ import RoomAdminPage from "./pages/admin/RoomPage";
                   <Route path="/" element={<DashboardPage />} />
                   <Route path="/Reservations" element={<ReservationsPage />} />
                   <Route path="/Room" element={<RoomAdminPage />} />
+                  <Route path="/customers" element={<CustomersPage />} />
 
 
 

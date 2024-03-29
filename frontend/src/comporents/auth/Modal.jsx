@@ -4,7 +4,7 @@ import Input from '../general/Input';
 import Button from '../general/Button';
 
 
-const Modal = ({isOpen, onClose, onSubmit, btnLabel, title, bodyElement, footerElement, btnNull}) => {
+const Modal = ({isOpen, onClose, onSubmit, btnLabel, title, bodyElement, footerElement, btnNull, modals}) => {
 
     //isopen false ise null don, true gelirse modal don
     if(!isOpen){
@@ -12,8 +12,8 @@ const Modal = ({isOpen, onClose, onSubmit, btnLabel, title, bodyElement, footerE
     }
 
     return (
-        <div className='modal'>
-            <div className='modal-container'>
+        <div className={`modal ${modals? "modalAdmim": ""} `}>
+            <div className={`modal-container `}>
 
                 {/*modal title kısmı */}
                 <div className='modal-container-title'>

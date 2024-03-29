@@ -35,7 +35,7 @@ const Reservation = () => {
     dispatch(getUser())
   }, [dispatch])
 
-  //getUserReservation, userId gore rezervasyonları getirecek
+  //getUserReservation props olarak userId gonderiyoruz, userId gore rezervasyonları getirecek
   useEffect(() => {
     if (user) {
       dispatch(getUserReservation(user._id));

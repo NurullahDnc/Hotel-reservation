@@ -191,6 +191,7 @@ const Room = () => {
                 onClose={() => setCreateOpen(false)}
                 onSubmit={roomCreate}
                 btnNull
+                modals
             />
 
             {/*update Modal */}
@@ -202,6 +203,8 @@ const Room = () => {
                 onClose={() => setUpdateOpen(false)}
                 onSubmit={roomUpdate}
                 btnNull
+                modals
+
             />
 
             Rezervasyon
