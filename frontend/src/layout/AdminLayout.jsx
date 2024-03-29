@@ -11,16 +11,16 @@ const AdminLayout = ({ children }) => {
 
   const data = [
     { "name": "Dashboard", url: "/admin", icon: FaUser },
-    { "name": "Rezervasyonlar", url: "/admin/reservationform", icon: HiPencilSquare },
-    { "name": "Odalar", url: "/admin/reservation", icon: FaCheckCircle },
-    { "name": "Müşteriler", url: "/admin/room", icon: FaBed },
+    { "name": "Rezervasyonlar", url: "/admin/Reservations", icon: HiPencilSquare },
+    { "name": "Odalar", url: "/admin/room", icon: FaCheckCircle },
+    { "name": "Müşteriler", url: "/admin/customers", icon: FaBed },
     { "name": "Raporlar", url: "/admin/", icon: FaPlusCircle },
     { "name": "Yorumlar", url: "/admin", icon: FaPlusCircle },
-    { "name": "Siteye Git", url: "/admin", icon: FaPlusCircle },
+    { "name": "Siteye Git", url: "/", icon: FaPlusCircle },
 
   ]
 
-  
+
   return (
     <>
       <Navbar user="admin" />

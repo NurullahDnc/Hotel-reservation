@@ -1,8 +1,10 @@
-
 import Room from '../models/roomModal.js'
 
 //create room
 const createRoom = async (req, res) => {
+
+    console.log("data", req.body);
+
     try {
 
         const room = await Room.create(req.body);
@@ -38,25 +40,50 @@ const getRoom = async (req, res) => {
 }
 
 //room delete
-const deleteRoom = async (req, res)=>{
+const deleteRoom = async (req, res) => {
 
-    const room = await Room.findById(req.params.id);
-
-    //oda yoksa ve uzunlugu 0 ise
-    if (!room || room.length === 0 ) {
-        res.status(404).json({
-            success: false,
-            message: "silincek oda bulunamadı"
+    try {
+        const {
+            id
+        } = req.params
+        const post = await Room.findByIdAndDelete({
+            _id: id
         })
+        console.log("basarıı silme ");
+    } catch (error) {
+
+        res.status(500).json({
+            error: error.message
+        });
+
     }
 
 
+
 }
+const updateRoom = async (req, res) => {
+    try {
+        const { id } = req.params;  
+        const { title, category, description, img, price } = req.body;  
+
+        // Odayı güncellemek için findByIdAndUpdate kullanın
+        const updatedRoom = await Room.findByIdAndUpdate(
+            id, // Güncellenecek oda ID'si
+            { title, category, description, img, price }, // Güncellenecek oda verileri
+            { new: true, runValidators: true } // Yeni veriyi döndür ve doğrulayıcıları çalıştır
+        );
+
+         res.status(200).json(updatedRoom);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 
 export {
     createRoom,
     getRoom,
     deleteRoom,
-
+    updateRoom
 
 }

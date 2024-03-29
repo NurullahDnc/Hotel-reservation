@@ -64,11 +64,36 @@ const createReservation = async (req, res) => {
     }
 };
 
+const getReservations = async (req, res) => {
+    try {
+        // Kullanıcı ve odanın bilgilerini de gönder
+        const reservations = await Reservation.find({}).populate('user').populate('room');
+
+        // Tarih formatını düzeltmek için reservations.map içinde her bir rezervasyonun tarih alanlarını düzenleyebiliriz
+        const formattedReservations = reservations.map(reservation => ({
+            ...reservation.toObject(),
+            checkInDate: new Date(reservation.checkInDate).toLocaleDateString("tr-TR"),
+            checkOutDate: new Date(reservation.checkOutDate).toLocaleDateString("tr-TR")
+        })).reverse();
+
+        res.status(201).json({
+            success: true,
+            data: formattedReservations
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+};
+
 
 
 
 //gelen userId gore rezervasyonları buluyor
-const getApReservations = async (req, res) => {
+async function getUserReservations(req, res) {
 
     try {
 
@@ -105,33 +130,36 @@ const getApReservations = async (req, res) => {
             error: error.message
         });
     }
-};
+}
 
 
 // Rezervasyonu onaylama
-const setApproved = async (reservationId) => {
+const setApproved = async (req, res) => {
+ 
     try {
         // rezervasyonun ıd gore guncelle, durumunu approved yap
-        const reservation = await Reservation.findByIdAndUpdate(reservationId, {
+        const reservation = await Reservation.findByIdAndUpdate(req.params.id, {
             status: 'approved'
         }, {
             new: true
         });
 
-        return reservation; // Güncellenmiş rezervasyon belgesini döndür
+        return res.json(reservation); // Güncellenmiş rezervasyon belgesini JSON olarak yanıtla
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             error: error.message
         });
     }
 };
 
+
 // Rezervasyonu iptal etme
-const setCancelled = async (reservationId) => {
+const setCancelled = async (req, res) => {
+    
     try {
         // rezervasyonun ıd gore guncelle, durumunu cancelled yap
-        const reservation = await Reservation.findByIdAndUpdate(reservationId, {
+        const reservation = await Reservation.findByIdAndUpdate(req.params.id, {
             status: 'cancelled'
         }, {
             new: true
@@ -148,7 +176,8 @@ const setCancelled = async (reservationId) => {
 
 export {
     createReservation,
-    getApReservations,
+    getReservations,
+    getUserReservations,
     setApproved,
     setCancelled,
 };

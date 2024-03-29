@@ -5,11 +5,14 @@ const router = express.Router();
 
 router.route("/create").post(ReservationController.createReservation);
 
-router.route('/').get(ReservationController.getApReservations);
+router.route('/reservations').get(ReservationController.getUserReservations);
 
- router.route("/cancelled").get(ReservationController.setCancelled);
+router.route('/').get(ReservationController.getReservations);
 
- router.route("/Approved").get(ReservationController.setApproved);
+router.route('/cancelled/:id').post(ReservationController.setCancelled);
+
+router.route('/approved/:id').post(ReservationController.setApproved);
+
 
 
 export default router;

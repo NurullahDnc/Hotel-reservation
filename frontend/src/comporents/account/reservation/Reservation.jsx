@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Table from '../../general/Table'
 import { useDispatch, useSelector } from 'react-redux'
-import { getReservation } from '../../../redux/ReservationSlice'
+import { getUserReservation } from '../../../redux/ReservationSlice'
 import { getUser } from '../../../redux/UserSlice'
 import Loading from '../../Loading'
 
@@ -21,24 +21,24 @@ const Reservation = () => {
 
   ]
 
-  const reservation = useSelector((state) => state.getReservation.reservation);
+  const reservation = useSelector((state) => state.getReservation.userReservation);
   const reservationStatus = useSelector((state) => state.getReservation.reservationStatus);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.getUser.user);
 
   useEffect(() => {
-    dispatch(getReservation())
+    dispatch(getUserReservation())
   }, [dispatch])
 
   useEffect(() => {
     dispatch(getUser())
   }, [dispatch])
 
-  //getReservation, userId gore rezervasyonları getirecek
+  //getUserReservation, userId gore rezervasyonları getirecek
   useEffect(() => {
     if (user) {
-      dispatch(getReservation(user._id));
+      dispatch(getUserReservation(user._id));
     }
   }, [dispatch, user]);
 

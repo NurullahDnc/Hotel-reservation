@@ -15,15 +15,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import Modal from "./comporents/auth/Modal";
 import Login from "./comporents/auth/Login";
 import Register from "./comporents/auth/Register";
-import Account from "./pages/Account";
-import ProfileLayout from "./layout/ProfileLayout";
+ import ProfileLayout from "./layout/ProfileLayout";
 import ProfilePage from "./pages/ProfilePage";
 import Table from "./comporents/general/Table";
 import Reservation from "./comporents/account/reservation/Reservation";
 import ReservationFormPage from "./pages/ReservationFormPage";
 import ReservationPage from "./pages/ReservationPage";
 import AccountRoomPage from "./pages/AccountRoomPage";
-import DashboardPage from "./pages/DashboardPage";
+import DashboardPage from "./pages/admin/DashboardPage";
+import ReservationsPage from "./pages/admin/ReservationsPage";
+import RoomAdminPage from "./pages/admin/RoomPage";
+
+
+
  function App() {
 
   return (
@@ -62,6 +66,10 @@ import DashboardPage from "./pages/DashboardPage";
                 <Routes>
 
                   <Route path="/" element={<DashboardPage />} />
+                  <Route path="/Reservations" element={<ReservationsPage />} />
+                  <Route path="/Room" element={<RoomAdminPage />} />
+
+
 
                 <Route path="*" element={<div>Sayfa Bulunamadı</div>} />
 

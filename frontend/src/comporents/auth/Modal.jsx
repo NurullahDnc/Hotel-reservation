@@ -4,7 +4,7 @@ import Input from '../general/Input';
 import Button from '../general/Button';
 
 
-const Modal = ({isOpen, onClose, onSubmit, btnLabel, title, bodyElement, footerElement}) => {
+const Modal = ({isOpen, onClose, onSubmit, btnLabel, title, bodyElement, footerElement, btnNull}) => {
 
     //isopen false ise null don, true gelirse modal don
     if(!isOpen){
@@ -29,7 +29,7 @@ const Modal = ({isOpen, onClose, onSubmit, btnLabel, title, bodyElement, footerE
                 {bodyElement}
 
                 {/*modal ana button kısmı */}
-                <Button onSubmit={onSubmit} btnText={btnLabel}  />  
+                {!btnNull && <Button onSubmit={onSubmit} btnText={btnLabel}  />}  
 
                 {/*modal alt kısmı */}
                 {footerElement}

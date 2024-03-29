@@ -12,6 +12,7 @@
     "@leecheuk/react-google-login": "^5.4.1",
     "@mui/icons-material": "^5.15.14",
     "@mui/material": "^5.15.14",
+    "@mui/x-data-grid": "^7.0.0",
     "@mui/x-date-pickers": "^7.0.0",
     "@react-google-maps/api": "^2.19.3",
     "@reduxjs/toolkit": "^2.2.1",
