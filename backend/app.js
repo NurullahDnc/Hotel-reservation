@@ -13,6 +13,8 @@ import CategoriesRoute from './src/routes/categoriesRoute.js'
 import fileUpload from 'express-fileupload';
 import {v2 as cloudinary} from 'cloudinary'
 import CommentRoute from './src/routes/commentRoute.js'
+import FeedbackRoute from './src/routes/feedbackRoute.js'
+
 
 
 dotenv.config();
@@ -53,6 +55,7 @@ app.use("/room", RoomRoute )
 app.use("/reservation", ReservationRote )
 app.use("/categories", CategoriesRoute )
 app.use("/comment", CommentRoute)
+app.use("/feedback", FeedbackRoute)
 
 
 

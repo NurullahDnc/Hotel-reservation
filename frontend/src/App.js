@@ -29,6 +29,7 @@ import ReservationsPage from "./pages/admin/ReservationsPage";
 import RoomAdminPage from "./pages/admin/RoomPage";
 import CustomersPage from "./pages/admin/CustomersPage";
 import CommentPage from "./pages/admin/CommentPage";
+import FeedbackPage from "./pages/admin/FeedbackPage";
 
 
 
@@ -76,9 +77,7 @@ import CommentPage from "./pages/admin/CommentPage";
                   <Route path="/Room" element={<RoomAdminPage />} />
                   <Route path="/customers" element={<CustomersPage />} />
                   <Route path="/comment" element={<CommentPage />} />
-
-
-
+                  <Route path="/feedback" element={<FeedbackPage />} />
 
                 <Route path="*" element={<div>Sayfa Bulunamadı</div>} />
 

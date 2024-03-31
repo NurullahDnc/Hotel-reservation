@@ -14,7 +14,7 @@ const AdminLayout = ({ children }) => {
     { "name": "Rezervasyonlar", url: "/admin/Reservations", icon: HiPencilSquare },
     { "name": "Odalar", url: "/admin/room", icon: FaCheckCircle },
     { "name": "Müşteriler", url: "/admin/customers", icon: FaBed },
-    { "name": "Raporlar", url: "/admin/", icon: FaPlusCircle },
+    { "name": "Geri Bildirimler", url: "/admin/feedback", icon: FaPlusCircle },
     { "name": "Yorumlar", url: "/admin/comment", icon: FaPlusCircle },
     { "name": "Siteye Git", url: "/", icon: FaPlusCircle },
 

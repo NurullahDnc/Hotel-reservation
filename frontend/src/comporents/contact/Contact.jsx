@@ -35,7 +35,8 @@ const Contact = () => {
     {
       surname: "",
       mail: "",
-      text: ""
+      object: "",
+      message: ""
     }
   )
 
@@ -48,19 +49,21 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { surname, mail, text } = inputData
+    const { surname, mail, object, message } = inputData;
 
     //input kontrolu yapıyor
-    if (surname == "" || mail == "" || text == "") {
+    if (surname == "" || mail == "" || object == "" || message == "") {
       toast.error("Lütfen Tüm Alanları Doldurun")
 
     } else {
- 
-      try {
 
-        setInputData({ surname: "", mail: "", text: "" })
- 
-        const res = await axios.post("url", { inputData })
+      try {
+          
+        // setInputData({ surname: "", mail: "", text: "" })
+
+        console.log("inputData", inputData);
+
+        const res = await axios.post("http://localhost:5000/feedback/create",  inputData )
         toast.success("Mesajınız başarılı bir şekilde gönderildi", res);
 
       } catch (error) {
@@ -114,11 +117,19 @@ const Contact = () => {
             type="text"
             onChange={handleChange}
           />
+          <input
+            className='scrollReveal'
+            placeholder='konu'
+            value={inputData.subject}
+            name='object'
+            type="text"
+            onChange={handleChange}
+          />
           <textarea
             className='scrollReveal'
-            placeholder='Konu'
-            value={inputData.text}
-            name="text"
+            placeholder='mesaj'
+            value={inputData.message}
+            name="message"
             id=""
             cols="30"
             onChange={handleChange}
