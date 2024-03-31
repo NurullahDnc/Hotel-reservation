@@ -13,7 +13,6 @@ const upload = multer({
 
 // Dosya yükleme işlemiyle ilgili endpoint'i tanımlayın ve multer middleware'ını bu endpoint'e ekleyin
 const createRoom = async (req, res) => {
-    console.log("req.file", req.body);
 
     const image = req.body.image;
 
@@ -24,7 +23,6 @@ const createRoom = async (req, res) => {
             folder: 'hotelApp',
         });
 
-        console.log(result);
 
         const {
             category,
@@ -51,7 +49,6 @@ const createRoom = async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error);
         res.status(400).json({
             success: false,
             error: error.message
@@ -92,8 +89,7 @@ const deleteRoom = async (req, res) => {
         const post = await Room.findByIdAndDelete({
             _id: id
         })
-        console.log("basarıı silme ");
-    } catch (error) {
+     } catch (error) {
 
         res.status(500).json({
             error: error.message
@@ -109,11 +105,12 @@ const updateRoom = async (req, res) => {
         const {
             id
         } = req.params;
+        (req.body);
         const {
             title,
             category,
             description,
-            img,
+            image,
             price
         } = req.body;
 
@@ -124,7 +121,7 @@ const updateRoom = async (req, res) => {
                 title,
                 category,
                 description,
-                img,
+                image,
                 price
             }, // Güncellenecek oda verileri
             {

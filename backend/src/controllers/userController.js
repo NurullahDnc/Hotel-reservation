@@ -127,10 +127,9 @@ const getuser = async (req, res) => {
         // Kullanıcıları veritabanından al
         const users = await User.find();
 
-        // Kullanıcıların tarih alanlarını belirli bir formatta dönüştür
-        const formattedUsers = users.map(user => ({
+         const formattedUsers = users.map(user => ({
             ...user.toObject(),
-            createdAt: user.createdAt.toISOString().slice(0, 10),  
+            createdAt: user.createdAt.toISOString().slice(0, 19).replace('T', ' '),  
             updatedAt: user.updatedAt.toDateString()  
         })).reverse();
 

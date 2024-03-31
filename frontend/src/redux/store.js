@@ -4,6 +4,7 @@ import ModalSlice from './ModalSlice'
 import UserSlice from "./UserSlice";
 import RoomSlice from './RoomSlice';
 import ReservationSlice from './ReservationSlice'
+import CommentSlice from './CommentSlice';
  
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,6 @@ export const store = configureStore({
       getUser: UserSlice,
       getRoom: RoomSlice,
       getReservation: ReservationSlice,
-      
+      getComment: CommentSlice,
   },
 })

@@ -1,28 +1,6 @@
 import User from '../../models/userModal.js';
 import jwt from 'jsonwebtoken';
 
-// Kullanıcı oturumunu kontrol etmek için bir ara yazılım (middleware) oluşturun
-//token buluyor, token varsa kontol eder, tokenden kulanıcıyı alır ve locals'a atar
-const checkUser = async (req, res, next) => {
-    //cookies icinde jwt al degisekene at
-    const token = req.cookies.jwt;
-     if (token) {
-        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
-            if (err) {
-                 res.locals.user = null;
-                next(); // Bir sonraki işlevi çağır
-            } else {
-                // Token'dan çözümlenen token'dan kullanıcı kimliğini al
-                const user = await User.findById(decodedToken.id);
-                res.locals.user = user;
-                next(); // Bir sonraki işlevi çağır
-            }
-        });
-    } else {
-        res.locals.user = null;
-        next();
-    }
-};
 
 
 //token dogrulama islemi, token cozerek kulanıcı bilgilerini alır, kulanıcıyı bulur 
@@ -70,6 +48,29 @@ const authenticateToken = async (req, res, next) => {
     }
 };
 
+
+// Kullanıcı oturumunu kontrol etmek için bir ara yazılım (middleware) oluşturun
+//token buluyor, token varsa kontol eder, tokenden kulanıcıyı alır ve locals'a atar
+const checkUser = async (req, res, next) => {
+    //cookies icinde jwt al degisekene at
+    const token = req.cookies.jwt;
+     if (token) {
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+            if (err) {
+                 res.locals.user = null;
+                next(); // Bir sonraki işlevi çağır
+            } else {
+                // Token'dan çözümlenen token'dan kullanıcı kimliğini al
+                const user = await User.findById(decodedToken.id);
+                res.locals.user = user;
+                next(); // Bir sonraki işlevi çağır
+            }
+        });
+    } else {
+        res.locals.user = null;
+        next();
+    }
+};
 
 
 export {

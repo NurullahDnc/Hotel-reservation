@@ -15,7 +15,7 @@ const MainLayout = ({ children }) => {
 
   return (
     <>
-      {demoVisible && <Demo onClose={handleDemoClose} />}
+      {/* {demoVisible && <Demo onClose={handleDemoClose} />} */}
       <Navbar />
       {children}
       <Footer />

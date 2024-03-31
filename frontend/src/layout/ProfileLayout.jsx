@@ -17,12 +17,12 @@ const ProfileLayout = ({ children }) => {
     { "name": "Rezervasyon Yap", url: "/user/reservationform", icon: HiPencilSquare },
     { "name": "Rezervasyonlarım", url: "/user/reservation", icon: FaCheckCircle },
     { "name": "Odalar", url: "/user/room", icon: FaBed },
+    { "name": "yorumlarım", url: "/user/comment", icon: FaBed },
     { "name": "Siteye Git", url: "/", icon: FaPlusCircle },
 
   ]
 
 
-  console.log("userName", userName);
   return (
     <>
       <Navbar user={userName}  />

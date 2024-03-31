@@ -34,7 +34,6 @@ const Navbar = () => {
   const user = useSelector((state) => state.getUser.user);  
   const router = useNavigate();
   const [cookies] = useCookies(['jwt']);
-
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
   const { t, i18n } = useTranslation();
 
@@ -42,7 +41,6 @@ const Navbar = () => {
     await i18n.changeLanguage(lang);
   };
  
-
   
   //tarih icin
   useEffect(() => {
@@ -56,9 +54,7 @@ const Navbar = () => {
     // useEffect içinde body'ye sınıf ekleyip çıkarma işlemi
     document.body.classList.toggle('dark-mode', isDarkMode);
   }, [isDarkMode]);
-  
-  //dil'de secileni aliyor 
-  
+    
   
   //sol menu ac kapa
   const toggleMenu = () => {
@@ -80,6 +76,7 @@ const Navbar = () => {
     dispatch(toggleDarkMode());
     
   }
+  
   
   return (
     <div className='navbar'>

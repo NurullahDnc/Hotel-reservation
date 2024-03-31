@@ -1,20 +1,13 @@
-import React, { useEffect } from 'react'
-import Table from '../../general/Table'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useMemo } from 'react';
 import { getUser, getUserInfo } from '../../../redux/UserSlice'
+import Table from '../Table';
+import { FaTrash } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaCheckCircle } from "react-icons/fa";
+import axios from 'axios';
+
 
 const Customers = () => {
-
-
-  const reservationTitle = [
-    { title: "id" },
-    { title: "Adi" },
-    { title: "Soyad" },
-    { title: "email" },
-    { title: "uye tarihi" },
-   
-
-  ]
 
 
   const dispatch = useDispatch();
@@ -26,38 +19,88 @@ const Customers = () => {
     dispatch(getUser())
   }, [dispatch])
 
-  console.log(users, "user");
+
+  const data = users ? users.map((item) => {
+    const statusClass = item.status ? 'onaylandı' : 'Aktif';
+    const color = item.status ? 'green' : 'green';
+  
+    return {
+      id: item._id,
+      firstName: item.firstName + "  " + item.lastName,
+      email: item.email,
+      createdAt: item.createdAt,
+      status: statusClass,
+      color: color
+    };
+  }) : [];
+  
+
+  const columns = useMemo(() => [
+    { field: 'id', headerName: 'Id', width: 100, align: "center" },
+    { field: 'firstName', headerName: 'Ad Soyad', width: 150 },
+    { field: 'email', headerName: 'Email', width: 250 },
+    { field: 'createdAt', headerName: 'Üye Tarihi', width: 200 },
+
+    {
+      field: 'status', headerName: 'Durumu', width: 120,
+
+      renderCell: (params) => (
+        <div style={{ color: params.row.color }}>
+          {params.value}
+        </div>
+      )
+    },
+    {
+      field: "Reddet",
+      headerName: "Reddet",
+      width: 100,
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <button onClick={() => banUser(params.id)} style={{ color: "red" }}  >
+            <FaTrash size={22} />
+          </button>
+        )
+      }
+    },
+    {
+      field: "Onayla",
+      headerName: "Onayla",
+      width: 100,
+      align: "center",
+      renderCell: (params) => {
+        return (
+          <button onClick={() => unbanUser(params.id)} style={{ color: "green" }}  >
+            <FaCheckCircle size={22} />
+          </button>
+        )
+      }
+    },
 
 
-  const titleElement = (
-    <tr style={{ display: "flex" }}>
-      {reservationTitle.map((item, i) => (
-        <th key={i} style={{ flex: 1 }}>{item.title}</th>
-      ))}
-    </tr>
-  );
+  ], []);
 
-  const bodyElement = users && users.map((item, index) => (
-    <tr key={index} style={{ display: "flex" }}>
-      {/* <td><img src={"../image/ozel3.jpg"} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="as" /></td> */}
-      <td>{item._id}</td>
-      <td>{item.firstName}</td>
-      <td>{item.lastName}</td>
-      <td>{item.email}</td>
-      <td>{item.createdAt}</td>
+  const banUser = async (id) => {
 
+    try {
+      const response = await axios.post(`http://localhost:5000/comment/setCancelled/${id}`);
+    } catch (error) {
+    }
 
-     
+  };
 
-      
-    </tr>
-  ))
+  const unbanUser = async (id) => {
+    try {
+      const response = await axios.post(`http://localhost:5000/comment/setApproved/${id}`);
+    } catch (error) {
+    }
+  };
 
   return (
     <div>
       {
         <>
-          <Table bodyElement={bodyElement} titleElement={titleElement} />
+          <Table rows={data} columns={columns} />
 
         </>
       }

@@ -22,10 +22,15 @@ import Reservation from "./comporents/account/reservation/Reservation";
 import ReservationFormPage from "./pages/ReservationFormPage";
 import ReservationPage from "./pages/ReservationPage";
 import AccountRoomPage from "./pages/AccountRoomPage";
+import CommentPages from "./pages/CommentPages";
+
 import DashboardPage from "./pages/admin/DashboardPage";
 import ReservationsPage from "./pages/admin/ReservationsPage";
 import RoomAdminPage from "./pages/admin/RoomPage";
 import CustomersPage from "./pages/admin/CustomersPage";
+import CommentPage from "./pages/admin/CommentPage";
+
+
 
 
 
@@ -70,6 +75,8 @@ import CustomersPage from "./pages/admin/CustomersPage";
                   <Route path="/Reservations" element={<ReservationsPage />} />
                   <Route path="/Room" element={<RoomAdminPage />} />
                   <Route path="/customers" element={<CustomersPage />} />
+                  <Route path="/comment" element={<CommentPage />} />
+
 
 
 
@@ -90,6 +97,7 @@ import CustomersPage from "./pages/admin/CustomersPage";
                 <Route path="/reservation" element={<ReservationPage />} />
                 <Route path="/reservationform" element={<ReservationFormPage />} />
                 <Route path="/room" element={<AccountRoomPage />} />
+                <Route path="/comment" element={<CommentPages />} />
 
 
 

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getReservation } from '../../../redux/ReservationSlice';
 import { FaCheckCircle } from "react-icons/fa";
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 const Reservation = () => {
@@ -16,7 +17,6 @@ const Reservation = () => {
         dispatch(getReservation())
     }, [dispatch, reservation])
 
-    console.log(reservation);
 
     const data = reservation && reservation.map((item) => {
 
@@ -68,7 +68,7 @@ const Reservation = () => {
             align: "center",
             renderCell: (params) => {
                 return (
-                    <button onClick={() => handleDelete(params.id)} style={{ color: "red" }}  >
+                    <button onClick={() => handleCancelled(params.id)} style={{ color: "red" }}  >
                         <FaTrash size={22} />
                     </button>
                 )
@@ -91,23 +91,23 @@ const Reservation = () => {
 
     ], []);
 
-    const handleDelete = async (id) => {
+    //rezervasyon iptal edildi
+    const handleCancelled = async (id) => {
 
         try {
             const response = await axios.post(`http://localhost:5000/reservation/cancelled/${id}`);
-            console.log("basaırılı");
+            toast.success("Yorum Onaylandı")
+        
         } catch (error) {
-            console.log("hata");
+            toast.error("hata olştu")
         }
 
     };
-
+    //rezervasyon onaylandı
     const handleApprove = async (id) => {
         try {
             const response = await axios.post(`http://localhost:5000/reservation/Approved/${id}`);
-            console.log("basaırılı");
         } catch (error) {
-            console.log("hata");
         }
     };
 

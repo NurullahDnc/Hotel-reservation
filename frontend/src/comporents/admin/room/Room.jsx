@@ -119,13 +119,11 @@ const Room = () => {
             Availability: false,
         };
 
-        console.log(newRooms);
         try {
             const response = await axios.post(`http://localhost:5000/room/create`, newRooms);
             toast.success("Oda Başarılı bir şekilde Oluşturuldu")
         } catch (error) {
             toast.error("Hata Oluştu")
-            console.log("err", error);
         }
     }
 
@@ -133,7 +131,7 @@ const Room = () => {
     const roomUpdate = async (data) => {
 
         const updatedRoom = {
-            img: data.image[0].name,
+            image: data.image[0].name,
             category: data.category,
             description: data.description,
             price: data.price,

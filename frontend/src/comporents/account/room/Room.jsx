@@ -22,7 +22,6 @@ const Room = () => {
     const dispacth = useDispatch();
 
     useEffect(() => { dispacth(getRoom()) }, [dispacth])
-    console.log("rom", roomStatus);
     //tablo comps. title, degisken olarak gonderiyorum
     const titleElement = (
         <tr style={{ display: "flex" }}>

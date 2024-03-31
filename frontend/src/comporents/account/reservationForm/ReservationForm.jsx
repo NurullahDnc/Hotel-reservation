@@ -29,7 +29,6 @@ const ReservationForm = () => {
         dispact(getUserInfo())
     }, [dispact])
 
-    console.log("room", room);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = async data => {
@@ -45,7 +44,6 @@ const ReservationForm = () => {
             description: data.description,
         }
 
-        console.log("newReservation", newReservation);
 
         try {
             const res = await axios.post("http://localhost:5000/reservation/create", newReservation);

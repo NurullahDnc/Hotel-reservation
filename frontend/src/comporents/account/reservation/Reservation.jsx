@@ -56,7 +56,7 @@ const Reservation = () => {
   const bodyElement = reservation.map((row, index) => (
     <tr key={index} style={{ display: "flex" }}>
       <td><img src={"../image/ozel3.jpg"} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="as" /></td>
-      <td>{row.room.category}</td>
+      <td>{row.room?.category}</td>
       <td>{row.numberOfGuests}</td>
       <td>{row.description}</td>
       <td>{row.totalPrice}</td>
