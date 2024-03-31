@@ -10,7 +10,7 @@ const Select = ({ register, errors, id, title, placeholder, options, defaultValu
                 <option value="" disabled>{placeholder} </option>
 
                 {options.map(option => (
-                    <option key={option._id} value={option._id}>{option.category}</option>
+                    <option key={option._id || option.id} value={option._id || option.id}>{option.category}</option>
                 ))}        
 
             </select>
