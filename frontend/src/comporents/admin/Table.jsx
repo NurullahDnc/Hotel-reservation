@@ -5,7 +5,7 @@ import { DataGrid } from '@mui/x-data-grid';
 export default function Table({ rows, columns }) {
 
     return (
-        <Box sx={{ height: 600, width: '100%' }}>
+        <Box sx={{ height: 650, width: '100%' }}>
             <DataGrid
                 rows={rows}
                 columns={columns}

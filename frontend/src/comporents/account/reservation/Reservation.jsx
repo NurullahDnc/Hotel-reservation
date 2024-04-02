@@ -9,17 +9,18 @@ const Reservation = () => {
 
 
   const reservationTitle = [
-    { title: "oda" },
-    { title: "kategori" },
-    { title: "Kisi Sayısı" },
-    { title: "Acıklama" },
-    { title: "Fiyat" },
-    { title: "giris" },
-    { title: "cıkıs" },
+    { title: "Oda" },
+    { title: "Kategori" },
+    { title: "Kişi Sayısı" },
+    { title: "Açıklama" },
+    { title: "Giriş" },
+    { title: "Çıkış" },
+    { title: "Rezervasyon Tarihi" },
     { title: "Gün" },
-    { title: "durumu" },
+    { title: "Toplam Fiyat" },
+    { title: "Durumu" },
+];
 
-  ]
 
   const reservation = useSelector((state) => state.getReservation.userReservation);
   const reservationStatus = useSelector((state) => state.getReservation.reservationStatus);
@@ -42,6 +43,7 @@ const Reservation = () => {
     }
   }, [dispatch, user]);
 
+  console.log(reservation);
 
   //tablo comps. title degisken olarak gonderiyorum
   const titleElement = (
@@ -59,11 +61,12 @@ const Reservation = () => {
       <td>{row.room?.category}</td>
       <td>{row.numberOfGuests}</td>
       <td>{row.description}</td>
-      <td>{row.totalPrice}</td>
 
       <td>{row.checkInDate}</td>
       <td>{row.checkOutDate}</td>
+      <td>{row.createdAt}</td>
       <td>{row.dayCount}</td>
+      <td>{row.totalPrice}</td>
 
       <td style={{ color: row.status === "pending" ? "gold" : row.status === "cancelled" ? "red" : row.status === "approved" ? "green" : "black" }}>
         {row.status === "pending" ? "Bekleniyor" : row.status === "cancelled" ? "iptal edildi" : row.status === "approved" ? "Onaylandı" : "hata olsutu"}

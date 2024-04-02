@@ -15,9 +15,9 @@ const Reservation = () => {
 
     useEffect(() => {
         dispatch(getReservation())
-    }, [dispatch, reservation])
+    }, [dispatch,])
 
-
+    console.log(reservation);
     const data = reservation && reservation.map((item) => {
 
         // Status'a göre sınıf adını belirle
@@ -30,11 +30,12 @@ const Reservation = () => {
             email: item.user.email,
             category: item.room?.category,
             description: item.description,
-            capacity: item.room?.capacity,
+            numberOfGuests: item.numberOfGuests,
             dayCount: item.dayCount,
-            price: item.room?.price,
+            totalPrice: item.totalPrice,
             checkInDate: item.checkInDate,
             checkOutDate: item.checkOutDate,
+            createdAt: item.createdAt,
             status: statusClass, // Dinamik sınıf adını ekle
             color: color
         };
@@ -47,13 +48,15 @@ const Reservation = () => {
         { field: 'email', headerName: 'Email', width: 200 },
         { field: 'category', headerName: 'Kategori', width: 150 },
         { field: 'description', headerName: 'Acıklama', width: 200 },
-        { field: 'capacity', headerName: 'Misafir Sayısı', width: 100, align: "center" },
+        { field: 'numberOfGuests', headerName: 'Misafir Sayısı', width: 100, align: "center" },
         { field: 'dayCount', headerName: 'Kac Gün', width: 100, align: "center" },
-        { field: 'price', headerName: 'Toplam Ucret', width: 100, align: "center" },
+        { field: 'totalPrice', headerName: 'Toplam Ucret', width: 100, align: "center" },
         { field: 'checkInDate', headerName: 'Giriş Tarihi', width: 100 },
-        { field: 'checkOutDate', headerName: 'Çıkış Tarihi', width: 130 },
+        { field: 'checkOutDate', headerName: 'Çıkış Tarihi', width: 100 },
+        { field: 'createdAt', headerName: 'Rezervasyon Tarihi', width: 120 },
+
         {
-            field: 'status', headerName: 'Durumu', width: 120,
+            field: 'status', headerName: 'Durumu', width: 100,
 
             renderCell: (params) => (
                 <div style={{ color: params.row.color }}>
@@ -62,26 +65,26 @@ const Reservation = () => {
             )
         },
         {
-            field: "delete",
-            headerName: "delete",
+            field: "Reddet",
+            headerName: "Reddet",
             width: 100,
             align: "center",
             renderCell: (params) => {
                 return (
-                    <button onClick={() => handleCancelled(params.id)} style={{ color: "red" }}  >
+                    <button onClick={() => handleCancelled(params.row)} style={{ color: "red" }}  >
                         <FaTrash size={22} />
                     </button>
                 )
             }
         },
         {
-            field: "success",
-            headerName: "success",
+            field: "Onayla",
+            headerName: "Onayla",
             width: 100,
             align: "center",
             renderCell: (params) => {
                 return (
-                    <button onClick={() => handleApprove(params.id)} style={{ color: "green" }}  >
+                    <button onClick={() => handleApprove(params.row)} style={{ color: "green" }}  >
                         <FaCheckCircle size={22} />
                     </button>
                 )
@@ -91,24 +94,92 @@ const Reservation = () => {
 
     ], []);
 
-    //rezervasyon iptal edildi
-    const handleCancelled = async (id) => {
+    //rezervasyon onaylandı
+    const handleApprove = async (row) => {
+
+        const id = row.id
+        const approveMail = {
+            recipient: row.email,
+            subject: "Rezervasyonunuz Onaylandı",
+            message: `Sayın ${row.firstName},
+        
+        Otelimiz STAYEASE, ${row.checkInDate} tarihinde başlayıp ${row.checkOutDate} tarihinde sona eren rezervasyonunuz için teşekkür ederiz. ${row.capacity} kişilik ${row.category} için yapılan rezervasyonunuz başarıyla onaylanmıştır.
+        
+        Rezervasyon Detayları:
+        - Check-in Tarihi: ${row.checkInDate}
+        - Check-out Tarihi: ${row.checkOutDate}
+        - Oda Türü: ${row.category}
+        - Konaklama Süresi: ${row.dayCount} gün
+        - Toplam Kişi Sayısı: ${row.numberOfGuests}
+        
+        Ödeme Bilgileri:
+        - Toplam Ücret: ${row.totalPrice} TL
+        
+        Lütfen otelimize varışınızdan önce herhangi bir özel isteğiniz varsa bizimle iletişime geçmekten çekinmeyin. Değişiklik yapmak veya rezervasyonu iptal etmek isterseniz, lütfen bize bildirin.
+        
+        Sorularınız veya endişeleriniz için bizimle iletişime geçmekten çekinmeyin. Size konaklamanızı unutulmaz kılmak için buradayız.
+        
+        Saygılarımla,
+        Nurullah Dinç
+        ~STAYEASE
+        `
+        };
+
 
         try {
-            const response = await axios.post(`http://localhost:5000/reservation/cancelled/${id}`);
-            toast.success("Yorum Onaylandı")
-        
+            //rezervasyon onaylanınca müsteriye mail gonderme
+            const response = await axios.post(`http://localhost:5000/sendMail`, approveMail);
+            toast.success(response.data.message);
+
         } catch (error) {
-            toast.error("hata olştu")
+            toast.error(error.response.data.error);
+        }
+
+        try {
+            const response = await axios.post(`http://localhost:5000/reservation/Approved/${id}`);
+            toast.success(response.data.message);
+        } catch (error) {
+            toast.error(error.response.data.error);
+
         }
 
     };
-    //rezervasyon onaylandı
-    const handleApprove = async (id) => {
+
+    //rezervasyon iptal edildi
+    const handleCancelled = async (row) => {
+
+        const rejectMail = {
+            recipient: row.email,
+            subject: "Rezervasyonunuz Reddedildi",
+            message: `Sayın ${row.firstName},
+        
+        Üzgünüz, Otelimiz STAYEASE'de ${row.checkInDate} tarihinde başlayıp ${row.checkOutDate} tarihinde sona eren rezervasyonunuz maalesef reddedilmiştir. Rezervasyon talebinizle ilgili detaylı bilgi almak için lütfen bizimle iletişime geçin.
+        
+        Sorularınız veya endişeleriniz için bizimle iletişime geçmekten çekinmeyin.
+        
+        Saygılarımla,
+        Nurullah Dinç
+        ~STAYEASE
+        `
+        };
+
         try {
-            const response = await axios.post(`http://localhost:5000/reservation/Approved/${id}`);
+            //rezervasyon onaylanınca müsteriye mail gonderme
+            const response = await axios.post(`http://localhost:5000/sendMail`, rejectMail);
+            toast.success(response.data.message);
+            
         } catch (error) {
+            toast.error(error.response.data.error);
         }
+
+        try {
+            const response = await axios.post(`http://localhost:5000/reservation/cancelled/${row.id}`);
+            toast.success(response.data.message);
+
+        } catch (error) {
+            toast.error(error.response.data.error);
+        }
+
     };
 
     return (
