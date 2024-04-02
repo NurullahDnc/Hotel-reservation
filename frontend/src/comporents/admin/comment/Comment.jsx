@@ -26,8 +26,8 @@ const  Comment = () => {
 
         return {
             id: item._id,
-            firstName: item.user.firstName + "  " + item.user.lastName,
-            email: item.user.email,
+            firstName: item.user?.firstName + "  " + item.user?.lastName,
+            email: item.user?.email,
             description: item.description,
             rating: item.rating,    
             status: statusClass, // Dinamik sınıf adını ekle

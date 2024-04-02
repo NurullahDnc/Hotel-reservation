@@ -70,7 +70,7 @@ const Comment = () => {
                 <ul className='comment-ul'>
                     {commentAccepted.map((comment, index) => (
                         <li key={index} className="comment-ul-item">
-                            <strong className="comment-ul-item-userName">{comment.user.firstName} {comment.user.lastName}  </strong>
+                            <strong className="comment-ul-item-userName">{comment.user?.firstName} {comment.user?.lastName}  </strong>
                             <span className="comment-ul-item-meta">{comment.createdAt}</span>
                             <div className="comment-ul-item-content">
                                 {comment && comment.description && comment.description.length > 100 ? (

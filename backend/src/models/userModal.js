@@ -23,6 +23,11 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    status: {
+        type: Boolean,
+        enum: [true, false],
+        default: "true",
+    },
     googleId: String // Google ile giriş yapan kullanıcılar için Google ID
 
 }, {

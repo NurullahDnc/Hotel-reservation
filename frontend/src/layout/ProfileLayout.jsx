@@ -6,6 +6,7 @@ import { FaPlusCircle, FaUser } from "react-icons/fa";
 import { FaCheckCircle } from 'react-icons/fa';
 import { HiPencilSquare } from "react-icons/hi2";
 import { FaBed } from "react-icons/fa";
+import AuthManager from '../comporents/account/AuthManager';
 
 const ProfileLayout = ({ children }) => {
 
@@ -25,7 +26,8 @@ const ProfileLayout = ({ children }) => {
 
   return (
     <>
-      <Navbar user={userName}  />
+      <AuthManager />
+      <Navbar user={userName} />
       <div className="profile-content">
         <Sidebar menuData={data} title="STAYEASE" userLogout />
         <div className='profile-content-children'>

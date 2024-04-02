@@ -1,8 +1,13 @@
 import User from "../models/userModal.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import {    createAccessToken, createRefreshToken } from "../helpers/GenerateToken.js";
-import { OAuth2Client } from "google-auth-library";
+import {
+    createAccessToken,
+    createRefreshToken
+} from "../helpers/GenerateToken.js";
+import {
+    OAuth2Client
+} from "google-auth-library";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -70,6 +75,14 @@ const loginUser = async (req, res) => {
             });
         }
 
+
+        if (user && user.status === false) {
+            return res.status(401).json({
+                success: false,
+                error: 'Kullanıcı devre dışı bırakıldı!'
+            });
+        }
+
         //pass. karsılastırma
         const validPassword = await bcrypt.compare(password, user.password);
 
@@ -115,15 +128,15 @@ const getuser = async (req, res) => {
         // Kullanıcıları veritabanından al
         const users = await User.find();
 
-         const formattedUsers = users.map(user => ({
+        const formattedUsers = users.map(user => ({
             ...user.toObject(),
-            createdAt: user.createdAt.toISOString().slice(0, 19).replace('T', ' '),  
-            updatedAt: user.updatedAt.toDateString()  
+            createdAt: user.createdAt.toISOString().slice(0, 19).replace('T', ' '),
+            updatedAt: user.updatedAt.toDateString()
         })).reverse();
 
-         res.status(200).json(formattedUsers);
+        res.status(200).json(formattedUsers);
     } catch (error) {
-         return res.status(500).json({
+        return res.status(500).json({
             error: error.message
         });
     }
@@ -177,6 +190,14 @@ export const googleAuth = async (req, res) => {
         });
 
 
+
+        if (user && user.status === false) {
+            return res.status(401).json({
+                success: false,
+                error: 'Kullanıcı devre dışı bırakıldı!'
+            });
+        }
+
         if (!user) {
             // Eğer kullanıcı yoksa, kayıt et
             const hashedPassword = await bcrypt.hash(token, 10);
@@ -187,6 +208,7 @@ export const googleAuth = async (req, res) => {
                 googleId: ticket.getUserId()
             });
         }
+
 
         // Kullanıcıya token olustur, client gonder cookie kayıt et
         const accessToken = createAccessToken({
@@ -207,11 +229,59 @@ export const googleAuth = async (req, res) => {
     }
 };
 
+const activateUserAccount = async (req, res) => {
+
+    try {
+        // rezervasyonun gelen ıd gore guncelle, durumunu approved yap
+        const reservation = await User.findByIdAndUpdate(req.params.id, {
+            status: 'true'
+        }, {
+            new: true
+        });
+
+        return res.json({
+            reservation,
+            message: 'Kulanıcı Aktif Edildi',
+
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: 'Kulanıcı aktif edilirken bir hata oluştu'
+        });
+    }
+};
+
+const deactivateUserAccount = async (req, res) => {
+
+    try {
+        // rezervasyonun gelen ıd gore guncelle, durumunu approved yap
+        const status = await User.findByIdAndUpdate(req.params.id, {
+            status: 'false'
+        }, {
+            new: true
+        });
+
+        return res.json({
+            status,
+            message: 'Kullanıcı devre dışı bırakıldı.',
+
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: 'Kullanıcı devre dışı bırakılırken hata oluştu'
+        });
+    }
+};
+
 
 
 
 export {
     createUser,
     loginUser,
-    getuser
+    getuser,
+    activateUserAccount,
+    deactivateUserAccount
 }

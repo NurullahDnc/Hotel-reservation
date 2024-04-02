@@ -31,14 +31,15 @@ const Customers = () => {
 
 
   const data = users ? users.map((item) => {
-    const statusClass = item.status ? 'onaylandı' : 'Aktif';
-    const color = item.status ? 'green' : 'green';
+    const statusClass = item?.status === true ? "aktif" : item.status === false ? "Devre Dışı" : "Hata Oluştu";
+    const color = item?.status == true ? "green" : item.status == false ? "red" : "black";
+
 
     return {
-      id: item._id,
-      firstName: item.firstName + "  " + item.lastName,
-      email: item.email,
-      createdAt: item.createdAt,
+      id: item?._id,
+      firstName: item?.firstName + "  " + item?.lastName,
+      email: item?.email,
+      createdAt: item?.createdAt,
       status: statusClass,
       color: color
     };
@@ -61,13 +62,13 @@ const Customers = () => {
       )
     },
     {
-      field: "Reddet",
-      headerName: "Reddet",
+      field: "DevreDısı",
+      headerName: "Devre Dışı",
       width: 100,
       align: "center",
       renderCell: (params) => {
         return (
-          <button onClick={() => banUser(params.id)} style={{ color: "red" }}  >
+          <button onClick={() => userDeactivate(params.id)} style={{ color: "red" }}  >
             <FaTrash size={22} />
           </button>
         )
@@ -80,7 +81,7 @@ const Customers = () => {
       align: "center",
       renderCell: (params) => {
         return (
-          <button onClick={() => unbanUser(params.id)} style={{ color: "green" }}  >
+          <button onClick={() => userActive(params.id)} style={{ color: "green" }}  >
             <FaCheckCircle size={22} />
           </button>
         )
@@ -116,28 +117,35 @@ const Customers = () => {
     setModalOpen(true);
   };
 
-  //kulanıcıyı banlıyor
-  const banUser = async (id) => {
-    try {
-      const response = await axios.post(`http://localhost:5000/${id}`);
-    } catch (error) {
-    }
-
-  };
-
   //kulanıcı ban kaldırıyor
-  const unbanUser = async (id) => {
+  const userActive = async (id) => {
     try {
-      const response = await axios.post(`http://localhost:5000/${id}`);
+      const response = await axios.post(`http://localhost:5000/user/active/${id}`);
+      toast.success(response.data.message)
+
     } catch (error) {
+      toast.error(error.response.data.error)
+
     }
   };
+
+  //kulanıcıyı banlıyor
+  const userDeactivate = async (id) => {
+    try {
+      const response = await axios.post(`http://localhost:5000/user/deactivate/${id}`);
+      toast.success(response.data.message)
+    } catch (error) {
+      toast.error(error.response.data.error)
+    }
+
+  };
+
 
   //kulanıcıya mail gonderme
   const sendMail = async (data) => {
-     try {
-       const response = await axios.post(`http://localhost:5000/sendMail`, data);
-       setModalOpen(false);
+    try {
+      const response = await axios.post(`http://localhost:5000/sendMail`, data);
+      setModalOpen(false);
       toast.success(response.data.message);
 
     } catch (error) {

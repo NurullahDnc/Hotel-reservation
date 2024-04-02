@@ -28,12 +28,13 @@ const Feedback = () => {
 
     const data = feedback && feedback.map((item) => {
         return {
-            id: item._id,
-            surname: item.surname,
-            email: item.mail,
-            object: item.object,
-            message: item.message,
-            createdAt: item.createdAt
+            id: item?._id,
+            firstName: item?.firstName,
+            surname: item?.surname,
+            email: item?.mail,
+            object: item?.object,
+            message: item?.message,
+            createdAt: item?.createdAt
 
         };
     });

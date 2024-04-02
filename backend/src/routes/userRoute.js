@@ -10,6 +10,10 @@ route.route("/google").post(UserController.googleAuth)
 
 route.route("/").get(UserController.getuser)
 
+route.route("/active/:id").post(UserController.activateUserAccount)
+route.route("/deactivate/:id").post(UserController.deactivateUserAccount)
+
+
 //authenticateToken, token dogrulaması yapıyor.
 route.route("/profile").get(authMiddleware.authenticateToken, UserController.getInfo)
 

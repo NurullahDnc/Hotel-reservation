@@ -19,15 +19,15 @@ const Reservation = () => {
 
     console.log(reservation);
     const data = reservation && reservation.map((item) => {
-
+        
         // Status'a göre sınıf adını belirle
         const statusClass = item.status === 'pending' ? 'bekleniyor' : item.status === 'approved' ? 'onaylandı' : item.status === 'cancelled' ? 'iptal-edildi' : item.status === 'reject' ? "Reddedildi" : "";
         const color = item.status === 'pending' ? 'yellow' : item.status === 'approved' ? 'green' : item.status === 'cancelled' ? 'red' : '';
 
         return {
-            id: item._id,
-            firstName: item.user.firstName + "  " + item.user.lastName,
-            email: item.user.email,
+            id: item?._id,
+            firstName: item.user?.firstName + "  " + item.user?.lastName,
+            email: item.user?.email,
             category: item.room?.category,
             description: item.description,
             numberOfGuests: item.numberOfGuests,
@@ -101,7 +101,7 @@ const Reservation = () => {
         const approveMail = {
             recipient: row.email,
             subject: "Rezervasyonunuz Onaylandı",
-            message: `Sayın ${row.firstName},
+            message: `Sayın ${row?.firstName},
         
         Otelimiz STAYEASE, ${row.checkInDate} tarihinde başlayıp ${row.checkOutDate} tarihinde sona eren rezervasyonunuz için teşekkür ederiz. ${row.capacity} kişilik ${row.category} için yapılan rezervasyonunuz başarıyla onaylanmıştır.
         

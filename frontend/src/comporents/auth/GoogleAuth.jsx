@@ -28,6 +28,7 @@ const GoogleButton = ({outline}) => {
                 dispatch(loginModalFun());
                 toast.success(response.data.message);
 
+                console.log(response);
 
             })
             .catch((err) => {
