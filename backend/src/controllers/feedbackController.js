@@ -20,10 +20,19 @@ const createFeedback = async (req, res) => {
 const getFeedback = async (req, res) => {
     try {
         const feedbacks = await Feedback.find();
+
+        const formattedFeedbacks = feedbacks.map((feedback) => {
+            return {
+                ...feedback.toObject(),
+                // Tarihleri biçimlendirin
+                createdAt: new Date(feedback.createdAt).toLocaleDateString(),
+            };
+        }).reverse(); // Diziyi tersine çevir
+
         res.status(200).json({
             success: true,
             message: "Geri bildirim başarıyla alındı",
-            data: feedbacks
+            data: formattedFeedbacks // Biçimlendirilmiş geri bildirimleri yanıt olarak gönderin
         });
     } catch (error) {
         console.error("Geri bildirim alımı hatası:", error);
@@ -33,6 +42,7 @@ const getFeedback = async (req, res) => {
         });
     }
 };
+
 
 export {
     createFeedback,

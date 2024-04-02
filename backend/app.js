@@ -14,6 +14,8 @@ import fileUpload from 'express-fileupload';
 import {v2 as cloudinary} from 'cloudinary'
 import CommentRoute from './src/routes/commentRoute.js'
 import FeedbackRoute from './src/routes/feedbackRoute.js'
+import SendMailRoute from './src/routes/sendMailRoute.js'
+
 
 
 
@@ -56,6 +58,8 @@ app.use("/reservation", ReservationRote )
 app.use("/categories", CategoriesRoute )
 app.use("/comment", CommentRoute)
 app.use("/feedback", FeedbackRoute)
+app.use("/sendMail", SendMailRoute)
+
 
 
 

@@ -1,13 +1,8 @@
 import User from "../models/userModal.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import {
-    createAccessToken,
-    createRefreshToken
-} from "../helpers/GenerateToken.js";
-import {
-    OAuth2Client
-} from "google-auth-library";
+import {    createAccessToken, createRefreshToken } from "../helpers/GenerateToken.js";
+import { OAuth2Client } from "google-auth-library";
 
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -15,7 +10,6 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const createUser = async (req, res) => {
 
     try {
-        //body'den verileri al
         const {
             firstName,
             lastName,
@@ -23,7 +17,6 @@ const createUser = async (req, res) => {
             password
         } = req.body;
 
-        //kulanıcı kontrol et uye mi
         const existingUser = await User.findOne({
             email
         });
@@ -34,12 +27,7 @@ const createUser = async (req, res) => {
                 error: "bu kullanıcı zaten kayıtlı"
             })
         }
-
-        //pass. hash'le
         const hashedPassword = await bcrypt.hash(password, 10);
-
-
-        //user olsutur
         const user = await User.create({
             firstName,
             lastName,

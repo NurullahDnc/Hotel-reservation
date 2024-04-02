@@ -58,15 +58,12 @@ const Contact = () => {
     } else {
 
       try {
-          
-        // setInputData({ surname: "", mail: "", text: "" })
 
-        console.log("inputData", inputData);
-
-        const res = await axios.post("http://localhost:5000/feedback/create",  inputData )
+        setInputData({ surname: "", mail: "", text: "" })
+        const res = await axios.post("http://localhost:5000/feedback/create", inputData)
         toast.success("Mesajınız başarılı bir şekilde gönderildi", res);
 
-      } catch (error) {
+      } catch (error) { 
         toast.error("Mesajınız gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz.", error);
 
       }

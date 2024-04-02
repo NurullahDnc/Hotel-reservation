@@ -40,8 +40,8 @@ const  Comment = () => {
         { field: 'id', headerName: 'Id', width: 100, align: "center" },
         { field: 'firstName', headerName: 'Ad Soyad', width: 150 },
         { field: 'email', headerName: 'Email', width: 200 },
-        { field: 'description', headerName: 'Acıklama', width: 250 },
-        { field: 'rating', headerName: 'Değerlendirme', width: 130, align: "center" },
+        { field: 'description', headerName: 'Acıklama', width: 270 },
+        { field: 'rating', headerName: 'Değerlendirme', width: 100, align: "center" },
           
         {
             field: 'status', headerName: 'Durumu', width: 120,
@@ -106,7 +106,7 @@ const  Comment = () => {
 
     return (
         <div>
-            Rezervasyon
+            Yorumlar
             <Table rows={data} columns={columns} />
         </div>
     );
