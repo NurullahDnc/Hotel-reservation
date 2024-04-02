@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserReservation } from '../../../redux/ReservationSlice'
 import { getUser, getUserInfo } from '../../../redux/UserSlice'
 import Loading from '../../Loading'
+import { FaCheckCircle, FaTimes } from 'react-icons/fa'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 const Reservation = () => {
 
@@ -19,11 +22,15 @@ const Reservation = () => {
     { title: "Gün" },
     { title: "Toplam Fiyat" },
     { title: "Durumu" },
+    { title: "İptal et" },
+
 ];
 
 
   const reservation = useSelector((state) => state.getReservation.userReservation);
   const reservationStatus = useSelector((state) => state.getReservation.reservationStatus);
+
+  console.log("rezervasyon", reservation);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.getUser.user);
@@ -69,11 +76,27 @@ const Reservation = () => {
       <td>{row.totalPrice}</td>
 
       <td style={{ color: row.status === "pending" ? "gold" : row.status === "cancelled" ? "red" : row.status === "approved" ? "green" : "black" }}>
-        {row.status === "pending" ? "Bekleniyor" : row.status === "cancelled" ? "iptal edildi" : row.status === "approved" ? "Onaylandı" : "hata olsutu"}
+        {row.status === "pending" ? "Bekleniyor" : row.status === "cancelled" ? "iptal edildi" : row.status === "approved" ? "Onaylandı" : row.status === "reject" ? "Reddedildi" : ""}
 
       </td>
+      <td style={{ color: "red", cursor: "pointer" }} onClick={() => handleReject(row._id)}><FaTimes size={27} /></td>
+
     </tr>
   ))
+
+
+  //rezervasyon iptal etme
+  const handleReject = async (id) =>{
+
+    try {
+      const response = await axios.post(`http://localhost:5000/reservation/cancelled/${id}`);
+      toast.success(response.data.message);
+  } catch (error) {
+      toast.error(error.response.data.error);
+
+  }
+
+  }
 
   return (
     <div>

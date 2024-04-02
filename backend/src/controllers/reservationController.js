@@ -141,7 +141,7 @@ async function getUserReservations(req, res) {
 const setApproved = async (req, res) => {
 
     try {
-        // rezervasyonun ıd gore guncelle, durumunu approved yap
+        // rezervasyonun gelen ıd gore guncelle, durumunu approved yap
         const reservation = await Reservation.findByIdAndUpdate(req.params.id, {
             status: 'approved'
         }, {
@@ -161,14 +161,12 @@ const setApproved = async (req, res) => {
     }
 };
 
-
-// Rezervasyonu iptal etme
-const setCancelled = async (req, res) => {
+//rezervasyon reddetme, admin
+const setReject = async (req, res) => {
 
     try {
-        // rezervasyonun ıd gore guncelle, durumunu cancelled yap
         const reservation = await Reservation.findByIdAndUpdate(req.params.id, {
-            status: 'cancelled'
+            status: 'reject'
         }, {
             new: true
         });
@@ -186,10 +184,37 @@ const setCancelled = async (req, res) => {
     }
 };
 
+
+// Rezervasyonu iptal etme, user
+const setCancelled = async (req, res) => {
+
+    try {
+        const reservation = await Reservation.findByIdAndUpdate(req.params.id, {
+            status: 'cancelled'
+        }, {
+            new: true
+        });
+
+        return res.json({
+            reservation,
+            message: 'Rezervasyon başarıyla iptal edildi',
+
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: 'Rezervasyon iptal edilirken bir hata oluştu'
+        });
+    }
+};
+
+
+
 export {
     createReservation,
     getReservations,
     getUserReservations,
     setApproved,
     setCancelled,
+    setReject
 };

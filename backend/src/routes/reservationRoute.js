@@ -9,7 +9,10 @@ router.route('/reservations').get(ReservationController.getUserReservations);
 
 router.route('/').get(ReservationController.getReservations);
 
+router.route('/reject/:id').post(ReservationController.setReject);
+
 router.route('/cancelled/:id').post(ReservationController.setCancelled);
+
 
 router.route('/approved/:id').post(ReservationController.setApproved);
 

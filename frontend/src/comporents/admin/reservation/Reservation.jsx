@@ -21,7 +21,7 @@ const Reservation = () => {
     const data = reservation && reservation.map((item) => {
 
         // Status'a göre sınıf adını belirle
-        const statusClass = item.status === 'pending' ? 'bekleniyor' : item.status === 'approved' ? 'onaylandı' : item.status === 'cancelled' ? 'iptal-edildi' : '';
+        const statusClass = item.status === 'pending' ? 'bekleniyor' : item.status === 'approved' ? 'onaylandı' : item.status === 'cancelled' ? 'iptal-edildi' : item.status === 'reject' ? "Reddedildi" : "";
         const color = item.status === 'pending' ? 'yellow' : item.status === 'approved' ? 'green' : item.status === 'cancelled' ? 'red' : '';
 
         return {
@@ -173,7 +173,7 @@ const Reservation = () => {
         }
 
         try {
-            const response = await axios.post(`http://localhost:5000/reservation/cancelled/${row.id}`);
+            const response = await axios.post(`http://localhost:5000/reservation/reject/${row.id}`);
             toast.success(response.data.message);
 
         } catch (error) {
