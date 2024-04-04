@@ -1,7 +1,8 @@
 import Room from '../models/roomModal.js'; // Room modelini içe aktar
 import {
     v2 as cloudinary
-} from 'cloudinary'; // Cloudinary v2 sürümünü içe aktar
+} from 'cloudinary';
+
 import multer from 'multer'; // multer modülünü içe aktar
 import fs from "fs"
 
@@ -14,15 +15,14 @@ const upload = multer({
 // Dosya yükleme işlemiyle ilgili endpoint'i tanımlayın ve multer middleware'ını bu endpoint'e ekleyin
 const createRoom = async (req, res) => {
 
-    const image = req.body.image;
-
     try {
         //cloudinary kayıt et image'yi
-        const result = await cloudinary.uploader.upload(image, {
-            use_filename: true,
-            folder: 'hotelApp',
-        });
-
+        const result = await cloudinary.uploader.upload(
+            req.files.image.tempFilePath, {
+                use_filename: true,
+                folder: 'hotelApp',
+            }
+        );
 
         const {
             category,
@@ -39,9 +39,12 @@ const createRoom = async (req, res) => {
             price,
             capacity,
             Availability,
+            image_id: result.public_id,
+
         });
 
-        // fs.unlinkSync(req.files.image.tempFilePath)
+        //resim ekledikten sonra sil
+        fs.unlinkSync(req.files.image.tempFilePath)
 
         res.status(200).json({
             success: true,
@@ -49,6 +52,7 @@ const createRoom = async (req, res) => {
         });
 
     } catch (error) {
+        console.log(error);
         res.status(400).json({
             success: false,
             error: error.message
@@ -57,15 +61,11 @@ const createRoom = async (req, res) => {
 };
 
 
-// upload middleware'ını dışa aktar
-export const uploadMiddleware = upload.single('image');
-
-
 //get room
 const getRoom = async (req, res) => {
     try {
 
-        const room = await Room.find();
+        const room = (await Room.find()).reverse();
 
         res.status(200).json({
             success: true,
@@ -81,38 +81,63 @@ const getRoom = async (req, res) => {
 
 //room delete
 const deleteRoom = async (req, res) => {
-
     try {
-        const {
-            id
-        } = req.params
-        const post = await Room.findByIdAndDelete({
-            _id: id
-        })
-     } catch (error) {
 
+        //id gore odayı buluyor
+        const photo = await Room.findById(req.params.id);
+
+        if (!photo) return res.status(404).json({
+            error: "Silinecek oda bulunamadı."
+        });
+
+        //resmin id'sini alıyor
+        const imagePublicId = photo.image_id;
+
+        //cloudinary'den resmi siliyor
+        await cloudinary.uploader.destroy(imagePublicId);
+
+        // gelen id ve db id gore siliyor
+        await Room.findByIdAndDelete({
+            _id: req.params.id
+        });
+
+
+        res.status(200).json({
+            message: 'Oda başarıyla silindi'
+        });
+
+    } catch (error) {
         res.status(500).json({
             error: error.message
         });
-
     }
-
-
-
 }
+
+
+
+
 const updateRoom = async (req, res) => {
     try {
+
         const {
             id
         } = req.params;
+
+        const photo = await Room.findById(req.params.id);
+
         (req.body);
         const {
             title,
             category,
             description,
-            image,
-            price
+            price,
+            capacity
         } = req.body;
+
+
+        //resim yukleme
+        const result = await cloudinary.uploader.upload(req.files.image.tempFilePath);
+        const imagePublicId = photo.image_id;
 
         // Odayı güncellemek için findByIdAndUpdate kullanın
         const updatedRoom = await Room.findByIdAndUpdate(
@@ -121,8 +146,11 @@ const updateRoom = async (req, res) => {
                 title,
                 category,
                 description,
-                image,
-                price
+                image: result.secure_url,
+                price,
+                capacity,
+                image_id: imagePublicId 
+
             }, // Güncellenecek oda verileri
             {
                 new: true,
@@ -130,8 +158,14 @@ const updateRoom = async (req, res) => {
             } // Yeni veriyi döndür ve doğrulayıcıları çalıştır
         );
 
-        res.status(200).json(updatedRoom);
+        fs.unlinkSync(req.files.image.tempFilePath)
+
+        res.status(200).json({
+            updatedRoom,
+            message: "Oda başarıyla Güncellendi"
+        });
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             error: error.message
         });

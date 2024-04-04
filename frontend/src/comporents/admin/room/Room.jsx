@@ -11,6 +11,8 @@ import { loginModalFun } from '../../../redux/ModalSlice';
 import { useForm } from 'react-hook-form';
 import Input from '../../general/Input';
 import Button from '../../general/Button';
+import TextArea from '../../general/TextArea';
+
 import { toast } from 'react-toastify';
 
 
@@ -25,6 +27,7 @@ const Room = () => {
     useEffect(() => {
         dispatch(getRoom());
     }, [dispatch]);
+    
 
     //tabloda oda ozekikleri
     const data = rooms && rooms.map((item) => {
@@ -94,15 +97,16 @@ const Room = () => {
     //delete func.
     const handleDelete = async (id) => {
         try {
-            toast.success("Oda Silindi")
             const response = await axios.post(`http://localhost:5000/room/delete/${id}`);
+            toast.success(response.data.message)
         } catch (error) {
-            toast.error("Hata Oluştu")
+            toast.error(error.response.data.error);
         }
     };
 
     //update Func.
     const handleUpdate = (room) => {
+
         setSelectedRoom(room); // Seçilen odayı state'e kaydet
         setUpdateOpen(true); // Modalı aç
     };
@@ -110,39 +114,43 @@ const Room = () => {
     //create func.
     const roomCreate = async data => {
 
-        const newRooms = {
-            image: data.image[0].name,
-            category: data.category,
-            description: data.description,
-            price: data.price,
-            capacity: data.capacity,
-            Availability: false,
-        };
-
+        const formData = new FormData();
+        formData.append('image', data.image[0]);
+        formData.append('category', data.category);
+        formData.append('description', data.description);
+        formData.append('price', data.price);
+        formData.append('capacity', data.capacity);
+        formData.append('Availability', false); 
+    
+        
         try {
-            const response = await axios.post(`http://localhost:5000/room/create`, newRooms);
-            toast.success("Oda Başarılı bir şekilde Oluşturuldu")
+            setUpdateOpen(false);
+            const response = await axios.post(`http://localhost:5000/room/create`, formData);
+            toast.success(response.data.message)
+
         } catch (error) {
-            toast.error("Hata Oluştu")
+            toast.error(error.response.data.error);
         }
     }
 
     //update func.
     const roomUpdate = async (data) => {
 
-        const updatedRoom = {
-            image: data.image[0].name,
-            category: data.category,
-            description: data.description,
-            price: data.price,
-            capacity: data.capacity,
-        };
-
+        const formData = new FormData();
+        formData.append('image', data.image[0]);
+        formData.append('category', data.category);
+        formData.append('description', data.description);
+        formData.append('price', data.price);
+        formData.append('capacity', data.capacity);
+       
+ 
         try {
-            const response = await axios.put(`http://localhost:5000/room/update/${data.id}`, updatedRoom);
-            toast.success("Oda Başarılı bir şekilde Güncellendi")
+            const response = await axios.put(`http://localhost:5000/room/update/${data.id}`, formData);
+            toast.success(response.data.message)
+            setUpdateOpen(false); 
+
         } catch (error) {
-            toast.error("Hata Oluştu")
+            toast.error(error.response.data.error);
         }
     };
 
@@ -164,7 +172,7 @@ const Room = () => {
         <div>
             <form onSubmit={handleSubmit(roomCreate)} encType="multipart/form-data">
                 <Input id="category" title="Kategori Giriniz" type="text" placeholder="Kategori Giriniz" register={register} errors={errors} required />
-                <Input id="description" title="Açıklama Giriniz" type="text" placeholder="Açıklama Giriniz" register={register} errors={errors} required />
+                <TextArea id="description" title="Açıklama Giriniz" type="text" placeholder="Açıklama Giriniz" register={register} errors={errors} required />
                 <Input id="price" title="Fiyat" type="number" placeholder="Fiyat" register={register} errors={errors} required />
                 <Input id="capacity" title="Misafir Sayısı" type="number" placeholder="Misafir Giriniz" register={register} errors={errors} required />
                 <Input id="image" title="Gorsel Ekle" type="file" placeholder="Varsa Eklemek İstedikleriniz" register={register} errors={errors} required />

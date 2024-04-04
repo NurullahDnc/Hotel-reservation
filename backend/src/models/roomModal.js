@@ -31,7 +31,10 @@ const RoomSchema = new Schema({
     Availability:{
         type: Boolean,
         required: true
-    }
+    },
+    image_id: {
+        type: String,
+      },
 
 }, {
     timestamps: true,
