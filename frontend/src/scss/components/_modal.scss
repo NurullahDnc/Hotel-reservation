@@ -1,15 +1,22 @@
 //genel modal 
+
+body{
+    position: relative;
+}
+
 .modal {
     width: 100%;
     height: 100%;
     background-color: black; /* Arka plan rengi */
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     opacity: 0.9;
     overflow: auto;
+    top: 0;
+    left: 0;
 
     &-container {
         background-color: white; /* İçerik arka plan rengi */ 

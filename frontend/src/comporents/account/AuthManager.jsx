@@ -17,7 +17,6 @@ const AuthManager = () => {
     if (!cookies.jwt || user?.status === false) {
       dispatch(logout());
       router("/")
-
     } else {
       dispatch(getUserInfo());
     }

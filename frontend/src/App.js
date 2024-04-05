@@ -30,6 +30,8 @@ import RoomAdminPage from "./pages/admin/RoomPage";
 import CustomersPage from "./pages/admin/CustomersPage";
 import CommentPage from "./pages/admin/CommentPage";
 import FeedbackPage from "./pages/admin/FeedbackPage";
+import GalleryAdminPage from "./pages/admin/GalleryPage";
+
 
 
 
@@ -78,6 +80,8 @@ import FeedbackPage from "./pages/admin/FeedbackPage";
                   <Route path="/customers" element={<CustomersPage />} />
                   <Route path="/comment" element={<CommentPage />} />
                   <Route path="/feedback" element={<FeedbackPage />} />
+                  <Route path="/gallery" element={<GalleryAdminPage />} />
+
 
                 <Route path="*" element={<div>Sayfa Bulunamadı</div>} />
 

@@ -53,7 +53,7 @@ const Login = () => {
                 onClose={() => dispatch(loginModalFun())}
                 onSubmit={() => {}}
             />
-        </form>
+        </form> 
     );
 };
 

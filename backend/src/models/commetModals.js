@@ -12,6 +12,11 @@ const commentSchema = new Schema({
         ref: 'User',
         required: true
     },
+    room: {
+        type: Schema.Types.ObjectId,
+        ref: 'Room',
+        required: true
+    },
     description: {
         type: String,
         required: true,
@@ -21,7 +26,7 @@ const commentSchema = new Schema({
         type: Number,
         required: true,
     },
-    status:{
+    status: {
         type: Boolean,
         required: true
     }

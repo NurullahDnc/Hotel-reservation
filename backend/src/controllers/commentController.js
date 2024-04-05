@@ -21,7 +21,7 @@ const createComment = async (req, res) => {
 const getComment = async (req, res) => {
 
     try {
-        const comments = (await Comment.find().populate("user")).reverse();
+        const comments = (await Comment.find().populate("user").populate("room")).reverse();
         res.status(201).json({
             succeded: true,
             data: comments
@@ -133,7 +133,7 @@ const getAcceptedComments = async (req, res) => {
     try {
         const acceptedComments = await Comment.find({
             status: true
-        }).populate('user');
+        }).populate('user').populate("room");
 
         const formattedComments = acceptedComments.map(comment => ({
             ...comment.toObject(),

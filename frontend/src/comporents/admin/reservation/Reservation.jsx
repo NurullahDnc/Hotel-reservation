@@ -17,8 +17,7 @@ const Reservation = () => {
         dispatch(getReservation())
     }, [dispatch,])
 
-    console.log(reservation);
-    const data = reservation && reservation.map((item) => {
+     const data = reservation && reservation.map((item) => {
         
         // Status'a göre sınıf adını belirle
         const statusClass = item.status === 'pending' ? 'bekleniyor' : item.status === 'approved' ? 'onaylandı' : item.status === 'cancelled' ? 'iptal-edildi' : item.status === 'reject' ? "Reddedildi" : "";

@@ -16,6 +16,7 @@ const AdminLayout = ({ children }) => {
     { "name": "Müşteriler", url: "/admin/customers", icon: FaBed },
     { "name": "Geri Bildirimler", url: "/admin/feedback", icon: FaPlusCircle },
     { "name": "Yorumlar", url: "/admin/comment", icon: FaPlusCircle },
+    { "name": "galeri", url: "/admin/gallery", icon: FaPlusCircle },
     { "name": "Siteye Git", url: "/", icon: FaPlusCircle },
 
   ]

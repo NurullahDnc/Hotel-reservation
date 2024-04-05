@@ -34,15 +34,37 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRoom } from '../../redux/RoomSlice';
+import { getUser } from '../../redux/UserSlice';
+import { toast } from 'react-toastify';
+import TextArea from '../general/TextArea';
+import Buttons from '../general/Button';
+import Input from '../general/Input';
+import Select from '../general/Select';
+import { useForm } from 'react-hook-form';
+import DateRangePicker from '../general/DatePicker';
+import Modal from '../auth/Modal';
+import axios from 'axios';
+import { loginModalFun } from '../../redux/ModalSlice';
+
+
+
 
 const RoomCart = ({ roomInfo }) => {
     const { t } = useTranslation();
     const [expandedRooms, setExpandedRooms] = useState({});
     const dispatch = useDispatch();
     const rooms = useSelector((state) => state.getRoom.rooms);
+    const user = useSelector((state) => state.getUser.user);
+    const [modalOpen, setModalOpen] = useState(false);
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const [selectedRoom, setSelectedRoom] = useState(null);
+
 
     useEffect(() => {
         dispatch(getRoom());
+        dispatch(getUser())
     }, [dispatch]);
 
     const features = [
@@ -69,18 +91,80 @@ const RoomCart = ({ roomInfo }) => {
         });
     };
 
-    //secilen oda 
+    //secilen oda, state at 
     const handleRoomSelection = (selectedRoom) => {
-        console.log("Seçilen Oda:", selectedRoom);
- 
+        
+        setSelectedRoom(selectedRoom)
+        if (!user) {
+            toast.error("Rezervasyon yapmak için lütfen Giriş Yapınız.");
+            dispatch(loginModalFun());
+            return;
+        }
+
+        setModalOpen(true)
+    };  
+
+    const onSubmit = async data => {
+  
+
+
+        //rezervasyon degiskeni
+        const newReservation = {
+            room: selectedRoom._id,
+            user: user._id,
+            checkInDate: startDate,
+            checkOutDate: endDate,
+            numberOfGuests: data.numberOfGuests,
+            description: data.description,
+        }
+
+        try {
+            const res = await axios.post("http://localhost:5000/reservation/create", newReservation);
+            toast.success("Rezervasyonunuz Oluşturuldu");
+            setModalOpen(false)
+
+        } catch (error) {
+            toast.error("Rezervasyon oluşturulurken bir hata oluştu");
+            console.log(error);
+        }
+
     };
 
+    const bodyElement = (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
+                <Input id="numberOfGuests" disapled title="Seçilen Oda" type="number" placeholder={selectedRoom?.category} register={register} errors={errors} required />
+                
+                <Input id="numberOfGuests" title="Misafir Sayısı" maxLength={selectedRoom?.capacity} type="number" placeholder="Misafir Giriniz" register={register} errors={errors} required />
+
+                <DateRangePicker title="Giriş / Çıkış Tarihleri" setStartDate={setStartDate} setEndDate={setEndDate} />
+
+                <Input id="description" title="Not" type="text" placeholder="Varsa Eklemek İstedikleriniz" register={register} errors={errors} required />
+
+
+            </div>
+
+            <Buttons small btnText={"Rezervasyon Yap"} />
+        </form>
+    )
+
     return (
-        <div>
+        <>
+            
+            <Modal
+                isOpen={modalOpen}
+                title="Rezervasyon Oluştur"
+                bodyElement={bodyElement}
+                btnLabel="Rezervasyon Oluştur"
+                onClose={() => setModalOpen(false)}
+                btnNull
+                modals
+                onSubmit={() => {}}
+
+            />
+
             {Object.keys(rooms).map(roomId => {
-
                 const roomInfo = rooms[roomId];
-
                 return (
                     <Card className="room-card" key={roomId}>
                         <div className="room-card-content">
@@ -91,6 +175,7 @@ const RoomCart = ({ roomInfo }) => {
                                     alt={roomInfo.image}
                                     className="room-card-content-1-image"
                                 />
+
                             </CardContent>
 
                             <CardContent className="room-card-content-2">
@@ -121,7 +206,7 @@ const RoomCart = ({ roomInfo }) => {
                                                             size="small"
                                                             aria-label={feature.label}
                                                             className="feature-icon"
-                                                        >  
+                                                        >
                                                             {feature.icon}
                                                         </IconButton>
                                                         {feature.value}
@@ -152,8 +237,9 @@ const RoomCart = ({ roomInfo }) => {
                     </Card>
                 );
             })}
-        </div>
+        </>
     );
+
 
 
 };

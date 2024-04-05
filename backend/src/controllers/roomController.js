@@ -1,9 +1,9 @@
-import Room from '../models/roomModal.js'; // Room modelini içe aktar
+import Room from '../models/roomModal.js';  
 import {
     v2 as cloudinary
 } from 'cloudinary';
 
-import multer from 'multer'; // multer modülünü içe aktar
+import multer from 'multer'; 
 import fs from "fs"
 
 

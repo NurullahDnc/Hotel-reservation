@@ -12,7 +12,8 @@ import { getUser, logout } from '../../redux/UserSlice';
 import {useCookies} from 'react-cookie'
 import { toast } from 'react-toastify';
 import AuthManager from '../account/AuthManager';
-
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const Navbar = () => {
   const navbardata = [
@@ -36,7 +37,9 @@ const Navbar = () => {
   const [cookies] = useCookies(['jwt']);
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
   const { t, i18n } = useTranslation();
-
+  const [startDate, setStartDateLocal] = useState(null);
+  const [endDate, setEndDateLocal] = useState(null);
+  
   const clickHandle = async (lang) => {
     await i18n.changeLanguage(lang);
   };
@@ -116,12 +119,40 @@ const Navbar = () => {
             <option value="vw">Günlük</option>
           </select>
 
-          <input type="date" id="birthday" name="birthday" min={currentDate} />
-          <input type="date" id="birthday" name="birthday" min={currentDate} />
+          <DatePicker
+          className='inputs-input'
+          selected={startDate}
+          onChange={(date) => {
+            setStartDateLocal(date);
+            // setStartDate(date);
+          }}
+          selectsStart
+          startDate={startDate}
+          endDate={endDate}
+          placeholderText="Giriş Tarihi"
+          
+        />
 
-          <button>
+        <DatePicker
+          className='inputs-input'
+          selected={endDate}
+          onChange={(date) => {
+            setEndDateLocal(date);
+            // setEndDate(date);
+          }}
+          selectsEnd
+          startDate={startDate}
+          endDate={endDate}
+          minDate={startDate}
+          placeholderText="Çıkış Tarihi"
+        />
+
+        <button onClick={() => { 
+            router("/odalar");
+            setReservationIsOpen(!reservationIsOpen); 
+        }}>
             Oda Ara
-          </button>
+        </button>
 
         </div>
       </div>
@@ -161,6 +192,8 @@ const Navbar = () => {
                         dispatch(logout())
                         setUserOpen(!isUserOpen);
                         toast.success("Çıkış başarılı")
+                        window.location.reload();
+
                       }}>Cıkış Yap</li>
                     </div>
                     :

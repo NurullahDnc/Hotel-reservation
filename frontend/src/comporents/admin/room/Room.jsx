@@ -108,7 +108,7 @@ const Room = () => {
     const handleUpdate = (room) => {
 
         setSelectedRoom(room); // Seçilen odayı state'e kaydet
-        setUpdateOpen(true); // Modalı aç
+        setUpdateOpen(true); 
     };
 
     //create func.
@@ -169,7 +169,6 @@ const Room = () => {
 
     //create elementi
     const createElement = (
-        <div>
             <form onSubmit={handleSubmit(roomCreate)} encType="multipart/form-data">
                 <Input id="category" title="Kategori Giriniz" type="text" placeholder="Kategori Giriniz" register={register} errors={errors} required />
                 <TextArea id="description" title="Açıklama Giriniz" type="text" placeholder="Açıklama Giriniz" register={register} errors={errors} required />
@@ -178,12 +177,10 @@ const Room = () => {
                 <Input id="image" title="Gorsel Ekle" type="file" placeholder="Varsa Eklemek İstedikleriniz" register={register} errors={errors} required />
                 <Button btnText={"Oda ekle"} />
             </form>
-        </div>
     )
 
     //create elementi
     const updateElement = (
-        <div>
             <form onSubmit={handleSubmit(roomUpdate)} encType="multipart">
                 <Input id="category" title="Kategori Giriniz" type="text" placeholder="Kategori Giriniz" register={register} errors={errors} required />
                 <Input id="description" title="Açıklama Giriniz" type="text" placeholder="Açıklama Giriniz" register={register} errors={errors} required />
@@ -192,7 +189,6 @@ const Room = () => {
                 <Input id="image" title="Görsel Ekle" type="file" placeholder="Varsa Eklemek İstedikleriniz" register={register} errors={errors} required />
                 <Button btnText={"Güncelle"} />
             </form>
-        </div>
     )
 
     return (

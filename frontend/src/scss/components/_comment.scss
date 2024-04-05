@@ -171,9 +171,10 @@
       &-rating {
         display: flex;
         align-items: center;
-
         .star-icon {
           color: #f39c12;
+          margin-top: 4px;
+          margin-bottom: 6px;
           font-size: 2vw;
           margin-right: 0.5vw;
           cursor: pointer;
