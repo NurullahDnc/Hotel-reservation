@@ -16,6 +16,8 @@ import CommentRoute from './src/routes/commentRoute.js'
 import FeedbackRoute from './src/routes/feedbackRoute.js'
 import SendMailRoute from './src/routes/sendMailRoute.js'
 import GalleryRoute from './src/routes/galleryRoute.js'
+import ActivityRoute from './src/routes/activityRoute.js'
+
 
 
 
@@ -62,6 +64,8 @@ app.use("/comment", CommentRoute)
 app.use("/feedback", FeedbackRoute)
 app.use("/sendMail", SendMailRoute)
 app.use("/gallery", GalleryRoute)
+app.use("/activity", ActivityRoute)
+
 
 
 

@@ -6,6 +6,7 @@ import RoomSlice from './RoomSlice';
 import ReservationSlice from './ReservationSlice'
 import CommentSlice from './CommentSlice';
 import FeedbackSlice from './FeedbackSlice';
+import ActivitySlice from './ActivitySlice';
  
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,8 @@ export const store = configureStore({
       getReservation: ReservationSlice,
       getComment: CommentSlice,
       getFeedback: FeedbackSlice,
+      getActivity: ActivitySlice,
+
       
   },
 })

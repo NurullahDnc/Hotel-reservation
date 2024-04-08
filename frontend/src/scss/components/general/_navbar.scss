@@ -39,6 +39,7 @@
     z-index: 1000;
     box-shadow: 0 0 2px 0 gray;
     transition: left 0.5s;
+    overflow: auto;
 
     &-title {
         display: flex;
@@ -60,7 +61,6 @@
     }
 
     &-items {
-
         &-item {
 
             display: flex;
