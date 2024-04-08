@@ -12,25 +12,26 @@ import TextArea from '../../general/TextArea';
 
 import { toast } from 'react-toastify';
 import { getActivity } from '../../../redux/ActivitySlice';
+import { getRestaurant } from '../../../redux/RestaurantSlice';
 
 
-const Activity = () => {
-    const activity = useSelector((state) => state.getActivity.activity);
-
+const Restaurant = () => {
+    const restaurant = useSelector((state) => state.getRestaurant.restaurant);
+    const restaurantStatus = useSelector((state) => state.getRestaurant.restaurantStatus);
     const dispatch = useDispatch();
     const [createOpen, setCreateOpen] = useState(false);
     const [updateOpen, setUpdateOpen] = useState(false);
     const [selectedActivity, setSelectedActivity] = useState(null);
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
- 
     useEffect(() => {
-        dispatch(getActivity());
+        dispatch(getRestaurant());
     }, [dispatch]);
     
+    console.log("restaurantStatus,", restaurantStatus);
 
     //tabloda oda ozekikleri
-    const data = activity && activity.map((item) => {
+    const data = restaurant && restaurant.map((item) => {
         
         return {
             id: item._id,
@@ -90,7 +91,7 @@ const Activity = () => {
     //delete func.
     const handleDelete = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:5000/activity/delete/${id}`);
+            const response = await axios.delete(`http://localhost:5000/restaurant/delete/${id}`);
             toast.success(response.data.message)
         } catch (error) {
             toast.error(error.response.data.error);
@@ -98,14 +99,14 @@ const Activity = () => {
     };
 
     //update Func.
-    const handleUpdate = (activity) => {
+    const handleUpdate = (restaurant) => {
 
-        setSelectedActivity(activity); // Seçilen odayı state'e kaydet
+        setSelectedActivity(restaurant); // Seçilen odayı state'e kaydet
         setUpdateOpen(true); 
     };
 
     //create func.
-    const activityCreate = async data => {
+    const restaurantCreate = async data => {
 
         const formData = new FormData();
         formData.append('title', data.title);
@@ -115,7 +116,7 @@ const Activity = () => {
         
 
         try {
-            const response = await axios.post(`http://localhost:5000/activity/create`, formData);
+            const response = await axios.post(`http://localhost:5000/restaurant/create`, formData);
             toast.success(response.data.message)
             setUpdateOpen(false);
             
@@ -126,7 +127,7 @@ const Activity = () => {
     }
 
     //update func.
-    const activityUpdate = async (data) => {
+    const restaurantUpdate = async (data) => {
 
 
         const formData = new FormData();
@@ -138,7 +139,7 @@ const Activity = () => {
        
  
         try {
-            const response = await axios.put(`http://localhost:5000/activity/update/${data.id}`, formData);
+            const response = await axios.put(`http://localhost:5000/restaurant/update/${data.id}`, formData);
             toast.success(response.data.message)
             setUpdateOpen(false); 
 
@@ -162,7 +163,7 @@ const Activity = () => {
 
     //create elementi
     const createElement = (
-            <form onSubmit={handleSubmit(activityCreate)} encType="multipart/form-data">
+            <form onSubmit={handleSubmit(restaurantCreate)} encType="multipart/form-data">
                 <Input id="title" title="Başlık Giriniz" type="text" placeholder="Başlık Giriniz" register={register} errors={errors} required />
                 <TextArea id="description" title="Açıklama Giriniz" type="text" placeholder="Açıklama Giriniz" register={register} errors={errors} required />
                 <Input id="imageOne" title="Gorsel Ekle" type="file" placeholder="Varsa Eklemek İstedikleriniz" register={register} errors={errors} required />
@@ -173,7 +174,7 @@ const Activity = () => {
 
     //create elementi
     const updateElement = (
-            <form onSubmit={handleSubmit(activityUpdate)} encType="multipart">
+            <form onSubmit={handleSubmit(restaurantUpdate)} encType="multipart">
                 <Input id="title" title="Başlık Giriniz" type="text" placeholder="Başlık Giriniz" register={register} errors={errors} required />
                 <TextArea id="description" title="Açıklama Giriniz" type="text" placeholder="Açıklama Giriniz" register={register} errors={errors} required />
                 <Input id="imageOne" title="Gorsel Ekle" type="file" placeholder="Varsa Eklemek İstedikleriniz" register={register} errors={errors} required />
@@ -187,11 +188,11 @@ const Activity = () => {
             {/*create Modal */}
             <Modal
                 isOpen={createOpen}
-                title="Aktivite Oluştur"
+                title="Restaurant Oluştur"
                 bodyElement={createElement}
-                btnLabel="Aktivite Oluştur"
+                btnLabel="Restaurant Oluştur"
                 onClose={() => setCreateOpen(false)}
-                onSubmit={activityCreate}
+                onSubmit={restaurantCreate}
                 btnNull
                 modals
             />
@@ -199,22 +200,22 @@ const Activity = () => {
             {/*update Modal */}
             <Modal
                 isOpen={updateOpen}
-                title="Aktivite Güncelle"
+                title="Restaurant Güncelle"
                 bodyElement={updateElement}
-                btnLabel="Aktivite Güncelle"
+                btnLabel="Restaurant Güncelle"
                 onClose={() => setUpdateOpen(false)}
-                onSubmit={activityUpdate}
+                onSubmit={restaurantUpdate}
                 btnNull
                 modals
 
             />
 
-            Aktiviteler
+            Restorant
             <Table rows={data} columns={columns} />
 
-            <Button btnText="activity Oluştur" small onSubmit={() => setCreateOpen(true)} />
+            <Button btnText="Restorant Oluştur" small onSubmit={() => setCreateOpen(true)} />
         </div>
     );
 };
 
-export default Activity;
+export default Restaurant;

@@ -5,6 +5,10 @@ import { FaPlusCircle, FaUser } from "react-icons/fa";
 import { FaCheckCircle } from 'react-icons/fa';
 import { HiPencilSquare } from "react-icons/hi2";
 import { FaBed } from "react-icons/fa";
+import { FaComment } from "react-icons/fa";
+import { IoImages } from "react-icons/io5";
+import { FaSwimmer } from "react-icons/fa";
+import { MdRestaurantMenu } from "react-icons/md";
 
 
 const AdminLayout = ({ children }) => {
@@ -15,12 +19,13 @@ const AdminLayout = ({ children }) => {
     { "name": "Odalar", url: "/admin/room", icon: FaCheckCircle },
     { "name": "Müşteriler", url: "/admin/customers", icon: FaBed },
     { "name": "Geri Bildirimler", url: "/admin/feedback", icon: FaPlusCircle },
-    { "name": "Yorumlar", url: "/admin/comment", icon: FaPlusCircle },
-    { "name": "galeri", url: "/admin/gallery", icon: FaPlusCircle },
-    { "name": "Aktiviteler", url: "/admin/activities", icon: FaPlusCircle },
-    { "name": "Restorant", url: "/admin/", icon: FaPlusCircle },
+    { "name": "Yorumlar", url: "/admin/comment", icon: FaComment },
+    { "name": "galeri", url: "/admin/gallery", icon: IoImages },
+    { "name": "Aktiviteler", url: "/admin/activities", icon: FaSwimmer },
+    { "name": "Restorant", url: "/admin/restaurant", icon: MdRestaurantMenu },
 
     { "name": "Siteye Git", url: "/", icon: FaPlusCircle },
+
 
   ]
 

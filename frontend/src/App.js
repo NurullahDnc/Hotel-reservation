@@ -32,6 +32,8 @@ import CommentPage from "./pages/admin/CommentPage";
 import FeedbackPage from "./pages/admin/FeedbackPage";
 import GalleryAdminPage from "./pages/admin/GalleryPage";
 import ActivitiesAdminPage from "./pages/admin/ActivitiesPage";
+import RestaurantAdminPage from "./pages/admin/RestaurantPage";
+
 
 
 
@@ -84,6 +86,8 @@ import ActivitiesAdminPage from "./pages/admin/ActivitiesPage";
                   <Route path="/feedback" element={<FeedbackPage />} />
                   <Route path="/gallery" element={<GalleryAdminPage />} />
                   <Route path="/activities" element={<ActivitiesAdminPage />} />
+                  <Route path="/restaurant" element={<RestaurantAdminPage />} />
+
 
 
 

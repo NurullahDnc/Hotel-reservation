@@ -17,6 +17,8 @@ import FeedbackRoute from './src/routes/feedbackRoute.js'
 import SendMailRoute from './src/routes/sendMailRoute.js'
 import GalleryRoute from './src/routes/galleryRoute.js'
 import ActivityRoute from './src/routes/activityRoute.js'
+import RestaurantRoute from './src/routes/restaurantRoute.js'
+
 
 
 
@@ -65,6 +67,8 @@ app.use("/feedback", FeedbackRoute)
 app.use("/sendMail", SendMailRoute)
 app.use("/gallery", GalleryRoute)
 app.use("/activity", ActivityRoute)
+app.use("/restaurant", RestaurantRoute)
+
 
 
 

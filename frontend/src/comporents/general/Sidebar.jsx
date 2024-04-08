@@ -7,13 +7,14 @@ import { logout } from '../../redux/UserSlice';
 import { toast } from 'react-toastify';
 
 
-const Sidebar = ({ menuData, userLogout, title }) => {
+const Sidebar = ({ menuData, title }) => {
 
 
   const [openMenu, setOpenMenu] = useState(false)
   const dispatch = useDispatch();
   const router = useNavigate()
 
+  const Logout = true
 
   // Menu aç/kap func.
   const toggleMenu = () => {
@@ -59,7 +60,7 @@ const Sidebar = ({ menuData, userLogout, title }) => {
 
       {/*logout item */}
       {
-        userLogout && <ul onClick={handleLogout} className='generalSidebar-items-item'>
+        Logout && <ul onClick={handleLogout} className='generalSidebar-items-item'>
           <li className='generalSidebar-items-item-icon'> <CiLogout /> </li>
           <li> Cıkıs Yap </li>
         </ul> 
