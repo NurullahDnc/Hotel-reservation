@@ -7,14 +7,13 @@ import { logout } from '../../redux/UserSlice';
 import { toast } from 'react-toastify';
 
 
-const Sidebar = ({ menuData, title }) => {
+const Sidebar = ({ menuData, userLogout, title, adminLogout }) => {
 
 
   const [openMenu, setOpenMenu] = useState(false)
   const dispatch = useDispatch();
   const router = useNavigate()
 
-  const Logout = true
 
   // Menu aç/kap func.
   const toggleMenu = () => {
@@ -26,6 +25,9 @@ const Sidebar = ({ menuData, title }) => {
     dispatch(logout())
     toast.success("Çıkış İslemi Başarılı")
     router("/")
+    //sayfayı yneile 
+    window.location.reload();
+
   }
 
 
@@ -58,9 +60,17 @@ const Sidebar = ({ menuData, title }) => {
         ))
       }
 
-      {/*logout item */}
+      {/*user logout item */}
       {
-        Logout && <ul onClick={handleLogout} className='generalSidebar-items-item'>
+        userLogout && <ul onClick={handleLogout} className='generalSidebar-items-item'>
+          <li className='generalSidebar-items-item-icon'> <CiLogout /> </li>
+          <li> Cıkıs Yap </li>
+        </ul> 
+      }
+
+        {/*admin logout item */}
+        {
+        adminLogout && <ul onClick={()=> toast.success("admin")} className='generalSidebar-items-item'>
           <li className='generalSidebar-items-item-icon'> <CiLogout /> </li>
           <li> Cıkıs Yap </li>
         </ul> 

@@ -31,7 +31,7 @@
         &-title{
              font-size: $FontSeven;
             font-weight: 500;
-            color: $text-main;
+            color: $text-black;
             @include mobil{
                 font-size: $FontSix;
             }
@@ -43,7 +43,6 @@
             text-indent: 20px;
             line-height: 23px;
             font-size: 17px;
-            color: $text-black;
         }
 
         &-button{

@@ -12,6 +12,7 @@ import Input from '../../general/Input';
 import TextArea from '../../general/TextArea';
 import Button from '../../general/Button';
 import { toast } from 'react-toastify';
+import PageTitle from '../../general/PageTitle';
 
 
 
@@ -33,11 +34,13 @@ const Customers = () => {
   const data = users ? users.map((item) => {
     const statusClass = item?.status === true ? "aktif" : item.status === false ? "Devre Dışı" : "Hata Oluştu";
     const color = item?.status == true ? "green" : item.status == false ? "red" : "black";
+    const firstName = item.firstName === undefined? "Kulanıcı Bulunamadı": item.firstName
+    const lastName = item.lastName === undefined? "": item.lastName
 
 
     return {
       id: item?._id,
-      firstName: item?.firstName + "  " + item?.lastName,
+      firstName: firstName + "  " + lastName,
       email: item?.email,
       createdAt: item?.createdAt,
       status: statusClass,
@@ -164,9 +167,8 @@ const Customers = () => {
 
   return (
     <div>
-      {
-        <>
 
+       
           <Modal
             isOpen={modalOpen}
             title="Mail Gonder"
@@ -176,11 +178,9 @@ const Customers = () => {
             btnNull
             modals
           />
+          <PageTitle title="Kulanıcılar" />
 
           <Table rows={data} columns={columns} />
-
-        </>
-      }
     </div>
   )
 

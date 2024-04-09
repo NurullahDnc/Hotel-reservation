@@ -7,7 +7,7 @@ const ActivityCart = ({ title, text, imgOne, imgTwo, btnText, btnUrl }) => {
     useEffect(() => {
 
         ScrollReveal().reveal('.ActivityCart-right-image', {
-            duration: 1500,
+            duration: 1100,
             scale: 0.5,
             easing: 'ease-in-out',
             interval: 500

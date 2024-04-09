@@ -31,7 +31,40 @@ $text-black: #000000;
 $text-gray: #454544;
 $text-btn: orange;
 
+body.dark-mode {
+    background-color: $bg-blackTwo;
+    color: $text-white;
 
+    // Buton Rengi
+ 
+
+    // Arka Plan Rengi
+    .bg-light {
+        background-color: darken($bg-light, 20%); // Arka plan rengini koyulaştır
+    }
+
+    // Ana Metin Rengi
+    .text-main {
+        color: $text-white; // Ana metin rengi
+    }
+
+    // Ek Metin Renkleri
+    .text-whiteTwo {
+        color: $text-whiteTwo; // Ek metin rengi
+    }
+
+    .text-black {
+        color: $text-black; // Siyah metin rengi
+    }
+
+    .text-gray {
+        color: $text-gray; // Gri metin rengi
+    }
+
+    .text-btn {
+        color: $text-btn; // Buton metin rengi
+    }
+}
 
 /*
 

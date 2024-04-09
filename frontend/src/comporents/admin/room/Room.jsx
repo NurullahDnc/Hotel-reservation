@@ -14,6 +14,7 @@ import Button from '../../general/Button';
 import TextArea from '../../general/TextArea';
 
 import { toast } from 'react-toastify';
+import PageTitle from '../../general/PageTitle';
 
 
 const Room = () => {
@@ -218,7 +219,8 @@ const Room = () => {
 
             />
 
-            Rezervasyon
+            <PageTitle title="Odalar" />
+
             <Table rows={data} columns={columns} />
 
             <Button btnText="Oda Oluştur" small onSubmit={() => setCreateOpen(true)} />

@@ -6,6 +6,7 @@ import { getReservation } from '../../../redux/ReservationSlice';
 import { FaCheckCircle } from "react-icons/fa";
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import PageTitle from '../../general/PageTitle';
 
 
 const Reservation = () => {
@@ -22,10 +23,12 @@ const Reservation = () => {
         // Status'a göre sınıf adını belirle
         const statusClass = item.status === 'pending' ? 'bekleniyor' : item.status === 'approved' ? 'onaylandı' : item.status === 'cancelled' ? 'iptal-edildi' : item.status === 'reject' ? "Reddedildi" : "";
         const color = item.status === 'pending' ? 'yellow' : item.status === 'approved' ? 'green' : item.status === 'cancelled' ? 'red' : '';
+        const firstName = item.user?.firstName === undefined? "Kulanıcı Bulunamadı": item.user?.firstName
+        const lastName = item.user?.lastName === undefined? "": item.user?.lastName
 
         return {
             id: item?._id,
-            firstName: item.user?.firstName + "  " + item.user?.lastName,
+            firstName: firstName + "  " + lastName,
             email: item.user?.email,
             category: item.room?.category,
             description: item.description,
@@ -183,7 +186,8 @@ const Reservation = () => {
 
     return (
         <div>
-            Rezervasyon
+           <PageTitle title="Rezervasyonlar" />
+
             <Table rows={data} columns={columns} />
         </div>
     );

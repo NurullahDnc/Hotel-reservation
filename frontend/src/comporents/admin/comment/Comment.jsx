@@ -6,6 +6,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import axios from 'axios';
 import { getComment } from '../../../redux/CommentSlice';
 import { toast } from 'react-toastify';
+import PageTitle from '../../general/PageTitle';
 
 
 const  Comment = () => {
@@ -23,10 +24,12 @@ const  Comment = () => {
 
         const statusClass = item.status ? 'onaylandı' : 'Bekleniyor';
         const color = item.status ? 'green' : 'red';
+        const firstName = item.user?.firstName === undefined? "Kulanıcı Bulunamadı": item.user?.firstName
+        const lastName = item.user?.lastName === undefined? "": item.user?.lastName
 
         return {
             id: item._id,
-            firstName: item.user?.firstName + "  " + item.user?.lastName,
+            firstName: firstName + "  " + lastName,
             email: item.user?.email,
             description: item.description,
             rating: item.rating,    
@@ -106,7 +109,8 @@ const  Comment = () => {
 
     return (
         <div>
-            Yorumlar
+            <PageTitle title="Yorumlar" />
+
             <Table rows={data} columns={columns} />
         </div>
     );

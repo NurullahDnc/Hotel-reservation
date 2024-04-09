@@ -18,10 +18,9 @@ const About = () => {
             />
 
             <div className='about-grid'>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} md={7} className='about-grid-1'>
+                     <Grid item xs={12} md={7} className='about-grid-1'>
                         <img
-                            src="./image/about.jpg"
+                            src="https://yapigundem.com/wp-content/uploads/2023/08/yeni-donemde-145-yeni-otel-hizmete-acilacak-1.jpeg"
                             alt="about-image"
                             className="about-grid-1-image"
                         />
@@ -34,8 +33,7 @@ const About = () => {
                             <PhoneIcon style={{ marginRight: '8px', color: 'blue' }} /> {phoneNumber}
                         </div>
                     </Grid>
-                </Grid>
-            </div>
+             </div>
         </div>
     );
 };

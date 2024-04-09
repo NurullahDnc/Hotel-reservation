@@ -10,6 +10,7 @@ import Button from '../../general/Button';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import PageTitle from '../../general/PageTitle';
 
 
 const Gallery = () => {
@@ -197,7 +198,8 @@ const Gallery = () => {
 
             />
 
-            Gallery
+            <PageTitle title="Galeri" />
+
             <Table rows={data} columns={columns} />
 
             <Button btnText="Oda Oluştur" small onSubmit={() => setCreateOpen(true)} />

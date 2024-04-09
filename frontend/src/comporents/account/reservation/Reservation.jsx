@@ -7,6 +7,7 @@ import Loading from '../../Loading'
 import { FaCheckCircle, FaTimes } from 'react-icons/fa'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import PageTitle from '../../general/PageTitle'
 
 const Reservation = () => {
 
@@ -24,7 +25,7 @@ const Reservation = () => {
     { title: "Durumu" },
     { title: "İptal et" },
 
-];
+  ];
 
 
   const reservation = useSelector((state) => state.getReservation.userReservation);
@@ -50,7 +51,6 @@ const Reservation = () => {
     }
   }, [dispatch, user]);
 
-  console.log(reservation);
 
   //tablo comps. title degisken olarak gonderiyorum
   const titleElement = (
@@ -62,44 +62,51 @@ const Reservation = () => {
   );
 
   //tablo comps. body degisken olarak gonderiyorum
-  const bodyElement = reservation.map((row, index) => (
-    <tr key={index} style={{ display: "flex" }}>
-      <td><img src={"../image/ozel3.jpg"} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="as" /></td>
-      <td>{row.room?.category}</td>
-      <td>{row.numberOfGuests}</td>
-      <td>{row.description}</td>
+  const bodyElement = reservation.length > 0 ? (
+    reservation.map((row, index) => (
+      <tr key={index} style={{ display: "flex" }}>
+        <td><img src={"../image/ozel3.jpg"} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="as" /></td>
+        <td>{row.room?.category}</td>
+        <td>{row.numberOfGuests}</td>
+        <td>{row.description}</td>
 
-      <td>{row.checkInDate}</td>
-      <td>{row.checkOutDate}</td>
-      <td>{row.createdAt}</td>
-      <td>{row.dayCount}</td>
-      <td>{row.totalPrice}</td>
+        <td>{row.checkInDate}</td>
+        <td>{row.checkOutDate}</td>
+        <td>{row.createdAt}</td>
+        <td>{row.dayCount}</td>
+        <td>{row.totalPrice}</td>
 
-      <td style={{ color: row.status === "pending" ? "gold" : row.status === "cancelled" ? "red" : row.status === "approved" ? "green" : "black" }}>
-        {row.status === "pending" ? "Bekleniyor" : row.status === "cancelled" ? "iptal edildi" : row.status === "approved" ? "Onaylandı" : row.status === "reject" ? "Reddedildi" : ""}
+        <td style={{ color: row.status === "pending" ? "gold" : row.status === "cancelled" ? "red" : row.status === "approved" ? "green" : "black" }}>
+          {row.status === "pending" ? "Bekleniyor" : row.status === "cancelled" ? "iptal edildi" : row.status === "approved" ? "Onaylandı" : row.status === "reject" ? "Reddedildi" : ""}
 
-      </td>
-      <td style={{ color: "red", cursor: "pointer" }} onClick={() => handleReject(row._id)}><FaTimes size={27} /></td>
+        </td>
+        <td style={{ color: "red", cursor: "pointer" }} onClick={() => handleReject(row._id)}><FaTimes size={27} /></td>
 
+      </tr>
+    )
+    )) : (
+    <tr>
+      <td colSpan="6" style={{ textAlign: "center" }}>Rezervasyonunuz Bulunmamaktadır</td>
     </tr>
-  ))
+  )
 
 
   //rezervasyon iptal etme
-  const handleReject = async (id) =>{
+  const handleReject = async (id) => {
 
     try {
       const response = await axios.post(`http://localhost:5000/reservation/cancelled/${id}`);
       toast.success(response.data.message);
-  } catch (error) {
+    } catch (error) {
       toast.error(error.response.data.error);
 
-  }
+    }
 
   }
 
   return (
     <div>
+      <PageTitle title="Rezervasyon" />
       {
         reservationStatus === "LOADING" ? <Loading /> :
           <>

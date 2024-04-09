@@ -12,6 +12,7 @@ import TextArea from '../../general/TextArea';
 
 import { toast } from 'react-toastify';
 import { getActivity } from '../../../redux/ActivitySlice';
+import PageTitle from '../../general/PageTitle';
 
 
 const Activity = () => {
@@ -46,7 +47,7 @@ const Activity = () => {
     const columns = useMemo(() => [
    
         { field: 'title', headerName: 'Başlık', width: 150 },
-        { field: 'description', headerName: 'Açıklama', width: 250 },
+        { field: 'description', headerName: 'Açıklama', width: 350 },
         {
             field: 'imgOne',
             headerName: 'Resim1',
@@ -209,7 +210,7 @@ const Activity = () => {
 
             />
 
-            Aktiviteler
+            <PageTitle title="Aktiviteler" />
             <Table rows={data} columns={columns} />
 
             <Button btnText="activity Oluştur" small onSubmit={() => setCreateOpen(true)} />

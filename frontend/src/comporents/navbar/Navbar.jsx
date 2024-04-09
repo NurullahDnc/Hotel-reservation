@@ -9,7 +9,7 @@ import { toggleDarkMode } from '../../redux/DarkModeSlice';
 import { useTranslation } from 'react-i18next';
 import { loginModalFun, registerModalFun } from '../../redux/ModalSlice';
 import { getUser, logout } from '../../redux/UserSlice';
-import {useCookies} from 'react-cookie'
+import { useCookies } from 'react-cookie'
 import { toast } from 'react-toastify';
 import AuthManager from '../account/AuthManager';
 import DatePicker from 'react-datepicker';
@@ -32,38 +32,42 @@ const Navbar = () => {
   const [currentDate, setCurrentDate] = useState('');
   const [selectLanguage, setSelectLanguage] = useState("Tr")
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.getUser.user);  
+  const user = useSelector((state) => state.getUser.user);
   const router = useNavigate();
   const [cookies] = useCookies(['jwt']);
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
   const { t, i18n } = useTranslation();
-  const [startDate, setStartDateLocal] = useState(null);
-  const [endDate, setEndDateLocal] = useState(null);
-  
+
   const clickHandle = async (lang) => {
     await i18n.changeLanguage(lang);
   };
- 
-  
-  //tarih icin
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  // Bugünkü tarihi al, useState at
   useEffect(() => {
-    // Bugünkü tarihi al, usestate at
-    const today = new Date().toISOString().split("T")[0];
-    setCurrentDate(today);
+    const today = new Date();
+    setStartDate(today);
+
+    // Çıkış tarihini başlangıç tarihine 2 gün ekleyerek ayarla
+    const twoDaysLater = new Date(today);
+    twoDaysLater.setDate(today.getDate() + 2);
+    setEndDate(twoDaysLater);
   }, []);
-  
+
+
   //isdarkmode degisklik oldugunda, body den dark-mode kaldır
   useEffect(() => {
     // useEffect içinde body'ye sınıf ekleyip çıkarma işlemi
     document.body.classList.toggle('dark-mode', isDarkMode);
   }, [isDarkMode]);
-    
-  
+
+
   //sol menu ac kapa
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen)
   }
-  
+
   //rezervasyon ac kapa
   const toogleReservation = () => {
     setReservationIsOpen(!reservationIsOpen)
@@ -71,20 +75,20 @@ const Navbar = () => {
   //user ac kapa
   const toggleUser = () => {
     setUserOpen(!isUserOpen);
-    
+
   }
-  
+
   //darkmode icin redux'daki func. tetikliyor
   const toggleDark = () => {
     dispatch(toggleDarkMode());
-    
+
   }
-  
-  
+
+
   return (
     <div className='navbar'>
       <AuthManager />
-      
+
       {/*solda acılır kapanır menu */}
       <div className={`navbar-isMenu ${isMenuOpen ? `navbar-isOpen` : `""`} `}>
         <div className='navbar-isMenu-item'>
@@ -120,39 +124,32 @@ const Navbar = () => {
           </select>
 
           <DatePicker
-          className='inputs-input'
-          selected={startDate}
-          onChange={(date) => {
-            setStartDateLocal(date);
-            // setStartDate(date);
-          }}
-          selectsStart
-          startDate={startDate}
-          endDate={endDate}
-          placeholderText="Giriş Tarihi"
-          
-        />
+            className='inputs-input'
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            minDate={startDate}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
+            placeholderText="Giriş Tarihi"
+          />
+          <DatePicker
+            className='inputs-input'
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            selectsEnd
+            startDate={startDate}
+            endDate={endDate}
+            minDate={startDate}
+            placeholderText="Çıkış Tarihi"
+          />
 
-        <DatePicker
-          className='inputs-input'
-          selected={endDate}
-          onChange={(date) => {
-            setEndDateLocal(date);
-            // setEndDate(date);
-          }}
-          selectsEnd
-          startDate={startDate}
-          endDate={endDate}
-          minDate={startDate}
-          placeholderText="Çıkış Tarihi"
-        />
-
-        <button onClick={() => { 
+          <button onClick={() => {
             router("/odalar");
-            setReservationIsOpen(!reservationIsOpen); 
-        }}>
+            setReservationIsOpen(!reservationIsOpen);
+          }}>
             Oda Ara
-        </button>
+          </button>
 
         </div>
       </div>
@@ -175,8 +172,8 @@ const Navbar = () => {
 
             {/*user icon ve aç kapa bolumu */}
             <li className='navbar-container-right-user'>
-                 <FaRegUser onClick={toggleUser} className='navbar-container-right-user-icon' size={23} />
-               <ul className={`navbar-container-right-user-item ${isUserOpen ? "isUser" : ""} `}>
+              <FaRegUser onClick={toggleUser} className='navbar-container-right-user-icon' size={22} />
+              <ul className={`navbar-container-right-user-item ${isUserOpen ? "isUser" : ""} `}>
 
                 {/*modal acıyor, tıklandıktan sonra user open kapatıyor */}
                 {

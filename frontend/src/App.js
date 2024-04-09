@@ -1,5 +1,5 @@
 import MainLayout from "./layout/MainLayout";
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route, BrowserRouter as Router, } from 'react-router-dom';
 import Home from "./pages/Home";
 import Navbar from "./comporents/navbar/Navbar";
@@ -33,18 +33,25 @@ import FeedbackPage from "./pages/admin/FeedbackPage";
 import GalleryAdminPage from "./pages/admin/GalleryPage";
 import ActivitiesAdminPage from "./pages/admin/ActivitiesPage";
 import RestaurantAdminPage from "./pages/admin/RestaurantPage";
-
-
-
-
-
+import Loading from "./comporents/Loading";
 
 
 
  function App() {
 
+  const  [status, setStatus] = useState(false);
+
+  
+  useEffect(()=>{
+    setStatus(true)
+  },[status])
+
+
   return (
     <div className="App">
+    
+    {status === false ? <Loading /> : null} 
+
     <ToastContainer position="top-right" reverseOrder={false} />
 <Register />
 <Login />

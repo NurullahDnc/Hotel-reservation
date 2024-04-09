@@ -3,6 +3,7 @@ import Table from '../../general/Table'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRoom } from '../../../redux/RoomSlice'
 import Loading from '../../Loading';
+import PageTitle from '../../general/PageTitle';
 const Room = () => {
 
     const roomTitle = [
@@ -49,14 +50,15 @@ const Room = () => {
 
     return (
         <div>
+            <PageTitle title="Odalar" />
             <div>
-                {roomStatus === 'LOADING' ? <Loading />:
-                <>
-                    <Table titleElement={titleElement} bodyElement={bodyElement} />
+                {roomStatus === 'LOADING' ? <Loading /> :
+                    <>
+                        <Table titleElement={titleElement} bodyElement={bodyElement} />
 
-                </>
-                
-            }
+                    </>
+
+                }
             </div>
         </div>
     )

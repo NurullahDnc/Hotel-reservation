@@ -1,7 +1,6 @@
 .comment-container {
-  margin-top: 8vw;
+  margin-top: 4vw;
   font-family: $FontFamilyOne;
-
   .comment-header {
     color: #1a1a1a;
     margin-bottom: 1.5rem;
@@ -13,13 +12,11 @@
   }
 
   .comment-scroll-container {
-    overflow-x: auto;
     white-space: nowrap;
-    background-color: #f4f4f4;
-    border-radius: 2vw;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2vw;
+     border-radius: 2vw;
+     margin-bottom: 2vw;
     padding: 1vw;
+    
 
     .comment-ul {
       width: 100%;
@@ -28,21 +25,27 @@
       display: flex;
       flex-wrap: nowrap;
       gap: 2vw;
+      padding-right: 5rem;
+      
     }
 
     .comment-ul-item {
-      background-color: #fff;
-      width: calc(33.333% - 2vw);
+      
+      // background-color: #fff;
+      width: 100%;
       flex-shrink: 0;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px rgba(25, 77, 233, 0.1);
       border-radius: 2vw;
-      padding: 2vw;
+      padding: 15px;
       transition: box-shadow 0.3s ease-in-out;
+      height: 270px;
+      overflow: hidden;
 
-      @include mobil{
-      width: calc(50.333% - 2vw);
-
+      @include mobil {
+        padding: 8px;
+        height: 170px;
       }
+ 
 
       &:hover {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -64,39 +67,50 @@
       }
 
       &-userName {
-        font-size: 1.5vw;
-        font-weight: bold;
-        color: #1a1a1a;
+        font-size: 1rem;
+        color: black;
         margin-bottom: 0.5vw;
         display: block;
 
         @include mobil {
-          font-size: 15px;
+          font-size: 10px;
         }
       }
 
       &-meta {
         color: #555;
         font-size: 1vw;
-        margin-bottom: 1vw;
+        margin: 6px 0;
         display: block;
 
         @include mobil {
+        margin: 3px 0;
           font-size: 8px;
+        }
+      }
+
+      &-category {
+        color: #555;
+        font-size: 1vw;
+        margin: 6px 0;
+        display: block;
+
+        @include mobil {
+          font-size: 10px;
         }
       }
 
       &-content {
         min-height: 100px;
-        color: #333;
-        font-size: 1vw;
+        color: gray;
+        font-size: 14.6px;
         margin-bottom: 1vw;
         line-height: 1.4;
         display: block;
-        text-indent: 15px;
+        text-indent: 10px;
 
         @include mobil {
-          font-size: 11px;
+          font-size: 9px;
         }
 
       }
@@ -104,10 +118,16 @@
       &-rating {
         display: flex;
         align-items: center;
+        padding: 3px 0;
+        margin-bottom: 5px;
 
         .star-icon {
           color: #ccc;
-          margin-right: 1vw;
+          margin-right: 5px;
+        }
+
+          @include mobil {
+          font-size: 10px;
         }
       }
 
@@ -175,10 +195,14 @@
           color: #f39c12;
           margin-top: 4px;
           margin-bottom: 6px;
-          font-size: 2vw;
+          font-size: 1.5vw;
           margin-right: 0.5vw;
           cursor: pointer;
           transition: color 0.3s;
+
+          @include mobil{
+            font-size: 1.2rem;
+          }
         }
 
         .star-icon:hover,

@@ -11,14 +11,13 @@ import Button from '../../general/Button';
 import TextArea from '../../general/TextArea';
 
 import { toast } from 'react-toastify';
-import { getActivity } from '../../../redux/ActivitySlice';
-import { getRestaurant } from '../../../redux/RestaurantSlice';
+ import { getRestaurant } from '../../../redux/RestaurantSlice';
+import PageTitle from '../../general/PageTitle';
 
 
 const Restaurant = () => {
     const restaurant = useSelector((state) => state.getRestaurant.restaurant);
-    const restaurantStatus = useSelector((state) => state.getRestaurant.restaurantStatus);
-    const dispatch = useDispatch();
+     const dispatch = useDispatch();
     const [createOpen, setCreateOpen] = useState(false);
     const [updateOpen, setUpdateOpen] = useState(false);
     const [selectedActivity, setSelectedActivity] = useState(null);
@@ -28,8 +27,7 @@ const Restaurant = () => {
         dispatch(getRestaurant());
     }, [dispatch]);
     
-    console.log("restaurantStatus,", restaurantStatus);
-
+ 
     //tabloda oda ozekikleri
     const data = restaurant && restaurant.map((item) => {
         
@@ -210,7 +208,8 @@ const Restaurant = () => {
 
             />
 
-            Restorant
+            <PageTitle title="Restorant" />
+
             <Table rows={data} columns={columns} />
 
             <Button btnText="Restorant Oluştur" small onSubmit={() => setCreateOpen(true)} />

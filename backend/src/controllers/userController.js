@@ -189,6 +189,9 @@ export const googleAuth = async (req, res) => {
             email
         });
 
+        if (user) {
+            console.log("user var ", user);
+        }
 
 
         if (user && user.status === false) {

@@ -10,6 +10,7 @@ import TextArea from '../../general/TextArea'
 import { useForm } from 'react-hook-form';
 import Button from '../../general/Button';
 import Input from '../../general/Input';
+import PageTitle from '../../general/PageTitle';
 
 
 
@@ -116,7 +117,7 @@ const Feedback = () => {
                 btnNull
                 modals
             />
-            Geri Bildirimler
+            <PageTitle title="Geri bilidirimler" />
             <Table rows={data} columns={columns} />
         </div>
     );

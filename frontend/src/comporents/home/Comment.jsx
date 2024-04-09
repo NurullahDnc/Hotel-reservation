@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
@@ -16,6 +20,7 @@ import Button from '../general/Button';
 
 
 import { useForm } from 'react-hook-form';
+import Heading from '../general/Heading';
 
 const Comment = () => {
     const { t } = useTranslation();
@@ -74,39 +79,70 @@ const Comment = () => {
 
 
 
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 4,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 3,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 2,
+                }
+            }
+        ]
+    };
+    
+
     return (
         <div className="comment-container">
-            <h2 className='comment-header'>{t('comments')}</h2>
+            <Heading title="Yorumlar" />
 
-            <div className="comment-scroll-container">
-                <ul className='comment-ul'>
+                <Slider {...settings}>
                     {commentAccepted.map((comment, index) => (
-                        <li key={index} className="comment-ul-item">
-                            <strong className="comment-ul-item-userName">{comment.user?.firstName} {comment.user?.lastName}  </strong>
+            <div className="comment-scroll-container">
+                        <div key={index} className="comment-ul-item"  >
+                            <strong className="comment-ul-item-userName"> {comment.user?.firstName || comment.user?.lastName ? `${comment.user?.firstName} ${comment.user?.lastName}` : "isimsiz Kulanıcı"}</strong>
                             <span className="comment-ul-item-meta">{comment.createdAt}</span>
-                            <p>Oda Tipi: { comment?.room?.category}</p>
-                            <div className="comment-ul-item-content">
-                                {comment && comment.description && comment.description.length > 100 ? (
-                                    `${comment.description.slice(0, 100)}...`
-                                ) : (
-                                    comment.description
-                                )}
-                            </div>
-
-
                             <span className="comment-ul-item-rating">
                                 {[...Array(5)].map((_, i) => (
                                     <FontAwesomeIcon
                                         key={i}
                                         icon={i < comment.rating ? solidStar : regularStar}
                                         className="star-icon"
+                                        
                                     />
                                 ))}
                             </span>
-                        </li>
-                    ))}
-                </ul>
+                            <p className='comment-ul-item-category'>Oda Tipi: { comment?.room?.category}</p>
+
+                            <div className="comment-ul-item-content">
+                                {comment && comment.description && comment.description.length > 100 ? (
+                                    `${comment.description.slice(0, 140)}...`
+                                ) : (
+                                    comment.description
+                                )}
+                            </div>
+
+
+                        </div>
             </div>
+                    ))}
+                </Slider>
 
             {
                 <form onSubmit={handleSubmit(onSubmit)}>

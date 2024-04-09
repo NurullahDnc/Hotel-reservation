@@ -14,6 +14,7 @@ import Input from '../../general/Input';
 import Button from '../../general/Button';
 import Select from '../../general/Select';
 import TextArea from '../../general/TextArea';
+import PageTitle from '../../general/PageTitle';
 
 
 
@@ -117,12 +118,12 @@ const Comment = () => {
                 <th key={i} style={{ flex: 1 }}>{item.title}</th>
             ))}
         </tr>
-    );
+    ); 
 
     const bodyElement = comment.length > 0 ? (
         comment.map((item, index) => (
             <tr key={item._id} style={{ display: "flex" }}>
-                <td>{item.user.firstName + " " + item.user.lastName}</td>
+                <td>{item.user.firstName }</td>
                 <td>{item.description}</td>
                 <td>{item.rating}</td>
                 <td style={{ color: item.status === false ? "red" : item.status === true ? "green" : "" }}>
@@ -167,7 +168,7 @@ const Comment = () => {
 
                 />
 
-                yorumlar
+                <PageTitle title="Yorumlarım" />
                 <Table titleElement={titleElement} bodyElement={bodyElement} />
 
 
