@@ -31,7 +31,6 @@ const Reservation = () => {
   const reservation = useSelector((state) => state.getReservation.userReservation);
   const reservationStatus = useSelector((state) => state.getReservation.reservationStatus);
 
-  console.log("rezervasyon", reservation);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.getUser.user);
@@ -65,7 +64,7 @@ const Reservation = () => {
   const bodyElement = reservation.length > 0 ? (
     reservation.map((row, index) => (
       <tr key={index} style={{ display: "flex" }}>
-        <td><img src={"../image/ozel3.jpg"} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="as" /></td>
+        <td><img src={row.room?.image} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="as" /></td>
         <td>{row.room?.category}</td>
         <td>{row.numberOfGuests}</td>
         <td>{row.description}</td>

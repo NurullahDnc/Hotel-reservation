@@ -125,15 +125,14 @@ const RoomCart = ({ roomInfo }) => {
 
         } catch (error) {
             toast.error("Rezervasyon oluşturulurken bir hata oluştu");
-            console.log(error);
-        }
+         }
 
     };
 
     const bodyElement = (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-                <Input id="numberOfGuests" disapled title="Seçilen Oda" type="number" placeholder={selectedRoom?.category} register={register} errors={errors} required />
+                <Input id="roomType" disapled title="Seçilen Oda" type="number" placeholder={selectedRoom?.category} register={register} errors={errors} required />
                 
                 <Input id="numberOfGuests" title="Misafir Sayısı" maxLength={selectedRoom?.capacity} type="number" placeholder="Misafir Giriniz" register={register} errors={errors} required />
 

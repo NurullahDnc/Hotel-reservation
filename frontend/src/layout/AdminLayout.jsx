@@ -16,7 +16,7 @@ import { MdFeedback } from "react-icons/md";
 const AdminLayout = ({ children }) => {
 
   const data = [
-    { "name": "Dashboard", url: "/admin", icon: FaUser },
+    { "name": "Dashboard", url: "/admin/dashboard", icon: FaUser },
     { "name": "Rezervasyonlar", url: "/admin/Reservations", icon: HiPencilSquare },
     { "name": "Odalar", url: "/admin/room", icon: FaCheckCircle },
     { "name": "Müşteriler", url: "/admin/customers", icon: FaBed },
@@ -35,6 +35,8 @@ const AdminLayout = ({ children }) => {
   return (
     <>
       <Navbar user="admin" />
+
+      
       <div className="profile-content">
         <Sidebar menuData={data} title="Admin Panel" adminLogout />
         <div className='profile-content-children'>

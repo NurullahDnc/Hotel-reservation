@@ -33,6 +33,7 @@ export const getUser = createAsyncThunk("getUser", async () => {
 
     try {
         const response = await axios.get('http://localhost:5000/user');
+        console.log(response);
         return response.data;
     } catch (error) {
         throw Error("Failed to fetch rooms");

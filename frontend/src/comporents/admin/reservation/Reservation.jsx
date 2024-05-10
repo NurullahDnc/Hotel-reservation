@@ -7,6 +7,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import PageTitle from '../../general/PageTitle';
+import AuthManager from '../AuthManager';
 
 
 const Reservation = () => {
@@ -186,6 +187,8 @@ const Reservation = () => {
 
     return (
         <div>
+                  <AuthManager />
+
            <PageTitle title="Rezervasyonlar" />
 
             <Table rows={data} columns={columns} />

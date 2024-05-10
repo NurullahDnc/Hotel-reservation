@@ -96,7 +96,7 @@ const loginUser = async (req, res) => {
 
         //kulanıcının ıd gore token olusturuyor.
         const accessToken = createAccessToken({
-            id: user._id
+            id: user._id 
         });
 
         // Yenileme tokeninin kullanıcıya gönderilmesi, X
@@ -121,6 +121,54 @@ const loginUser = async (req, res) => {
         })
     }
 
+}
+
+const adminLogin = async (req, res) => {
+    try {
+
+        const {
+            email,
+            password
+        } = req.body
+
+        const user = await User.findOne({
+            email: email
+        })
+
+         
+        if (!user &&  user.role != "admin") {
+            res.status(400).json({
+                succeded: false,
+                error: "Kulanıcı adı veya sifre hatalıdır"
+            })
+        } 
+
+        const validPassword = await bcrypt.compare(password, user.password);
+        
+        if(!validPassword){
+            res.status(400).json({
+                succeded: false,
+                error: "Kulanıcı adı veya sifre hatalıdır"
+            })
+        }
+
+        const accessToken = createAccessToken({
+            id: user._id
+        });
+
+        res.status(200).json({
+            success: true,
+            accessToken,
+            message: "Giriş başarılı"
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            succeded: false,
+            error: error.message
+        })
+    }
 }
 
 const getuser = async (req, res) => {
@@ -286,5 +334,6 @@ export {
     loginUser,
     getuser,
     activateUserAccount,
-    deactivateUserAccount
+    deactivateUserAccount,
+    adminLogin
 }

@@ -223,11 +223,11 @@ const Navbar = () => {
                 <option value="en">En</option>
               </select>
             </li>
-            <li onClick={toggleDark} className='navbar-container-right-darkMode'>
+            {/* <li onClick={toggleDark} className='navbar-container-right-darkMode'>
               {
                 isDarkMode ? <MdDarkMode size={22} /> : <MdOutlineDarkMode size={22} />
               }
-            </li>
+            </li> */}
           </ul>
 
         </div>

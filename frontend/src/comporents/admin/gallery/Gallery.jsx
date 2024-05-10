@@ -140,7 +140,6 @@ const Gallery = () => {
 
 
     const gallerUpdate = async (data) => {
-        console.log("as", data);
         const formData = new FormData();
         
         formData.append('image', data.image[0]);

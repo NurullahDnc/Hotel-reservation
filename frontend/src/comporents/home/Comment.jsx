@@ -35,7 +35,6 @@ const Comment = () => {
     const rooms = useSelector((state) => state.getRoom.rooms);
     const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
-    console.log("commentAccepted", commentAccepted);
 
     useEffect(() => {
         dispact(getAcceptedComments())

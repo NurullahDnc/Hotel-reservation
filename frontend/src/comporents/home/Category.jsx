@@ -27,7 +27,6 @@ const Category = () => {
        dispatch(getRoom());
    }, [dispatch]);
 
-   console.log("rooms", rooms);
     return (
 
         <div className='Category'>

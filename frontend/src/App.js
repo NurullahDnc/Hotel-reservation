@@ -34,6 +34,7 @@ import GalleryAdminPage from "./pages/admin/GalleryPage";
 import ActivitiesAdminPage from "./pages/admin/ActivitiesPage";
 import RestaurantAdminPage from "./pages/admin/RestaurantPage";
 import Loading from "./comporents/Loading";
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
 
 
 
@@ -78,6 +79,7 @@ import Loading from "./comporents/Loading";
             }
           />
   
+  <Route path="/adminLogin" element={<AdminLoginPage />} />
 
           <Route
             path="/admin/*"
@@ -85,7 +87,7 @@ import Loading from "./comporents/Loading";
               <AdminLayout > 
                 <Routes>
 
-                  <Route path="/" element={<DashboardPage />} />
+                  <Route path="/dashboard" element={<DashboardPage />} />
                   <Route path="/Reservations" element={<ReservationsPage />} />
                   <Route path="/Room" element={<RoomAdminPage />} />
                   <Route path="/customers" element={<CustomersPage />} />

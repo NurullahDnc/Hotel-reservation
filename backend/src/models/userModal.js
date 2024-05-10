@@ -28,6 +28,11 @@ const userSchema = new Schema({
         enum: [true, false],
         default: "true",
     },
+    role:{
+        type: String,
+        enum: ["admin", "user"],
+        default: "user"
+    },
     googleId: String // Google ile giriş yapan kullanıcılar için Google ID
 
 }, {

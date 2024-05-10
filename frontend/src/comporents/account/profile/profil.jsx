@@ -16,6 +16,8 @@ const Profile = () => {
   const userStatus = useSelector((state) => state.getUser.userStatus);
 
   const dispact = useDispatch()
+  
+  console.log("useracc", user);
 
   useEffect(() => {
     dispact(getUserInfo())
