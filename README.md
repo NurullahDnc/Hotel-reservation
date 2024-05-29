@@ -16,13 +16,11 @@
 
   <hr/>
   
-  ![Ekran görüntüsü 2024-05-29 195802](https://github.com/NurullahDnc/Hotel-reservation/assets/150585098/734191f1-fc7a-495e-a1ad-7266f814c132)
-
+  ![Ekran görüntüsü 2024-05-29 200453](https://github.com/NurullahDnc/Hotel-reservation/assets/150585098/73773549-ed3a-41ad-9142-6795bed07e44)
 
   <hr/>
   
-  ![Ekran görüntüsü 2024-05-29 195818](https://github.com/NurullahDnc/Hotel-reservation/assets/150585098/072b84af-fc01-4da9-91cc-a1752361f9fe)
-
+  ![Ekran görüntüsü 2024-05-29 200511](https://github.com/NurullahDnc/Hotel-reservation/assets/150585098/c42858ec-8a7b-4207-bfe6-ce6416d33da7)
 
   <hr/>
   
