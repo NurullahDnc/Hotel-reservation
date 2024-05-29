@@ -60,7 +60,7 @@ const Contact = () => {
       try {
 
         setInputData({ surname: "", mail: "", text: "" })
-        const res = await axios.post("http://localhost:5000/feedback/create", inputData)
+        const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/feedback/create`, inputData)
         toast.success("Mesajınız başarılı bir şekilde gönderildi", res);
 
       } catch (error) { 

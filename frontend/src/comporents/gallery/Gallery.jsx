@@ -14,7 +14,7 @@ const MyGallery = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/gallery`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/gallery`);
         setGallery(response.data.data);
          setImagesLoaded(true);
       } catch (error) {

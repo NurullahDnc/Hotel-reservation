@@ -131,7 +131,7 @@ const Reservation = () => {
 
         try {
             //rezervasyon onaylanınca müsteriye mail gonderme
-            const response = await axios.post(`http://localhost:5000/sendMail`, approveMail);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/sendMail`, approveMail);
             toast.success(response.data.message);
 
         } catch (error) {
@@ -139,7 +139,7 @@ const Reservation = () => {
         }
 
         try {
-            const response = await axios.post(`http://localhost:5000/reservation/Approved/${id}`);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/reservation/Approved/${id}`);
             toast.success(response.data.message);
         } catch (error) {
             toast.error(error.response.data.error);
@@ -168,7 +168,7 @@ const Reservation = () => {
 
         try {
             //rezervasyon onaylanınca müsteriye mail gonderme
-            const response = await axios.post(`http://localhost:5000/sendMail`, rejectMail);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/sendMail`, rejectMail);
             toast.success(response.data.message);
             
         } catch (error) {
@@ -176,7 +176,7 @@ const Reservation = () => {
         }
 
         try {
-            const response = await axios.post(`http://localhost:5000/reservation/reject/${row.id}`);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/reservation/reject/${row.id}`);
             toast.success(response.data.message);
 
         } catch (error) {

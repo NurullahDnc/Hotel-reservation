@@ -98,7 +98,7 @@ const Room = () => {
     //delete func.
     const handleDelete = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:5000/room/delete/${id}`);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/room/delete/${id}`);
             toast.success(response.data.message)
         } catch (error) {
             toast.error(error.response.data.error);
@@ -126,7 +126,7 @@ const Room = () => {
         
         try {
             setUpdateOpen(false);
-            const response = await axios.post(`http://localhost:5000/room/create`, formData);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/room/create`, formData);
             toast.success(response.data.message)
 
         } catch (error) {
@@ -146,7 +146,7 @@ const Room = () => {
        
  
         try {
-            const response = await axios.put(`http://localhost:5000/room/update/${data.id}`, formData);
+            const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/room/update/${data.id}`, formData);
             toast.success(response.data.message)
             setUpdateOpen(false); 
 

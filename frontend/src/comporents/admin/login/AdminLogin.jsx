@@ -15,7 +15,7 @@ const AdminLogin = () => {
 
   const onSubmit = async data => {
 
-    const response = await axios.post("http://localhost:5000/user/admin", data)
+    const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/user/admin`, data)
       try {
         toast.success(response.data.message);
         const token = response.data.accessToken;

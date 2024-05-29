@@ -14,7 +14,7 @@ const initialState ={
 export const getFeedback = createAsyncThunk("getFeedback", async () => {
 
     try {
-        const response = await axios.get('http://localhost:5000/feedback');
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/feedback`);
         return response.data.data;
     } catch (error) {
         throw Error("error");

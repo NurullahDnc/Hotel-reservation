@@ -123,7 +123,7 @@ const Customers = () => {
   //kulanıcı ban kaldırıyor
   const userActive = async (id) => {
     try {
-      const response = await axios.post(`http://localhost:5000/user/active/${id}`);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/user/active/${id}`);
       toast.success(response.data.message)
 
     } catch (error) {
@@ -135,7 +135,7 @@ const Customers = () => {
   //kulanıcıyı banlıyor
   const userDeactivate = async (id) => {
     try {
-      const response = await axios.post(`http://localhost:5000/user/deactivate/${id}`);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/user/deactivate/${id}`);
       toast.success(response.data.message)
     } catch (error) {
       toast.error(error.response.data.error)
@@ -147,7 +147,7 @@ const Customers = () => {
   //kulanıcıya mail gonderme
   const sendMail = async (data) => {
     try {
-      const response = await axios.post(`http://localhost:5000/sendMail`, data);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/sendMail`, data);
       setModalOpen(false);
       toast.success(response.data.message);
 

@@ -85,7 +85,7 @@ const Feedback = () => {
     const sendMail = async (data) => {
         
         try {
-            const response = await axios.post(`http://localhost:5000/sendMail`, data);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/sendMail`, data);
             toast.success(response.data.message);
             setModalOpen(false);
 

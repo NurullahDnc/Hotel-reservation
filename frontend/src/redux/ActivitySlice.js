@@ -14,7 +14,7 @@ const initialState ={
 export const getActivity = createAsyncThunk("getactivity", async () => {
 
     try {
-        const response = await axios.get('http://localhost:5000/activity');
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/activity`);
         return response.data.data;
 
     } catch (error) {

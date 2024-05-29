@@ -16,7 +16,7 @@ export const getUserInfo = createAsyncThunk("getUserInfo", async () => {
         //cookiden token alınıyor
         const token = document.cookie.split('; ').find(row => row.startsWith('jwt='));
         //kullanıcının bilgisini almak için istek atılıyor ve token gönderiliyor
-        const res = await axios.get('http://localhost:5000/user/profile', {
+        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/profile`, {
             headers: {
                 Authorization: `jwt ${token.split('=')[1]}`
             }
@@ -32,7 +32,7 @@ export const getUserInfo = createAsyncThunk("getUserInfo", async () => {
 export const getUser = createAsyncThunk("getUser", async () => {
 
     try {
-        const response = await axios.get('http://localhost:5000/user');
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/user`);
         console.log(response);
         return response.data;
     } catch (error) {

@@ -119,7 +119,7 @@ const RoomCart = ({ roomInfo }) => {
         }
 
         try {
-            const res = await axios.post("http://localhost:5000/reservation/create", newReservation);
+            const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/reservation/create`, newReservation);
             toast.success("Rezervasyonunuz Oluşturuldu");
             setModalOpen(false)
 
@@ -131,7 +131,7 @@ const RoomCart = ({ roomInfo }) => {
 
     const bodyElement = (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
+            <div  >
                 <Input id="roomType" disapled title="Seçilen Oda" type="number" placeholder={selectedRoom?.category} register={register} errors={errors} required />
                 
                 <Input id="numberOfGuests" title="Misafir Sayısı" maxLength={selectedRoom?.capacity} type="number" placeholder="Misafir Giriniz" register={register} errors={errors} required />

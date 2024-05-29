@@ -89,7 +89,7 @@ const Restaurant = () => {
     //delete func.
     const handleDelete = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:5000/restaurant/delete/${id}`);
+            const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/restaurant/delete/${id}`);
             toast.success(response.data.message)
         } catch (error) {
             toast.error(error.response.data.error);
@@ -114,7 +114,7 @@ const Restaurant = () => {
         
 
         try {
-            const response = await axios.post(`http://localhost:5000/restaurant/create`, formData);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/restaurant/create`, formData);
             toast.success(response.data.message)
             setUpdateOpen(false);
             
@@ -137,7 +137,7 @@ const Restaurant = () => {
        
  
         try {
-            const response = await axios.put(`http://localhost:5000/restaurant/update/${data.id}`, formData);
+            const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/restaurant/update/${data.id}`, formData);
             toast.success(response.data.message)
             setUpdateOpen(false); 
 

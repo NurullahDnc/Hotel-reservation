@@ -14,7 +14,7 @@ const initialState ={
 export const getRestaurant = createAsyncThunk("getRestaurant", async () => {
 
     try {
-        const response = await axios.get('http://localhost:5000/restaurant');
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/restaurant`);
         return response.data.data;
 
     } catch (error) {

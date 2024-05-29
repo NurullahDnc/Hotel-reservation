@@ -16,7 +16,7 @@ const initialState ={
 export const getComment = createAsyncThunk("getComment", async () => {
 
     try {
-        const response = await axios.get('http://localhost:5000/comment/');
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/comment/`);
         return response.data.data;
     } catch (error) {
         throw Error("error");
@@ -27,7 +27,7 @@ export const getComment = createAsyncThunk("getComment", async () => {
 //kulanıcı yorumlarını getir
 export const getUserComment = createAsyncThunk(`getUserComment`, async (userId) => {
     try {
-        const response = await axios.get(`http://localhost:5000/comment/${userId}`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/comment/${userId}`);
         return response.data.data;
     } catch (error) {
         throw Error("error");
@@ -38,7 +38,7 @@ export const getUserComment = createAsyncThunk(`getUserComment`, async (userId) 
 export const getAcceptedComments = createAsyncThunk("getAcceptedComments", async () => {
 
     try {
-        const response = await axios.get('http://localhost:5000/comment/accepted');
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/comment/accepted`);
         return response.data.data;
     } catch (error) {
          throw Error("error");

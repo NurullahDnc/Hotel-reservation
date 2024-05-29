@@ -68,7 +68,7 @@ const Comment = () => {
     const handleDelete = async (id) => {
         try {
             toast.success("Yorum başarıyla silindi");
-            await axios.post(`http://localhost:5000/comment/delete/${id}`);
+            await axios.post(`${process.env.REACT_APP_BASE_URL}/comment/delete/${id}`);
         } catch (error) {
             toast.error("Yorum silinirken bir hata oluştu");
         }
@@ -103,7 +103,7 @@ const Comment = () => {
         };
 
         try {
-            await axios.put(`http://localhost:5000/comment/update/${data.id}`, updatedComment);
+            await axios.put(`${process.env.REACT_APP_BASE_URL}/comment/update/${data.id}`, updatedComment);
             toast.success("Yorumunuz Başarılı bir şekilde Güncellendi")
             setUpdateOpen(false); // Modalı kapat
 

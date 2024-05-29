@@ -31,7 +31,7 @@ const Gallery = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/gallery`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/gallery`);
                 setGallery(response.data.data);
                 console.log(response.data.data);
             } catch (error) {
@@ -101,7 +101,7 @@ const Gallery = () => {
 
     const handleDelete = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:5000/gallery/${id}`);
+            const response = await axios.delete(`${process.env.REACT_APP_BASE_URL}/gallery/${id}`);
             toast.success(response.data.message)
         } catch (error) {
             toast.error(error.response.data.error);
@@ -130,7 +130,7 @@ const Gallery = () => {
 
         try {
             setCreateOpen(false);
-            const response = await axios.post(`http://localhost:5000/gallery/create`, formData );
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/gallery/create`, formData );
             toast.success(response.data.message)
 
         } catch (error) {
@@ -146,7 +146,7 @@ const Gallery = () => {
 
 
         try {
-            const response = await axios.put(`http://localhost:5000/gallery/update/${data.id}`, formData);
+            const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/gallery/update/${data.id}`, formData);
             toast.success(response.data.message)
             setUpdateOpen(false);
 

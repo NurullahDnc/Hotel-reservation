@@ -94,7 +94,7 @@ const Reservation = () => {
   const handleReject = async (id) => {
 
     try {
-      const response = await axios.post(`http://localhost:5000/reservation/cancelled/${id}`);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/reservation/cancelled/${id}`);
       toast.success(response.data.message);
     } catch (error) {
       toast.error(error.response.data.error);

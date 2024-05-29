@@ -62,8 +62,12 @@ const Comment = () => {
             
             try {
                 // Axios kullanarak POST isteği gönderme
-                axios.post('http://localhost:5000/comment/create', commentObject)
+                axios.post(`${process.env.REACT_APP_BASE_URL}/comment/create`, commentObject)
                     .then(response => {
+                        setValue('roomType', ''); // Oda tipi seçimini temizle
+                        setValue('description', ''); // Açıklama alanını temizle
+                        setRating(0); // Değerlendirme puanını sıfırla
+                    
                         toast.success(response.data.message); // Yorum eklendikten sonra yorumları güncelle
                      })
                     .catch(error => {
@@ -115,7 +119,10 @@ const Comment = () => {
                     {commentAccepted.map((comment, index) => (
             <div className="comment-scroll-container">
                         <div key={index} className="comment-ul-item"  >
-                            <strong className="comment-ul-item-userName"> {comment.user?.firstName || comment.user?.lastName ? `${comment.user?.firstName} ${comment.user?.lastName}` : "isimsiz Kulanıcı"}</strong>
+                            <strong className="comment-ul-item-userName"> 
+                            {comment.user.firstName? `${comment.user?.firstName}`: "" && comment.user.lastName? `${comment.user?.lastName}`: ""  }
+                            
+                            </strong>
                             <span className="comment-ul-item-meta">{comment.createdAt}</span>
                             <span className="comment-ul-item-rating">
                                 {[...Array(5)].map((_, i) => (
@@ -144,6 +151,7 @@ const Comment = () => {
                 </Slider>
 
             {
+                user?
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <div className="input-container">
@@ -172,7 +180,7 @@ const Comment = () => {
                         <Button btnText="Yorum oluştur" small />
                         
                     </div>
-            </form>
+            </form>:""
             }
         </div>
     );

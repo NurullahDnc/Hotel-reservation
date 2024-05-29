@@ -89,7 +89,7 @@ const  Comment = () => {
     const handlecancelled = async (id) => {
 
         try {
-            const response = await axios.post(`http://localhost:5000/comment/setCancelled/${id}`);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comment/setCancelled/${id}`);
             toast.success("yorum reddedildi")
         } catch (error) {
             toast.error("hata olustu")
@@ -100,7 +100,7 @@ const  Comment = () => {
     //yorum onaylama
     const handleApprove = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:5000/comment/setApproved/${id}`);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/comment/setApproved/${id}`);
             toast.success("yorum Onaylandı")
         } catch (error) {
             toast.error("hata olustu")

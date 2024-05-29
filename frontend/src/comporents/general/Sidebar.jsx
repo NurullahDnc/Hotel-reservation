@@ -30,6 +30,15 @@ const Sidebar = ({ menuData, userLogout, title, adminLogout }) => {
 
   }
 
+  //admin logout yapılacak.
+  const handleAdminLogout = () => {
+    dispatch(logout())
+    toast.success("Çıkış İslemi Başarılı")
+    router("/")
+    //sayfayı yneile 
+    window.location.reload();
+
+  }
 
   return (
     <div className={`generalSidebar ${openMenu ? "setOpenMenu" : ""}`}>

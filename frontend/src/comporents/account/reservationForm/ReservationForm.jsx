@@ -30,7 +30,7 @@ const ReservationForm = () => {
     }, [dispact])
 
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = async data => {
 
         //rezervasyon degiskeni
@@ -46,9 +46,9 @@ const ReservationForm = () => {
 
 
         try {
-            const res = await axios.post("http://localhost:5000/reservation/create", newReservation);
+            const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/reservation/create`, newReservation);
             toast.success("Rezervasyonunuz Oluşturuldu");
-
+            reset();
         } catch (error) {
             toast.error("Rezervasyon oluşturulurken bir hata oluştu");
         }
