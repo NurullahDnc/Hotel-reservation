@@ -1,0 +1,64 @@
+//table
+.table-container {
+    font-family: 'Roboto', sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 gray;
+    overflow: auto;
+    // border: 10px solid rgb(203, 202, 202);
+    
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100px;
+    flex: 1;
+}
+
+th {
+    color: red;
+}
+
+ 
+
+//tabloda 4 sutunu genislik ayarlandı
+// th:nth-child(4){
+//     min-width: 330px;
+// }
+
+// td:nth-child(4){
+//     min-width: 330px;
+
+ 
+// }
+
+tbody tr:nth-child(odd) {
+    background-color: #ddd;
+}
+
+//   tbody tr:nth-child(odd) {
+//     background-color: #fafafa; /* Tek sıradaki satırların arka plan rengi beyaz tonu */
+//   }
+
+tbody tr:hover {
+    
+}
+
+
+
+.space {
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 gray;
+    padding: 20px;
+
+}

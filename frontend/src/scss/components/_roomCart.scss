@@ -1,0 +1,99 @@
+.room-card {
+    background-color: #f7fbff;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+
+
+
+    .room-card-content {
+        display: flex;
+        flex-direction: row;
+
+        @include mobil {
+            flex-direction: column;
+        }
+
+        &-1 {
+            flex: 1.2;
+
+            &-image {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        &-2 {
+            flex: 3;
+
+            &-name {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+                color: #333;
+            }
+
+            &-accordion {
+                margin-top: 1rem;
+
+                &-description {
+                    font-size: 1rem;
+                    margin-top: 1rem;
+                    margin-bottom: 1rem;
+                    color: #555;
+
+                    .room-feature {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 0.5rem;
+                    }
+
+                }
+
+                .feature-icon {
+                    margin-right: 0.5rem;
+                    color: #007bff;
+                }
+
+            }
+
+            .star-icons {
+                margin-top: 2%;
+                color: $text-btn;
+            }
+
+        }
+
+        &-3 {
+             
+            @include mobil{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            &-price {
+                font-size: 20px;
+            }
+
+            .reservation-button {
+                margin-top: 3rem;
+                background-color: $text-btn;
+                color: #000000;
+                cursor: pointer;
+                
+                @include mobil {    
+                    margin-top: 1rem;
+                }
+
+                &:hover {
+                    background-color: $text-btn;
+                }
+            }
+        }
+
+    }
+
+}

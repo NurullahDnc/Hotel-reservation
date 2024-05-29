@@ -8,11 +8,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../../redux/DarkModeSlice';
 import { useTranslation } from 'react-i18next';
 import { loginModalFun, registerModalFun } from '../../redux/ModalSlice';
-import { getUser, logout } from '../../redux/User';
-import {useCookies} from 'react-cookie'
-import AuthManager from '../../account/comporents/profile/AuthManager';
+import { getUser, logout } from '../../redux/UserSlice';
+import { useCookies } from 'react-cookie'
 import { toast } from 'react-toastify';
-
+import AuthManager from '../account/AuthManager';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const Navbar = () => {
   const navbardata = [
@@ -31,40 +32,42 @@ const Navbar = () => {
   const [currentDate, setCurrentDate] = useState('');
   const [selectLanguage, setSelectLanguage] = useState("Tr")
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.getUser.user);  
+  const user = useSelector((state) => state.getUser.user);
   const router = useNavigate();
   const [cookies] = useCookies(['jwt']);
-
   const isDarkMode = useSelector((state) => state.darkMode.isDarkMode)
   const { t, i18n } = useTranslation();
 
   const clickHandle = async (lang) => {
     await i18n.changeLanguage(lang);
   };
- 
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
-  
-  //tarih icin
+  // Bugünkü tarihi al, useState at
   useEffect(() => {
-    // Bugünkü tarihi al, usestate at
-    const today = new Date().toISOString().split("T")[0];
-    setCurrentDate(today);
+    const today = new Date();
+    setStartDate(today);
+
+    // Çıkış tarihini başlangıç tarihine 2 gün ekleyerek ayarla
+    const twoDaysLater = new Date(today);
+    twoDaysLater.setDate(today.getDate() + 2);
+    setEndDate(twoDaysLater);
   }, []);
-  
+
+
   //isdarkmode degisklik oldugunda, body den dark-mode kaldır
   useEffect(() => {
     // useEffect içinde body'ye sınıf ekleyip çıkarma işlemi
     document.body.classList.toggle('dark-mode', isDarkMode);
   }, [isDarkMode]);
-  
-  //dil'de secileni aliyor 
-  
-  
+
+
   //sol menu ac kapa
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen)
   }
-  
+
   //rezervasyon ac kapa
   const toogleReservation = () => {
     setReservationIsOpen(!reservationIsOpen)
@@ -72,19 +75,20 @@ const Navbar = () => {
   //user ac kapa
   const toggleUser = () => {
     setUserOpen(!isUserOpen);
-    
+
   }
-  
+
   //darkmode icin redux'daki func. tetikliyor
   const toggleDark = () => {
     dispatch(toggleDarkMode());
-    
+
   }
-  
+
+
   return (
     <div className='navbar'>
       <AuthManager />
-      
+
       {/*solda acılır kapanır menu */}
       <div className={`navbar-isMenu ${isMenuOpen ? `navbar-isOpen` : `""`} `}>
         <div className='navbar-isMenu-item'>
@@ -119,10 +123,31 @@ const Navbar = () => {
             <option value="vw">Günlük</option>
           </select>
 
-          <input type="date" id="birthday" name="birthday" min={currentDate} />
-          <input type="date" id="birthday" name="birthday" min={currentDate} />
+          <DatePicker
+            className='inputs-input'
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            minDate={startDate}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
+            placeholderText="Giriş Tarihi"
+          />
+          <DatePicker
+            className='inputs-input'
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            selectsEnd
+            startDate={startDate}
+            endDate={endDate}
+            minDate={startDate}
+            placeholderText="Çıkış Tarihi"
+          />
 
-          <button>
+          <button onClick={() => {
+            router("/odalar");
+            setReservationIsOpen(!reservationIsOpen);
+          }}>
             Oda Ara
           </button>
 
@@ -147,8 +172,8 @@ const Navbar = () => {
 
             {/*user icon ve aç kapa bolumu */}
             <li className='navbar-container-right-user'>
-                 <FaRegUser onClick={toggleUser} className='navbar-container-right-user-icon' size={23} />
-               <ul className={`navbar-container-right-user-item ${isUserOpen ? "isUser" : ""} `}>
+              <FaRegUser onClick={toggleUser} className='navbar-container-right-user-icon' size={22} />
+              <ul className={`navbar-container-right-user-item ${isUserOpen ? "isUser" : ""} `}>
 
                 {/*modal acıyor, tıklandıktan sonra user open kapatıyor */}
                 {
@@ -164,6 +189,8 @@ const Navbar = () => {
                         dispatch(logout())
                         setUserOpen(!isUserOpen);
                         toast.success("Çıkış başarılı")
+                        window.location.reload();
+
                       }}>Cıkış Yap</li>
                     </div>
                     :
@@ -196,11 +223,11 @@ const Navbar = () => {
                 <option value="en">En</option>
               </select>
             </li>
-            <li onClick={toggleDark} className='navbar-container-right-darkMode'>
+            {/* <li onClick={toggleDark} className='navbar-container-right-darkMode'>
               {
                 isDarkMode ? <MdDarkMode size={22} /> : <MdOutlineDarkMode size={22} />
               }
-            </li>
+            </li> */}
           </ul>
 
         </div>

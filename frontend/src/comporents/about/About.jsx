@@ -13,15 +13,13 @@ const About = () => {
     return (
         <div className='about'>
             <PageTitleImage
-                image="https://img.freepik.com/free-photo/desert-sand-dunes-panoramic-view_587448-8157.jpg?t=st=1709244386~exp=1709247986~hmac=350994ef7dcf770cf9dd7968817081b721ac48da1d3dd974897dd8dfb0ed33d4&w=1380"
-                title={t('aboutUs')}
+image={"https://images.pexels.com/photos/17154931/pexels-photo-17154931/free-photo-of-deniz-doga-tatil-mavi.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"}                     title={t('aboutUs')}
             />
 
             <div className='about-grid'>
-                <Grid container spacing={2}>
-                    <Grid item xs={12} md={7} className='about-grid-1'>
+                     <Grid item xs={12} md={7} className='about-grid-1'>
                         <img
-                            src="./image/about.jpg"
+                            src="https://yapigundem.com/wp-content/uploads/2023/08/yeni-donemde-145-yeni-otel-hizmete-acilacak-1.jpeg"
                             alt="about-image"
                             className="about-grid-1-image"
                         />
@@ -34,8 +32,7 @@ const About = () => {
                             <PhoneIcon style={{ marginRight: '8px', color: 'blue' }} /> {phoneNumber}
                         </div>
                     </Grid>
-                </Grid>
-            </div>
+             </div>
         </div>
     );
 };

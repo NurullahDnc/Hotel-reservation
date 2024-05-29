@@ -7,7 +7,13 @@ const route = express.Router();
 route.route("/register").post( UserController.createUser)
 route.route("/login").post(UserController.loginUser)
 route.route("/google").post(UserController.googleAuth)
+route.route("/admin").post(UserController.adminLogin)
 
+
+route.route("/").get(UserController.getuser)
+
+route.route("/active/:id").post(UserController.activateUserAccount)
+route.route("/deactivate/:id").post(UserController.deactivateUserAccount)
 
 
 //authenticateToken, token dogrulaması yapıyor.

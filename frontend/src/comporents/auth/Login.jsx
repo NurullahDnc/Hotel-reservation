@@ -15,7 +15,7 @@ const Login = () => {
     const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
     const onSubmit = data => {
-        axios.post("http://localhost:5000/user/login", data)
+        axios.post(`${process.env.REACT_APP_BASE_URL}/user/login`, data)
             .then((response) => {
                 toast.success(response.data.message);
                 const token = response.data.accessToken;
@@ -26,7 +26,7 @@ const Login = () => {
                 toast.error(err.response.data.error);
             });            
     };
-
+ 
    
 
     const bodyElement = (
@@ -53,26 +53,11 @@ const Login = () => {
                 onClose={() => dispatch(loginModalFun())}
                 onSubmit={() => {}}
             />
-        </form>
+        </form> 
     );
 };
 
 export default Login;
 
 
-/*
-
-  if (response.error === "popup_closed_by_user") {
-                // Eğer kullanıcı popup'ı kapattıysa bir şey yapma
-                console.log("Kullanıcı popup'ı kapattı.");
-            } else if (response.error === "idpiframe_initialization_failed") {
-                // İdP iframe başlatma hatası
-                console.error("İdP iframe başlatma hatası:", response.details);
-                // Hata mesajını kullanıcıya bildirebilirsiniz
-                toast.error("Giriş işlemi sırasında bir hata oluştu. Lütfen tekrar deneyin.");
-            } else {
-                // Diğer durumlarda, yani giriş başarılıysa modalı aç
-                dispatch(loginModalFun());
-                console.log("Google ile giriş başarılı:", response);
-            }
-*/
+ 

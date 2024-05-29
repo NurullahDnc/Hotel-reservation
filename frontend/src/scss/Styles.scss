@@ -23,7 +23,9 @@
 @import './components/about';
 @import './components/gallery';
 @import './components/modal';
-
+@import './components/roomCart';
+@import './components/activityCart';
+@import './components/adminLogin';
 
 
 
@@ -32,13 +34,15 @@
 
 
 /*general*/
-@import './components/general/activityCart';
-@import './components/general/roomCart';
 @import './components/general/heading';
 @import './components/general/pageTitleImage';
 @import './components/general/input';
 @import './components/general/button';
 @import './components/general/navbar';
+@import './components/general/table';
+@import './components/general/pageTitle.scss';
+
+
 
 
 

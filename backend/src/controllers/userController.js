@@ -15,7 +15,6 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const createUser = async (req, res) => {
 
     try {
-        //body'den verileri al
         const {
             firstName,
             lastName,
@@ -23,7 +22,6 @@ const createUser = async (req, res) => {
             password
         } = req.body;
 
-        //kulanıcı kontrol et uye mi
         const existingUser = await User.findOne({
             email
         });
@@ -34,12 +32,7 @@ const createUser = async (req, res) => {
                 error: "bu kullanıcı zaten kayıtlı"
             })
         }
-
-        //pass. hash'le
         const hashedPassword = await bcrypt.hash(password, 10);
-
-
-        //user olsutur
         const user = await User.create({
             firstName,
             lastName,
@@ -82,6 +75,14 @@ const loginUser = async (req, res) => {
             });
         }
 
+
+        if (user && user.status === false) {
+            return res.status(401).json({
+                success: false,
+                error: 'Kullanıcı devre dışı bırakıldı!'
+            });
+        }
+
         //pass. karsılastırma
         const validPassword = await bcrypt.compare(password, user.password);
 
@@ -95,7 +96,7 @@ const loginUser = async (req, res) => {
 
         //kulanıcının ıd gore token olusturuyor.
         const accessToken = createAccessToken({
-            id: user._id
+            id: user._id 
         });
 
         // Yenileme tokeninin kullanıcıya gönderilmesi, X
@@ -122,6 +123,75 @@ const loginUser = async (req, res) => {
 
 }
 
+const adminLogin = async (req, res) => {
+    try {
+
+        const {
+            email,
+            password
+        } = req.body
+
+        const user = await User.findOne({
+            email: email
+        })
+
+         
+        if (!user &&  user.role != "admin") {
+            res.status(400).json({
+                succeded: false,
+                error: "Kulanıcı adı veya sifre hatalıdır"
+            })
+        } 
+
+        const validPassword = await bcrypt.compare(password, user.password);
+        
+        if(!validPassword){
+            res.status(400).json({
+                succeded: false,
+                error: "Kulanıcı adı veya sifre hatalıdır"
+            })
+        }
+
+        const accessToken = createAccessToken({
+            id: user._id
+        });
+
+        res.status(200).json({
+            success: true,
+            accessToken,
+            message: "Giriş başarılı"
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            succeded: false,
+            error: error.message
+        })
+    }
+}
+
+const getuser = async (req, res) => {
+    try {
+        // Kullanıcıları veritabanından al
+        const users = await User.find();
+
+        const formattedUsers = users.map(user => ({
+            ...user.toObject(),
+            createdAt: user.createdAt.toISOString().slice(0, 19).replace('T', ' '),
+            updatedAt: user.updatedAt.toDateString()
+        })).reverse();
+
+        res.status(200).json(formattedUsers);
+    } catch (error) {
+        return res.status(500).json({
+            error: error.message
+        });
+    }
+}
+
+
+
 export const getInfo = async (req, res) => {
 
     try {
@@ -132,8 +202,7 @@ export const getInfo = async (req, res) => {
         if (!user) return res.status(400).json({
             error: "Kullanıcı mevcut değil."
         });
-
-        console.log("giris yapan", res.locals.user._id);
+        
         res.status(200).json(user)
     } catch (error) {
         return res.status(500).json({
@@ -168,6 +237,17 @@ export const googleAuth = async (req, res) => {
             email
         });
 
+        if (user) {
+            console.log("user var ", user);
+        }
+
+
+        if (user && user.status === false) {
+            return res.status(401).json({
+                success: false,
+                error: 'Kullanıcı devre dışı bırakıldı!'
+            });
+        }
 
         if (!user) {
             // Eğer kullanıcı yoksa, kayıt et
@@ -179,6 +259,7 @@ export const googleAuth = async (req, res) => {
                 googleId: ticket.getUserId()
             });
         }
+
 
         // Kullanıcıya token olustur, client gonder cookie kayıt et
         const accessToken = createAccessToken({
@@ -199,10 +280,60 @@ export const googleAuth = async (req, res) => {
     }
 };
 
+const activateUserAccount = async (req, res) => {
+
+    try {
+        // rezervasyonun gelen ıd gore guncelle, durumunu approved yap
+        const reservation = await User.findByIdAndUpdate(req.params.id, {
+            status: 'true'
+        }, {
+            new: true
+        });
+
+        return res.json({
+            reservation,
+            message: 'Kulanıcı Aktif Edildi',
+
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: 'Kulanıcı aktif edilirken bir hata oluştu'
+        });
+    }
+};
+
+const deactivateUserAccount = async (req, res) => {
+
+    try {
+        // rezervasyonun gelen ıd gore guncelle, durumunu approved yap
+        const status = await User.findByIdAndUpdate(req.params.id, {
+            status: 'false'
+        }, {
+            new: true
+        });
+
+        return res.json({
+            status,
+            message: 'Kullanıcı devre dışı bırakıldı.',
+
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: 'Kullanıcı devre dışı bırakılırken hata oluştu'
+        });
+    }
+};
+
 
 
 
 export {
     createUser,
-    loginUser
+    loginUser,
+    getuser,
+    activateUserAccount,
+    deactivateUserAccount,
+    adminLogin
 }

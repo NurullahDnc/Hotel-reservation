@@ -1,11 +1,10 @@
-
-
 import React from 'react'
 
-const Input = ({id, type, placeholder, required, register, errors }) => {
+const Input = ({ id, type, placeholder, title, required, register, errors, disapled, maxLength }) => {
   return (
-    <div className={` `}>
-      <input className={` input ${errors[id]? "err": "" } `} {...register(id, {required})} type={type} name={id} placeholder={placeholder} />
+    <div className={`inputs`} encType='multipart/form-data'>
+      <p className='inputs-title'>{title}</p>
+      <input accept="image/*" disabled={disapled} max={maxLength} className={` inputs-input ${errors[id] ? "err" : ""} `} {...register(id, { required })} type={type} name={id} placeholder={placeholder} />
     </div>
   )
 }

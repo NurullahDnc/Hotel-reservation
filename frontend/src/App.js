@@ -1,5 +1,5 @@
 import MainLayout from "./layout/MainLayout";
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route, BrowserRouter as Router, } from 'react-router-dom';
 import Home from "./pages/Home";
 import Navbar from "./comporents/navbar/Navbar";
@@ -15,14 +15,44 @@ import 'react-toastify/dist/ReactToastify.css';
 import Modal from "./comporents/auth/Modal";
 import Login from "./comporents/auth/Login";
 import Register from "./comporents/auth/Register";
-import Account from "./pages/Account";
-import ProfileLayout from "./layout/ProfileLayout";
-import UserProfile from "./comporents/account/profil";
-import ProfilePage from "./account/page/ProfilePage";
+ import ProfileLayout from "./layout/ProfileLayout";
+import ProfilePage from "./pages/ProfilePage";
+import Table from "./comporents/general/Table";
+import Reservation from "./comporents/account/reservation/Reservation";
+import ReservationFormPage from "./pages/ReservationFormPage";
+import ReservationPage from "./pages/ReservationPage";
+import AccountRoomPage from "./pages/AccountRoomPage";
+import CommentPages from "./pages/CommentPages";
+
+import DashboardPage from "./pages/admin/DashboardPage";
+import ReservationsPage from "./pages/admin/ReservationsPage";
+import RoomAdminPage from "./pages/admin/RoomPage";
+import CustomersPage from "./pages/admin/CustomersPage";
+import CommentPage from "./pages/admin/CommentPage";
+import FeedbackPage from "./pages/admin/FeedbackPage";
+import GalleryAdminPage from "./pages/admin/GalleryPage";
+import ActivitiesAdminPage from "./pages/admin/ActivitiesPage";
+import RestaurantAdminPage from "./pages/admin/RestaurantPage";
+import Loading from "./comporents/Loading";
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
+
+
+
  function App() {
+
+  const  [status, setStatus] = useState(false);
+
+  
+  useEffect(()=>{
+    setStatus(true)
+  },[status])
+
 
   return (
     <div className="App">
+    
+    {status === false ? <Loading /> : null} 
+
     <ToastContainer position="top-right" reverseOrder={false} />
 <Register />
 <Login />
@@ -49,12 +79,26 @@ import ProfilePage from "./account/page/ProfilePage";
             }
           />
   
+  <Route path="/adminLogin" element={<AdminLoginPage />} />
 
           <Route
             path="/admin/*"
             element={
               <AdminLayout > 
                 <Routes>
+
+                  <Route path="/dashboard" element={<DashboardPage />} />
+                  <Route path="/Reservations" element={<ReservationsPage />} />
+                  <Route path="/Room" element={<RoomAdminPage />} />
+                  <Route path="/customers" element={<CustomersPage />} />
+                  <Route path="/comment" element={<CommentPage />} />
+                  <Route path="/feedback" element={<FeedbackPage />} />
+                  <Route path="/gallery" element={<GalleryAdminPage />} />
+                  <Route path="/activities" element={<ActivitiesAdminPage />} />
+                  <Route path="/restaurant" element={<RestaurantAdminPage />} />
+
+
+
 
                 <Route path="*" element={<div>Sayfa Bulunamadı</div>} />
 
@@ -70,6 +114,15 @@ import ProfilePage from "./account/page/ProfilePage";
                 <Routes>
 
                 <Route path="/profil" element={<ProfilePage />} />
+                <Route path="/reservation" element={<ReservationPage />} />
+                <Route path="/reservationform" element={<ReservationFormPage />} />
+                <Route path="/room" element={<AccountRoomPage />} />
+                <Route path="/comment" element={<CommentPages />} />
+
+
+
+                <Route path="/profils" element={<Table/>} />
+
 
                 {/* <Route path="/profil" element={<UserProfile />} /> */}
 

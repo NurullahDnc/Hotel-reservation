@@ -23,6 +23,16 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    status: {
+        type: Boolean,
+        enum: [true, false],
+        default: "true",
+    },
+    role:{
+        type: String,
+        enum: ["admin", "user"],
+        default: "user"
+    },
     googleId: String // Google ile giriş yapan kullanıcılar için Google ID
 
 }, {
@@ -31,6 +41,6 @@ const userSchema = new Schema({
 });
 
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
 export default User;
