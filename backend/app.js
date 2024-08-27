@@ -16,8 +16,7 @@ import CommentRoute from './src/routes/commentRoute.js'
 import FeedbackRoute from './src/routes/feedbackRoute.js'
 import SendMailRoute from './src/routes/sendMailRoute.js'
 import GalleryRoute from './src/routes/galleryRoute.js'
-
-
+ 
 
 
 
@@ -65,6 +64,21 @@ app.use("/gallery", GalleryRoute)
 
 
 
+app.use("/activity", ActivityRoute)
+app.use("/restaurant", RestaurantRoute)
+
+
+
+
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(err.status || 500).json({
+        status: err.status || 500,
+        message: err.message || 'Internal Server Error',
+        stack: process.env.NODE_ENV === 'development' ? err.stack : {}
+    });
+});
 
 
 

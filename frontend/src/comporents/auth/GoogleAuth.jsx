@@ -21,13 +21,14 @@ const GoogleButton = ({outline}) => {
     const responseGoogle = (response) => {
         //tokenId gonder, token cookie kayıt et
         axios
-            .post('http://localhost:5000/user/google', { token: response.tokenId })
+            .post(`${process.env.REACT_APP_BASE_URL}/user/google`, { token: response.tokenId })
             .then((response) => {
                 const token = response.data.accessToken;
                 document.cookie = `jwt=${token}; max-age=${7 * 24 * 60 * 60}; path=/`;
                 dispatch(loginModalFun());
                 toast.success(response.data.message);
 
+                console.log(response);
 
             })
             .catch((err) => {

@@ -15,7 +15,7 @@ const Login = () => {
     const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
     const onSubmit = data => {
-        axios.post("http://localhost:5000/user/login", data)
+        axios.post(`${process.env.REACT_APP_BASE_URL}/user/login`, data)
             .then((response) => {
                 toast.success(response.data.message);
                 const token = response.data.accessToken;
@@ -26,7 +26,7 @@ const Login = () => {
                 toast.error(err.response.data.error);
             });            
     };
-
+ 
    
 
     const bodyElement = (
@@ -53,7 +53,7 @@ const Login = () => {
                 onClose={() => dispatch(loginModalFun())}
                 onSubmit={() => {}}
             />
-        </form>
+        </form> 
     );
 };
 

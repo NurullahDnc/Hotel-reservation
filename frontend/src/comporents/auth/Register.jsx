@@ -20,7 +20,7 @@ const Register = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         
-        axios.post("http://localhost:5000/user/register", data)
+        axios.post(`${process.env.REACT_APP_BASE_URL}/user/register`, data)
         .then((response)=> {
             toast.success(response.data.message)
             

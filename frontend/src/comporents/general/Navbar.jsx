@@ -5,7 +5,6 @@ import { getUser } from '../../redux/UserSlice';
 
 const Navbar = ({ onClick, user }) => {
 
-  console.log("users", user);
 
   return (
     <div className='generalNavbar'>

@@ -37,7 +37,7 @@ const reservationSchema = new Schema({
     },
     status: {
         type: String,
-        enum: ['pending', 'approved', 'cancelled'], // Sadece belirli değerlerden birini alabilir
+        enum: ['pending', 'approved', 'cancelled', 'reject'], // Sadece belirli değerlerden birini alabilir
         default: 'pending'
     },
     dayCount:{

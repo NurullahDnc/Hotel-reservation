@@ -64,11 +64,38 @@ const createReservation = async (req, res) => {
     }
 };
 
+const getReservations = async (req, res) => {
+    try {
+        // Kullanıcı ve odanın bilgilerini de gönder
+        const reservations = await Reservation.find({}).populate('user').populate('room');
+
+        // Tarih formatını düzeltmek için reservations.map içinde her bir rezervasyonun tarih alanlarını düzenleyebiliriz
+        const formattedReservations = reservations.map(reservation => ({
+            ...reservation.toObject(),
+            checkInDate: new Date(reservation.checkInDate).toLocaleDateString("tr-TR"),
+            checkOutDate: new Date(reservation.checkOutDate).toLocaleDateString("tr-TR"),
+            createdAt: new Date(reservation.createdAt).toLocaleDateString("tr-TR")
+            
+        })).reverse();
+
+        res.status(201).json({
+            success: true,
+            data: formattedReservations
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+};
+
 
 
 
 //gelen userId gore rezervasyonları buluyor
-const getApReservations = async (req, res) => {
+async function getUserReservations(req, res) {
 
     try {
 
@@ -84,7 +111,9 @@ const getApReservations = async (req, res) => {
                 return {
                     ...reservation.toObject(),
                     checkInDate: new Date(reservation.checkInDate).toLocaleDateString(),
-                    checkOutDate: new Date(reservation.checkOutDate).toLocaleDateString()
+                    checkOutDate: new Date(reservation.checkOutDate).toLocaleDateString(),
+                    createdAt: new Date(reservation.createdAt).toLocaleDateString("tr-TR")
+
                 };
             }).reverse(); // Diziyi tersine çevir
 
@@ -105,50 +134,87 @@ const getApReservations = async (req, res) => {
             error: error.message
         });
     }
-};
+}
 
 
 // Rezervasyonu onaylama
-const setApproved = async (reservationId) => {
+const setApproved = async (req, res) => {
+
     try {
-        // rezervasyonun ıd gore guncelle, durumunu approved yap
-        const reservation = await Reservation.findByIdAndUpdate(reservationId, {
+        // rezervasyonun gelen ıd gore guncelle, durumunu approved yap
+        const reservation = await Reservation.findByIdAndUpdate(req.params.id, {
             status: 'approved'
         }, {
             new: true
         });
 
-        return reservation; // Güncellenmiş rezervasyon belgesini döndür
+        return res.json({
+            reservation,
+            message: 'Rezervasyon başarıyla onaylandı',
+
+        });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
-            error: error.message
+            error: 'Rezervasyon onaylanırken bir hata oluştu'
         });
     }
 };
 
-// Rezervasyonu iptal etme
-const setCancelled = async (reservationId) => {
+//rezervasyon reddetme, admin
+const setReject = async (req, res) => {
+
     try {
-        // rezervasyonun ıd gore guncelle, durumunu cancelled yap
-        const reservation = await Reservation.findByIdAndUpdate(reservationId, {
+        const reservation = await Reservation.findByIdAndUpdate(req.params.id, {
+            status: 'reject'
+        }, {
+            new: true
+        });
+
+        return res.json({
+            reservation,
+            message: 'Rezervasyon başarıyla reddedildi',
+
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: 'Rezervasyon reddedilirken bir hata oluştu'
+        });
+    }
+};
+
+
+// Rezervasyonu iptal etme, user
+const setCancelled = async (req, res) => {
+
+    try {
+        const reservation = await Reservation.findByIdAndUpdate(req.params.id, {
             status: 'cancelled'
         }, {
             new: true
         });
 
-        return reservation;
+        return res.json({
+            reservation,
+            message: 'Rezervasyon başarıyla iptal edildi',
+
+        });
     } catch (error) {
         res.status(500).json({
             success: false,
-            error: error.message
+            error: 'Rezervasyon iptal edilirken bir hata oluştu'
         });
     }
 };
 
+
+
 export {
     createReservation,
-    getApReservations,
+    getReservations,
+    getUserReservations,
     setApproved,
     setCancelled,
+    setReject
 };

@@ -3,6 +3,7 @@ import Table from '../../general/Table'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRoom } from '../../../redux/RoomSlice'
 import Loading from '../../Loading';
+import PageTitle from '../../general/PageTitle';
 const Room = () => {
 
     const roomTitle = [
@@ -22,7 +23,6 @@ const Room = () => {
     const dispacth = useDispatch();
 
     useEffect(() => { dispacth(getRoom()) }, [dispacth])
-    console.log("rom", roomStatus);
     //tablo comps. title, degisken olarak gonderiyorum
     const titleElement = (
         <tr style={{ display: "flex" }}>
@@ -35,13 +35,13 @@ const Room = () => {
     //tablo comps. body, degisken olarak gonderiyorum
     const bodyElement = room.map((item, index) => (
         <tr key={index} style={{ display: "flex" }}>
-            <td><img src={"../image/ozel3.jpg"} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="room image" /></td>
+            <td><img src={item.image} style={{ borderRadius: "10px", width: "75px", height: "60px", objectFit: "cover" }} alt="room image" /></td>
             <td>{item.category}</td>
             <td>{item.price}</td>
             <td>{item.description.length > 20 ? `${item.description.substring(0, 100)}...` : item.description} </td>
             <td>{item.capacity}</td>
             <td style={{ color: item.Availability === false ? "red" : item.Availability === true ? "green" : "" }} >
-                {item.Availability === false ? "Dolu" : item.Availability === true ? "Boş" : ""}
+                {item.Availability === false ? "Boş" : item.Availability === true ? "Dolu" : ""}
             </td>
         </tr>
     ))
@@ -50,14 +50,15 @@ const Room = () => {
 
     return (
         <div>
+            <PageTitle title="Odalar" />
             <div>
-                {roomStatus === 'LOADING' ? <Loading />:
-                <>
-                    <Table titleElement={titleElement} bodyElement={bodyElement} />
+                {roomStatus === 'LOADING' ? <Loading /> :
+                    <>
+                        <Table titleElement={titleElement} bodyElement={bodyElement} />
 
-                </>
-                
-            }
+                    </>
+
+                }
             </div>
         </div>
     )

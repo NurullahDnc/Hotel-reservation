@@ -1,5 +1,5 @@
 import React from 'react'
-import Dashboard from '../comporents/admin/dashboard/Dashboard'
+import Dashboard from '../../comporents/admin/dashboard/Dashboard'
 
 const DashboardPage = () => {
   return (
@@ -9,4 +9,4 @@ const DashboardPage = () => {
   )
 }
 
-export default DashboardPage
+export default DashboardPage 

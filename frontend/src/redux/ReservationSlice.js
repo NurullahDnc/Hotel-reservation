@@ -3,26 +3,39 @@ import axios from "axios";
 import { STATUS } from "../utils/Status";
 
 const initialState ={
-    reservation: [],
+    userReservation: [],
     reservationStatus: STATUS.IDLE,
     status: "idle",
-    error: null
+    error: null,
+
+    reservation: []
     
 }
 
-export const getReservation = createAsyncThunk("getReservation", async (userId) => {
+export const getUserReservation = createAsyncThunk("getUserReservation", async (userId) => {
 
     try {
-        const response = await axios.get('http://localhost:5000/reservation/',{
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/reservation/reservations`,{
             headers: {
                 Authorization: userId
               }
         });
         return response.data.data;
     } catch (error) {
-        throw Error("Failed to fetch rooms");
+        throw Error("error");
     }
       
+});
+
+export const getReservation = createAsyncThunk("getReservation", async () => {
+
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/reservation`);
+        return response.data.data;
+    } catch (error) {
+        throw Error("error");
+    }
+
 });
 
 //    router.route('/:id').get(PhotoController.getAPhoto);
@@ -35,16 +48,20 @@ const ReservationSlice = createSlice({
 
     extraReducers: (builder) => {
         builder
-            .addCase(getReservation.pending, (state) => {
+            .addCase(getUserReservation.pending, (state) => {
                 state.reservationStatus = STATUS.LOADING;
             })
-            .addCase(getReservation.fulfilled, (state, action) => {
+            .addCase(getUserReservation.fulfilled, (state, action) => {
                 state.reservationStatus = STATUS.SUCCESS;
-                state.reservation = action.payload;
+                state.userReservation = action.payload;
             })
-            .addCase(getReservation.rejected, (state, action) => {
+            .addCase(getUserReservation.rejected, (state, action) => {
                 state.reservationStatus = STATUS.FAIL;
-            });
+            })
+
+            .addCase(getReservation.fulfilled, (state, action) => {
+                 state.reservation = action.payload;
+            })
     }
 });
 

@@ -1,26 +1,35 @@
+//genel modal 
 
-.modal{
+body{
+    position: relative;
+}
+
+.modal {
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: black; /* Arka plan rengi */
     position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     opacity: 0.9;
+    overflow: auto;
+    top: 0;
+    left: 0;
 
-    &-container{
+    &-container {
+        background-color: white; /* İçerik arka plan rengi */ 
+        color: gray;
         width: 45%;
         padding: 15px;
         border-radius: 7px;
-
-        @include mobil{
+         
+        @include mobil {
             width: 90%;
-            
         }
 
-        &-title{
+        &-title {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -28,12 +37,20 @@
             margin-bottom: 10px;
             border-bottom: 2px solid gray;
 
-            &-text{
+            &-text {
                 font-weight: 500;
                 font-size: $FontFive;
             }
         }
-         
-        background-color: white;
     }
+}
+
+//admin acılır modal 
+.modalAdmim{
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    
+  
 }

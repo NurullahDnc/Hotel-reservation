@@ -12,7 +12,7 @@ const ContactPage = () => {
       <PageContainers >
         {/*sayfanın usten navbar boslugu veriyor */}
         <TitleSpace >
-        <PageTitleImage image={"https://img.freepik.com/free-photo/north-beach-nazare-portugal-with-foaming-waves_1268-15932.jpg?t=st=1710068523~exp=1710072123~hmac=befec33b17b924f0ae853f7eddfe41313d447395ff7e8622d930d61d9deb6f38&w=1060"} title={"İletişim"} />
+        <PageTitleImage image={"https://images.pexels.com/photos/17154931/pexels-photo-17154931/free-photo-of-deniz-doga-tatil-mavi.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"}  title={"İletişim"} />
 
           <Contact />
         </TitleSpace>

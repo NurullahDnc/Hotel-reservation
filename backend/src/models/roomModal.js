@@ -8,9 +8,9 @@ const {
 
 const RoomSchema = new Schema({
 
-    img: {
+    image: {
         type: String,
-        required: true,
+        // required: true,
     },
     category: {
         type: String,
@@ -21,17 +21,20 @@ const RoomSchema = new Schema({
         required: true,
      },
      price: {
-        type: Number,
+        type: String,
         required: true,
     },
     capacity:{
-        type: Number,
+        type: String,
         required: true
     },
     Availability:{
         type: Boolean,
         required: true
-    }
+    },
+    image_id: {
+        type: String,
+      },
 
 }, {
     timestamps: true,
