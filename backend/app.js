@@ -10,11 +10,26 @@ import { OAuth2Client } from 'google-auth-library';
 import RoomRoute from './src/routes/RoomRoute.js'
 import ReservationRote from './src/routes/reservationRoute.js'
 import CategoriesRoute from './src/routes/categoriesRoute.js'
+import fileUpload from 'express-fileupload';
+import {v2 as cloudinary} from 'cloudinary'
+import CommentRoute from './src/routes/commentRoute.js'
+import FeedbackRoute from './src/routes/feedbackRoute.js'
+import SendMailRoute from './src/routes/sendMailRoute.js'
+import GalleryRoute from './src/routes/galleryRoute.js'
+
 
 
 
 
 dotenv.config();
+
+//img yukleme
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
+
+})
 
 //express olustur
 const app = express();
@@ -24,6 +39,8 @@ conn();
 // CORS middleware'ini uygulamaya ekle
 app.use(cors());
 
+//fileupload calıstırıyoruz?
+app.use(fileUpload({useTempFiles: true}))
 
 const port = process.env.PORT || 5000;
 
@@ -41,6 +58,13 @@ app.use("/user", UserRoute )
 app.use("/room", RoomRoute )
 app.use("/reservation", ReservationRote )
 app.use("/categories", CategoriesRoute )
+app.use("/comment", CommentRoute)
+app.use("/feedback", FeedbackRoute)
+app.use("/sendMail", SendMailRoute)
+app.use("/gallery", GalleryRoute)
+
+
+
 
 
 
